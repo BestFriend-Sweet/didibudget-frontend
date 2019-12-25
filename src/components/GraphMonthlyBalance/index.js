@@ -24,7 +24,7 @@ export const GraphMonthlyBalance = ({data}) => {
 						margin={{top: 5, right: 20, left: 20, bottom: 5}}
 					>
 						<CartesianGrid strokeDasharray="3 3"/>
-						<XAxis dataKey="date"/>
+						<XAxis dataKey="date" interval="preserveStartEnd" />
 						<YAxis/>
 						<Tooltip/>
 						<Line dataKey="balance" fill="#8884d8"/>
@@ -33,7 +33,7 @@ export const GraphMonthlyBalance = ({data}) => {
 			</div>
 		);
 	} else {
-		const errorMessage = 'Insufficient data to generate statistics';
+		const errorMessage = 'Not enough data to generate statistics';
 		return <ErrorAlert errorMessage={errorMessage} />;
 	}
 }
