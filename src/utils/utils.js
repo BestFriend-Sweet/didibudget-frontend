@@ -90,7 +90,7 @@ const validateRegisterMonthlyBalanceForm = (balance, year, month) => {
 		dataIsValid = false;
 	}
 
-	if (!Number.isInteger(year)) {
+	if (!Number.isInteger(parseInt(year))) {
 		dataIsValid = false;
 	}
 
