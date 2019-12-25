@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 import { parseUnixTimestamp } from '../../utils/utils'
 
 import { ErrorAlert } from '../ErrorAlert'
+
+
+class CustomizedAxisTick extends PureComponent {
+	render() {
+		const { x, y, payload } = this.props;
+
+		return (
+			<g transform={`translate(${x},${y})`}>
+				<text x={0} y={0} dy={16} textAnchor="end" fill="#666" transform="rotate(-45)">{payload.value}</text>
+			</g>
+		)
+	}
+}
 
 export const GraphMonthlyBalance = ({data}) => {	
 	const dataForGraph = [];
@@ -21,13 +34,13 @@ export const GraphMonthlyBalance = ({data}) => {
 				<ResponsiveContainer>
 					<LineChart
 						data={dataForGraph}
-						margin={{top: 5, right: 20, left: 20, bottom: 5}}
+						margin={{top: 5, right: 20, left: 20, bottom: 100}}
 					>
 						<CartesianGrid strokeDasharray="3 3"/>
-						<XAxis dataKey="date" interval="preserveStartEnd" />
-						<YAxis/>
-						<Tooltip/>
-						<Line dataKey="balance" fill="#8884d8"/>
+						<XAxis dataKey="date" interval="preserveStartEnd" tick={<CustomizedAxisTick />} />
+						<YAxis />
+						<Tooltip />
+						<Line dataKey="balance" fill="#8884d8" />
 					</LineChart>
 				</ResponsiveContainer>
 			</div>
