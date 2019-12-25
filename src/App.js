@@ -16,6 +16,7 @@ import { Spinner } from './components/Spinner'
 const Home = React.lazy(() => import('./pages/Home'))
 const UserAdministration = React.lazy(() => import('./pages/UserAdministration'))
 const InsertMonthlyBalance = React.lazy(() => import('./pages/InsertMonthlyBalance'))
+const ViewMonthlyBalance = React.lazy(() => import('./pages/ViewMonthlyBalance'))
 
 
 export const App = () => {
@@ -41,6 +42,7 @@ export const App = () => {
 									{ !isAuth && <Redirect from='/user-administration' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/logout' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/register-monthly-balance' to='/login' noThrow /> }
+									{ !isAuth && <Redirect from='/view-monthly-balance' to='/login' noThrow /> }
 
 									{
 										// If it's authenticated user...
@@ -54,6 +56,7 @@ export const App = () => {
 									{ isAuth && !userData.isAdmin && <Redirect from='/user-administration' to='/' noThrow /> }
 
 									<InsertMonthlyBalance path='/register-monthly-balance' />
+									<ViewMonthlyBalance path='/view-monthly-balance' />
 									<UserAdministration path='/user-administration' />
 									<Logout path='/logout' />
 								</Router>

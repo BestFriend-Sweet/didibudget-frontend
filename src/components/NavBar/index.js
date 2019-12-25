@@ -4,6 +4,7 @@ import { Link } from '@reach/router'
 import { MdHome, MdPeopleOutline } from 'react-icons/md'
 import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
 import { FaPiggyBank } from "react-icons/fa";
+import { GoGraph } from "react-icons/go";
 
 import { AuthContext } from '../../AuthContext'
 
@@ -21,6 +22,11 @@ export const NavBar = () => {
 			{ 
 				isAuth && <Link className="navbar-item text-light font-weight-bold pt-2" to='/register-monthly-balance'>
 					<FaPiggyBank size={SIZE}/>
+				</Link>
+			}
+			{
+				isAuth && <Link className="navbar-item text-light font-weight-bold pt-2" to='/view-monthly-balance'>
+					<GoGraph size={SIZE}/>
 				</Link>
 			}
 			{ 

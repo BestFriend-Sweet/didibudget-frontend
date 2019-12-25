@@ -17,9 +17,7 @@ const InsertMonthlyBalance = () => {
 							const variables = { balance: parseFloat(balance), date };
 							console.log(variables)
 							registerMonthlyBalance({ variables }).then(({ data }) => {
-								// ....
-								console.log('y ahora qué ?')
-								console.log(data.registerMonthlyBalance)
+								window.location.href = '/view-monthly-balance'
 							}).catch(e => {
 								console.error(e.message) // eslint-disable-line no-console
 							})
