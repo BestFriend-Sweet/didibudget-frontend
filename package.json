@@ -1,6 +1,6 @@
 {
   "name": "didibudget-frontend",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "didibudget-frontend",
   "private": true,
   "dependencies": {
@@ -16,7 +16,8 @@
     "react-apollo": "^3.1.3",
     "react-dom": "^16.12.0",
     "react-icons": "^3.8.0",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "recharts": "^2.0.0-beta.1"
   },
   "scripts": {
     "lint": "eslint --ext .js .",
