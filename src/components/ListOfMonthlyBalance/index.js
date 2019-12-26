@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 
 import { parseUnixTimestamp } from '../../utils/utils'
 
+import { DeleteMonthlyBalance } from '../../containers/DeleteMonthlyBalance'
+
+import { ButtonDeleteMonthlyBalance } from '../ButtonDeleteMonthlyBalance'
+
 export const ListOfMonthlyBalance = ( { monthlyBalance } ) => {
+	const monthlyBalanceReversed = monthlyBalance.slice(0).reverse()
 	return (
 		<section className="table-responsive">
 			<table className="table text-light">
@@ -16,12 +21,29 @@ export const ListOfMonthlyBalance = ( { monthlyBalance } ) => {
 				</thead>
   				<tbody>
 					{
-						monthlyBalance.reverse().map(monthlyBalance => {
+						monthlyBalanceReversed.map(monthlyBalance => {
 							return (
 								<tr key={monthlyBalance.uuid}>
 									<td>{parseUnixTimestamp(monthlyBalance.date).substring(0, 10)}</td>
 									<td>{monthlyBalance.balance}</td>
-									<td></td>
+									<td>
+										<DeleteMonthlyBalance>
+											{
+												(deleteMonthlyBalance, { data, loading, error }) => { // eslint-disable-line no-unused-vars
+													const deleteA = (uuid) => {
+														const variables = { uuid: uuid };
+														deleteMonthlyBalance({ variables }).then(( {data} ) => {
+															window.location.href = '/monthly-balance-administration'
+														}).catch(e => {
+															console.error(e.message) // eslint-disable-line no-console
+														})
+													}
+
+													return <ButtonDeleteMonthlyBalance disabled={loading} uuid={monthlyBalance.uuid} deleteFunc={deleteA} />
+												}
+											}
+										</DeleteMonthlyBalance>
+									</td>
 								</tr>
 							)
 						})
