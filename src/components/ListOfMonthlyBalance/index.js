@@ -19,7 +19,7 @@ export const ListOfMonthlyBalance = ( { monthlyBalance } ) => {
 						<th scope="col">Actions</th>
 					</tr>
 				</thead>
-  				<tbody>
+				<tbody>
 					{
 						monthlyBalanceReversed.map(monthlyBalance => {
 							return (
