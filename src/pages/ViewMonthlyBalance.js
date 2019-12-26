@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react'
 
 import { PageTitle } from '../components/PageTitle'
-import { GetMonthlyBalance } from '../containers/GetMonthlyBalance'
+import { GetGraphMonthlyBalance } from '../containers/GetGraphMonthlyBalance'
 
 const ViewMonthlyBalance = () => {
 	return (
 		<Fragment>
 			<PageTitle text='View monthly balance' />
-			<GetMonthlyBalance />
+			<GetGraphMonthlyBalance />
 		</Fragment>
 	)
 }

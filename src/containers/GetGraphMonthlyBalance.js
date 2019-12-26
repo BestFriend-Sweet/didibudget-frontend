@@ -7,7 +7,7 @@ import { GraphMonthlyBalance } from '../components/GraphMonthlyBalance'
 
 import { LIST_ALL_MONTHLY_BALANCE } from '../gql/queries/monthlyBalance'
 
-export const GetMonthlyBalance = () => {
+export const GetGraphMonthlyBalance = () => {
 	const { loading, error, data } = useQuery(LIST_ALL_MONTHLY_BALANCE, { fetchPolicy: 'network-only' });
 
 	if (loading) return <Spinner />
