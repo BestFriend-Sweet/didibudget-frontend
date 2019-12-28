@@ -7,7 +7,7 @@ import { DeleteMonthlyBalance } from '../../containers/DeleteMonthlyBalance'
 
 import { ButtonDeleteMonthlyBalance } from '../ButtonDeleteMonthlyBalance'
 
-export const ListOfMonthlyBalance = ( { monthlyBalance } ) => {
+export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 	const monthlyBalanceReversed = monthlyBalance.slice(0).reverse()
 	return (
 		<section className="table-responsive">
@@ -33,7 +33,7 @@ export const ListOfMonthlyBalance = ( { monthlyBalance } ) => {
 													const deleteA = (uuid) => {
 														const variables = { uuid: uuid };
 														deleteMonthlyBalance({ variables }).then(( {data} ) => {
-															window.location.href = '/monthly-balance-administration'
+															refetch();
 														}).catch(e => {
 															console.error(e.message) // eslint-disable-line no-console
 														})
