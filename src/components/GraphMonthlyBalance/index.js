@@ -6,6 +6,8 @@ import { parseUnixTimestamp } from '../../utils/utils'
 
 import { ErrorAlert } from '../ErrorAlert'
 
+import { parseDataForGraph } from './utils'
+
 
 class CustomizedAxisTick extends PureComponent {
 	render() {
@@ -28,12 +30,14 @@ export const GraphMonthlyBalance = ({data}) => {
 		};
 	});
 
-	if (dataForGraph.length) {
+	const parsedDataForMonthlyBalanceGraph = parseDataForGraph(dataForGraph)
+
+	if (parsedDataForMonthlyBalanceGraph.length) {
 		return (
 			<div style={{ width: '100%', height: 460 }}>
 				<ResponsiveContainer>
 					<LineChart
-						data={dataForGraph}
+						data={parsedDataForMonthlyBalanceGraph}
 						margin={{top: 5, right: 20, left: 20, bottom: 100}}
 					>
 						<CartesianGrid strokeDasharray="3 3"/>
