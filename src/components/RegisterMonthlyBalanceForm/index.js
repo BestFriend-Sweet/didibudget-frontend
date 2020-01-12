@@ -11,7 +11,7 @@ import { validateRegisterMonthlyBalanceForm } from '../../utils/utils'
 
 export const RegisterMonthlyBalanceForm = ({ error, disabled, onSubmit }) => {
 	const d = new Date()
-	const availableYears = [d.getFullYear() - 5, d.getFullYear() - 4, d.getFullYear() - 3, d.getFullYear() - 2, d.getFullYear() - 1, d.getFullYear(), d.getFullYear() + 1]
+	const availableYears = [d.getFullYear() - 6, d.getFullYear() - 5, d.getFullYear() - 4, d.getFullYear() - 3, d.getFullYear() - 2, d.getFullYear() - 1, d.getFullYear(), d.getFullYear() + 1]
 	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
