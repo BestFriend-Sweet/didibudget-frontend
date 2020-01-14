@@ -1,6 +1,7 @@
 {
   "short_name": "didibudget",
   "name": "didibudget",
+  "description": "This is an app to manage your money",
   "icons": [
     {
       "src": "favicon.ico",
