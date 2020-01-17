@@ -5,6 +5,10 @@ The proyect is splitted on two repositories: one for the backend and one for the
 
 This repository is for the frontend and is made to work with [the backend](https://github.com/didaquis/didibudget-backend)
 
+![preview_01](./docs-and-assets/preview_01.png)  
+
+![preview_02](./docs-and-assets/preview_02.png)  
+
 
 ### 🎁 What it's included on the frontend?
 Technologies used are: React + GraphQL + Apollo + Bootstrap 4
