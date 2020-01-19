@@ -35,7 +35,7 @@ export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 											<DeleteMonthlyBalance>
 												{
 													(deleteMonthlyBalance, { data, loading, error }) => { // eslint-disable-line no-unused-vars
-														const deleteA = (uuid) => {
+														const deleteRegistry = (uuid) => {
 															const variables = { uuid: uuid };
 															deleteMonthlyBalance({ variables }).then(( {data} ) => {
 																refetch();
@@ -44,7 +44,7 @@ export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 															})
 														}
 
-														return <ButtonDeleteMonthlyBalance disabled={loading} uuid={monthlyBalance.uuid} deleteFunc={deleteA} />
+														return <ButtonDeleteMonthlyBalance disabled={loading} uuid={monthlyBalance.uuid} deleteRegistry={deleteRegistry} text={'Delete'} className={'d-block d-md-inline-block mr-2'} />
 													}
 												}
 											</DeleteMonthlyBalance>
