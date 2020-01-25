@@ -10,17 +10,6 @@ This repository is for the frontend and is made to work with [the backend](https
 ![preview_02](./docs-and-assets/preview_02.png)  
 
 
-### 🎁 What it's included on the frontend?
-Technologies used are: React + GraphQL + Apollo + Bootstrap 4
-
-**✨ These are some of the highlights:** 
-
-✅ A frontend application ready to use!  
-✅ Users can login and registrate  
-✅ Separated routes for users with role 'administrator'  
-✅ Ready to connect with backend  
-✅ If you don't like Bootstrap, it's easy to implement any other one UI library or use your own CSS  
-
 ### 📝 Frontend Requirements
 * Backend must be running
 * Node.js 10 or higher (just for development)
