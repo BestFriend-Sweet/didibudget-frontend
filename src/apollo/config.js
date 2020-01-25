@@ -22,6 +22,16 @@ const apolloClient = new ApolloClient({
 		})
 	},
 	onError: (error) => {
+		if (error.graphQLErrors) {
+			error.graphQLErrors.forEach(err => {
+				console.log(err.extensions.code)
+				if (err.extensions.code === 'UNAUTHENTICATED' || err.extensions.code === 'FORBIDDEN') {
+					deleteSession()
+					window.location.href = '/'
+				}
+			})
+		}
+
 		const { networkError } = error;
 		if (networkError && networkError.response === 'invalid_token') {
 			deleteSession()
