@@ -36,7 +36,7 @@ export const App = () => {
 									<Home path='/' />
 
 									{
-										// If is not authenticated...
+										// If user is not authenticated...
 									}
 									{ !isAuth && <Login path='/login' /> }
 									{ !isAuth && <Registration path='/register' /> }
@@ -47,13 +47,13 @@ export const App = () => {
 									{ !isAuth && <Redirect from='/monthly-balance-administration' to='/login' noThrow /> }
 
 									{
-										// If it's authenticated user...
+										// If user is authenticated...
 									}
 									{ isAuth && <Redirect from='/login' to='/' noThrow /> }
 									{ isAuth && <Redirect from='/register' to='/' noThrow /> }
 
 									{
-										// If it's authenticated user but don't have administrator role...
+										// If user is authenticated but don't have administrator role...
 									}
 									{ isAuth && !userData.isAdmin && <Redirect from='/user-administration' to='/' noThrow /> }
 
