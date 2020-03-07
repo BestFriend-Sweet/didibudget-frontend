@@ -15,7 +15,6 @@ const InsertMonthlyBalance = () => {
 					(registerMonthlyBalance, { data, loading, error }) => { // eslint-disable-line no-unused-vars
 						const onSubmit = ({ balance, date }) => {
 							const variables = { balance: parseFloat(balance), date };
-							console.log(variables)
 							registerMonthlyBalance({ variables }).then(({ data }) => {
 								window.location.href = '/view-monthly-balance'
 							}).catch(e => {
