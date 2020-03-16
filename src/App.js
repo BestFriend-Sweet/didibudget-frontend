@@ -17,6 +17,7 @@ const Home = React.lazy(() => import('./pages/Home'))
 const UserAdministration = React.lazy(() => import('./pages/UserAdministration'))
 const MonthlyBalanceAdministration = React.lazy(() => import('./pages/MonthlyBalanceAdministration'))
 const InsertMonthlyBalance = React.lazy(() => import('./pages/InsertMonthlyBalance'))
+const ListExpenseCategories = React.lazy(() => import('./pages/ListExpenseCategories'))
 const ViewMonthlyBalance = React.lazy(() => import('./pages/ViewMonthlyBalance'))
 
 
@@ -45,6 +46,7 @@ export const App = () => {
 									{ !isAuth && <Redirect from='/register-monthly-balance' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/view-monthly-balance' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/monthly-balance-administration' to='/login' noThrow /> }
+									{ !isAuth && <Redirect from='/list-expense-categories' to='/login' noThrow /> }
 
 									{
 										// If user is authenticated...
@@ -59,8 +61,9 @@ export const App = () => {
 
 									<InsertMonthlyBalance path='/register-monthly-balance' />
 									<ViewMonthlyBalance path='/view-monthly-balance' />
-									<UserAdministration path='/user-administration' />
 									<MonthlyBalanceAdministration path='/monthly-balance-administration' />
+									<UserAdministration path='/user-administration' />
+									<ListExpenseCategories path='/list-expense-categories' />
 									<Logout path='/logout' />
 								</Router>
 							</main>
