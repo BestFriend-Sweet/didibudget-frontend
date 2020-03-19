@@ -3,7 +3,7 @@
 This is an app to manage your money.
 The proyect is splitted on two repositories: one for the backend and one for the frontend application.
 
-This repository is for the frontend and is made to work with [the backend](https://github.com/didaquis/didibudget-backend)
+This repository is for the frontend and is intended to work with [the backend](https://github.com/didaquis/didibudget-backend)
 
 ![preview_01](./docs-and-assets/preview_01.png)  
 
@@ -17,7 +17,7 @@ This repository is for the frontend and is made to work with [the backend](https
 ### 📚 How to run the application?
 * Use the command: `npm install`.
 * Configure the application:
-  * Duplicate the configuration file `_env` and rename as `.env`
+  * Duplicate the configuration file `_env` and rename it as `.env`
   * Edit the file `.env`
 * Then use: `npm run start`. 
 
@@ -27,9 +27,9 @@ This repository is for the frontend and is made to work with [the backend](https
 * Then use `npm run build` to create a production bundle. This bundle will be created in the `./build` folder.
 * The content of `./build` folder is ready to be deployed to production.
 
-**❗️You need help with `.env` file?** 
+**Do you need help with `.env` file?** 
 
-Do not worry, here you have a guide:
+Don't worry, here you have a guide:
 
 | Key | Description |
 |-----|-------------|
