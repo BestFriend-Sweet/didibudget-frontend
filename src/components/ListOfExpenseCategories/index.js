@@ -10,20 +10,23 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 			<section className="accordion mt-5" id="listOfCategories">
 				{
 					getExpenseCategory.map((category) => {
+
+						const hasSubcategories = (category.subcategories.length) ? true : false
+
 						return (
 							<div className="card" key={category.uuid}>
-						    	<div className="card-header" id={`heading-${category.uuid}`}>
-						      		<h2 className="mb-0">
-							        	<button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>{category.name}
-							        	</button>
-						      		</h2>
-						    	</div>
+								<div className="card-header" id={`heading-${category.uuid}`}>
+									<h2 className="mb-0">
+										<button className="btn btn-link" type="button" data-toggle={(hasSubcategories) ? 'collapse': ''} data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>{category.name} {(hasSubcategories) ? <span className="text-dark ml-2"> ❖ </span> : ''}
+										</button>
+									</h2>
+								</div>
 
-						    	<div id={`collapse-${category.uuid}`} className="collapse" aria-labelledby={`heading-${category.uuid}`} data-parent="#listOfCategories">
-						      		<div className="card-body">
-						      			<ListOfExpenseSubcategories subcategories={category.subcategories}/>
-						      		</div>
-						    	</div>
+								<div id={`collapse-${category.uuid}`} className="collapse" aria-labelledby={`heading-${category.uuid}`} data-parent="#listOfCategories">
+									<div className="card-body">
+										<ListOfExpenseSubcategories subcategories={category.subcategories}/>
+									</div>
+								</div>
 						  </div>
 						)
 					})
