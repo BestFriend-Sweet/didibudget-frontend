@@ -17,8 +17,15 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 							<div className="card" key={category.uuid}>
 								<div className="card-header" id={`heading-${category.uuid}`}>
 									<h2 className="mb-0">
-										<button className="btn btn-link" type="button" data-toggle={(hasSubcategories) ? 'collapse': ''} data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>{category.name} {(hasSubcategories) ? <span className="text-dark ml-2"> ❖ </span> : ''}
-										</button>
+
+										{
+											(hasSubcategories)
+												?
+													<button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>{category.name} {(hasSubcategories) ? <span className="text-dark mr-2"> ❖ </span> : ''}
+													</button>
+												:
+													<a className="btn btn-link" href="#" role="button">{category.name}</a>
+										}
 									</h2>
 								</div>
 
@@ -34,8 +41,8 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 			</section>
 		)
 	} else {
-		const errorMessage = 'There are no categories yet';
-		return <ErrorAlert errorMessage={errorMessage} />;
+		const errorMessage = 'There are no categories yet'
+		return <ErrorAlert errorMessage={errorMessage} />
 	}
 }
 
