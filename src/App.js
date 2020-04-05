@@ -49,6 +49,7 @@ export const App = () => {
 									{ !isAuth && <Redirect from='/monthly-balance-administration' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/list-expense-categories' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/register-expense' to='/login' noThrow /> }
+									{ !isAuth && <Login path='/register-expense/:categoryOrSubcategoryId' /> }
 
 
 									{
@@ -67,11 +68,15 @@ export const App = () => {
 									<InsertMonthlyBalance path='/register-monthly-balance' />
 									<ViewMonthlyBalance path='/view-monthly-balance' />
 									<MonthlyBalanceAdministration path='/monthly-balance-administration' />
+
 									<UserAdministration path='/user-administration' />
+
 									<ListExpenseCategories path='/list-expense-categories' />
-									<Redirect from='/register-expense' to='/list-expense-categories' noThrow />
+									<ListExpenseCategories path="/register-expense" />
 									<InsertExpense path='/register-expense/:categoryOrSubcategoryId' />
+
 									<Logout path='/logout' />
+
 								</Router>
 							</main>
 						<div className="row pb-5"></div>
