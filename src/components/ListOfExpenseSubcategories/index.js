@@ -8,7 +8,7 @@ export const ListOfExpenseSubcategories = ( { subcategories } ) => {
 				{
 					subcategories.map((subcategory) => {
 						return (
-							<li className="list-group-item list-group-item-action" key={subcategory.uuid}>{subcategory.name}</li>
+							<a className="list-group-item list-group-item-action" href={`/register-expense/${subcategory.uuid}`} role="button" key={subcategory.uuid}>{subcategory.name}</a>
 						)
 					})
 				}

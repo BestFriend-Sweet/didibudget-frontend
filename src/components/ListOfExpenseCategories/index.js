@@ -21,10 +21,10 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 										{
 											(hasSubcategories)
 												?
-													<button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>{category.name} {(hasSubcategories) ? <span className="text-dark mr-2"> ❖ </span> : ''}
+													<button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>{category.name} <span className="text-dark mr-2"> ❖ </span>
 													</button>
 												:
-													<a className="btn btn-link" href="#" role="button">{category.name}</a>
+													<a className="btn btn-link" href={`/register-expense/${category.uuid}`} role="button">{category.name}</a>
 										}
 									</h2>
 								</div>
