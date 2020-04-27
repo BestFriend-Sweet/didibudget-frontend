@@ -20,6 +20,7 @@ const InsertMonthlyBalance = React.lazy(() => import('./pages/InsertMonthlyBalan
 const ViewMonthlyBalance = React.lazy(() => import('./pages/ViewMonthlyBalance'))
 const ListExpenseCategories = React.lazy(() => import('./pages/ListExpenseCategories'))
 const InsertExpense = React.lazy(() => import('./pages/InsertExpense'))
+const ExpenseAdministration = React.lazy(() => import('./pages/ExpenseAdministration'))
 
 
 export const App = () => {
@@ -49,6 +50,7 @@ export const App = () => {
 									{ !isAuth && <Redirect from='/monthly-balance-administration' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/list-expense-categories' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/register-expense' to='/login' noThrow /> }
+									{ !isAuth && <Redirect from='/expenses-administration' to='/login' noThrow /> }
 									{ !isAuth && <Login path='/register-expense/:categoryOrSubcategoryId' /> }
 
 
@@ -74,6 +76,7 @@ export const App = () => {
 									<ListExpenseCategories path='/list-expense-categories' />
 									<ListExpenseCategories path="/register-expense" />
 									<InsertExpense path='/register-expense/:categoryOrSubcategoryId' />
+									<ExpenseAdministration path='/expenses-administration' />
 
 									<Logout path='/logout' />
 

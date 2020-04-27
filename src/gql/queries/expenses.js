@@ -4,8 +4,8 @@ export const LIST_ALL_EXPENSES = gql`
 query getExpenses {
 	getExpenses {
 		category
-    subcategory
-    quantity
+    	subcategory
+    	quantity
 		date
 		currencyISO
 		uuid

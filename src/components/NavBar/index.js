@@ -39,6 +39,11 @@ export const NavBar = () => {
 					<FaRegCreditCard size={SIZE}/>
 				</Link>
 			}
+			{
+				isAuth && <Link className="navbar-item text-light font-weight-bold pt-2" to='/expenses-administration'>
+					<FaListUl size={SIZE}/>
+				</Link>
+			}
 			{ 
 				isAuth && userData.isAdmin && <Link className="navbar-item text-light font-weight-bold pt-2" to='/user-administration'>
 					<MdPeopleOutline size={SIZE}/>
