@@ -1,6 +1,6 @@
 {
   "name": "didibudget-frontend",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "description": "didibudget-frontend",
   "private": true,
   "dependencies": {
