@@ -4,7 +4,7 @@ import { PageTitle } from '../components/PageTitle'
 
 const InsertExpense = (props) => {
 
-	let subcategoryID = props["*"];
+	const subcategoryID = props["*"]
 
 	return (
 		<Fragment>
