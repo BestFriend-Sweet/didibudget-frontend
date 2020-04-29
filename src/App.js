@@ -51,7 +51,7 @@ export const App = () => {
 									{ !isAuth && <Redirect from='/list-expense-categories' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/register-expense' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/expenses-administration' to='/login' noThrow /> }
-									{ !isAuth && <Login path='/register-expense/:categoryOrSubcategoryId' /> }
+									{ !isAuth && <Login path='/register-expense/:categoryID/*' /> }
 
 
 									{
@@ -75,7 +75,7 @@ export const App = () => {
 
 									<ListExpenseCategories path='/list-expense-categories' />
 									<ListExpenseCategories path="/register-expense" />
-									<InsertExpense path='/register-expense/:categoryOrSubcategoryId' />
+									<InsertExpense path='/register-expense/:categoryID/*' />
 									<ExpenseAdministration path='/expenses-administration' />
 
 									<Logout path='/logout' />

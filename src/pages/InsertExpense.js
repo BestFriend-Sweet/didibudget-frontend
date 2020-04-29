@@ -4,10 +4,13 @@ import { PageTitle } from '../components/PageTitle'
 
 const InsertExpense = (props) => {
 
+	let subcategoryID = props["*"];
+
 	return (
 		<Fragment>
 			<PageTitle text='Register expense' />
-			<p>{props.categoryOrSubcategoryId}</p>
+			<p>{props.categoryID}</p>
+			<p>{subcategoryID}</p>
 		</Fragment>
 	)
 }
