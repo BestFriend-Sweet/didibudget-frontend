@@ -112,28 +112,14 @@ const validateRegisterMonthlyBalanceForm = (balance, year, month) => {
  * @param  {String} month
  * @return {Boolean}         		- True means data is valid
  */
-const validateRegisterExpenseForm = (quantity, year, month) => {
-	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
+const validateRegisterExpenseForm = (quantity, date) => {
 	let dataIsValid = true;
 
-	if (!quantity || !year || !month) {
+	if (!quantity || !date) {
 		dataIsValid = false;
 	}
 
 	if (!regexQuantityOfMoney.test(quantity)) {
-		dataIsValid = false;
-	}
-
-	if (!Number.isInteger(parseInt(year))) {
-		dataIsValid = false;
-	}
-
-	if (year.toString().length !== 4) {
-		dataIsValid = false;
-	}
-
-	if (!monthNames.includes(month)) {
 		dataIsValid = false;
 	}
 

@@ -1,35 +1,39 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { SubmitButton } from '../SubmitButton'
 import { SubmitButtonHelper } from '../SubmitButtonHelper'
 import { ErrorAlert } from '../ErrorAlert'
+import { DateSelector } from '../DateSelector';
 
 import { useInputValue } from '../../hooks/useInputValue'
 import { validateRegisterExpenseForm } from '../../utils/validations'
 
 
 export const RegisterExpenseForm = ({ error, disabled, onSubmit }) => {
-	const d = new Date()
-	const availableYears = [d.getFullYear() - 6, d.getFullYear() - 5, d.getFullYear() - 4, d.getFullYear() - 3, d.getFullYear() - 2, d.getFullYear() - 1, d.getFullYear(), d.getFullYear() + 1]
-	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
 
 	const quantity = useInputValue('')
-	const year = useInputValue(d.getFullYear())
-	const month = useInputValue(monthNames[d.getMonth()])
+	const [date, setDate] = useState(null)
 
+	const onChange = (date) => {
+		console.log(date);
+		setDate(date)
+	}
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		const dateToRegister = new Date(year.value, monthNames.indexOf(month.value), 1, 3)
-		onSubmit({ quantity: quantity.value, date: dateToRegister })
+		onSubmit({ quantity: quantity.value, date: date })
 	}
 
 	return (
 		<Fragment>
 			<div className="row justify-content-center mt-4">
 				<form className="col-md-8" disabled={disabled} onSubmit={handleSubmit}>
+
+					<div className="form-row">
+						<DateSelector onChange={onChange} />
+					</div>
+
 					<div className="form-group">
 						<label htmlFor="inputQuantityRegisterExpenseForm" className="text-light">quantity <span className="text-danger">*</span></label>
 						<input
@@ -46,38 +50,9 @@ export const RegisterExpenseForm = ({ error, disabled, onSubmit }) => {
 						<small id="quantityHelp" className="form-text text-muted">Use decimal point as decimal separator</small>
 					</div>
 
-					<div className="form-row">
-						<div className="col">
-
-							<div className="form-group">
-								<label htmlFor="selectYear" className="text-light">Year <span className="text-danger">*</span></label>
-								<select className="form-control" id="selectYear" {...year}>
-									{
-										availableYears.map((year) => {
-											return <option key={year}>{year}</option>
-										})
-									}
-								</select>
-							</div>
-
-						</div>
-						<div className="col">
-							<div className="form-group">
-								<label htmlFor="selectMonth" className="text-light">Month <span className="text-danger">*</span></label>
-								<select className="form-control" id="selectMonth" {...month}>
-									{
-										monthNames.map((month) => {
-											return <option key={month}>{month}</option>
-										})
-									}
-								</select>
-							</div>
-						</div>
-					</div>
-
 					<div className="mt-2 ml-1">
-						<SubmitButton disabled={disabled || !validateRegisterExpenseForm(quantity.value, year.value, month.value)}>New expense</SubmitButton>
-						<SubmitButtonHelper mustShowHelper={!validateRegisterExpenseForm(quantity.value, year.value, month.value)}></SubmitButtonHelper>
+						<SubmitButton disabled={disabled || !validateRegisterExpenseForm(quantity.value, date)}>New expense</SubmitButton>
+						<SubmitButtonHelper mustShowHelper={!validateRegisterExpenseForm(quantity.value, date)}></SubmitButtonHelper>
 					</div>
 				</form>
 				<div className="col-md-8">

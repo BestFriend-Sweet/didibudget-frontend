@@ -7,7 +7,7 @@ import { RegisterExpenseForm } from '../components/RegisterExpenseForm'
 
 const InsertExpense = (props) => {
 
-	const subcategoryID = props["*"]
+	const subcategoryID = props["*"] || null
 
 	return (
 		<Fragment>
