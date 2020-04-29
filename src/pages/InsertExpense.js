@@ -15,8 +15,8 @@ const InsertExpense = (props) => {
 			<RegisterExpense>
 				{
 					(registerExpense, { data, loading, error }) => { // eslint-disable-line no-unused-vars
-						const onSubmit = ({ category, subcategory, quantity, date }) => {
-							const variables = { category, subcategory, quantity: parseFloat(quantity), date };
+						const onSubmit = ({ quantity, date }) => {
+							const variables = { category: props.categoryID, subcategory: subcategoryID, quantity: parseFloat(quantity), date };
 							registerExpense({ variables }).then(({ data }) => {
 								window.location.href = '/register-expense'
 							}).catch(e => {
@@ -30,8 +30,6 @@ const InsertExpense = (props) => {
 					}
 				}
 			</RegisterExpense>
-			<p> Pendiente de pasar esto al componente de form para poderlo validar junto al resto de datos antes de enviar el form: {props.categoryID}</p>
-			<p> Pendiente de pasar esto al componente de form para poderlo validar junto al resto de datos antes de enviar el form (subcategoría): {subcategoryID}</p>
 		</Fragment>
 	)
 }
