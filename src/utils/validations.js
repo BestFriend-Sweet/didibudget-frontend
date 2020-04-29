@@ -13,11 +13,11 @@ const regexEmail = new RegExp(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+
 const regexPassword = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!*^?+-_@#$%&]{8,}$/);
 
 /**
- * Regular expression for balance. Allow any integer value and float numbers up to two decimals. The decimal separator must be a point
+ * Regular expression for a quantity of money. Allow any integer value and float numbers up to two decimals. The decimal separator must be a point. Example: 123.45
  * @type {RegExp}
  * @default
  */
-const regexBalance = new RegExp(/^\s*-?\d+(\.\d{1,2})?\s*$/);
+const regexQuantityOfMoney = new RegExp(/^\s*-?\d+(\.\d{1,2})?\s*$/);
 
 /**
  * Validate the login form data. This is useful for reduce traffic to backend
@@ -86,7 +86,42 @@ const validateRegisterMonthlyBalanceForm = (balance, year, month) => {
 		dataIsValid = false;
 	}
 
-	if (!regexBalance.test(balance)) {
+	if (!regexQuantityOfMoney.test(balance)) {
+		dataIsValid = false;
+	}
+
+	if (!Number.isInteger(parseInt(year))) {
+		dataIsValid = false;
+	}
+
+	if (year.toString().length !== 4) {
+		dataIsValid = false;
+	}
+
+	if (!monthNames.includes(month)) {
+		dataIsValid = false;
+	}
+
+	return dataIsValid;
+}
+
+/**
+ * Validate the registration of expense
+ * @param  {Integer|Float} quantity
+ * @param  {Integer} year
+ * @param  {String} month
+ * @return {Boolean}         		- True means data is valid
+ */
+const validateRegisterExpenseForm = (quantity, year, month) => {
+	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+	let dataIsValid = true;
+
+	if (!quantity || !year || !month) {
+		dataIsValid = false;
+	}
+
+	if (!regexQuantityOfMoney.test(quantity)) {
 		dataIsValid = false;
 	}
 
@@ -109,5 +144,6 @@ const validateRegisterMonthlyBalanceForm = (balance, year, month) => {
 module.exports = {
 	validateLoginForm,
 	validateRegisterForm,
-	validateRegisterMonthlyBalanceForm
+	validateRegisterMonthlyBalanceForm,
+	validateRegisterExpenseForm,
 };
