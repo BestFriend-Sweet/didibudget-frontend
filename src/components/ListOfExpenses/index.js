@@ -2,10 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { parseUnixTimestamp } from '../../utils/utils'
+import { getNameOFCategoryOrSubcategory } from './utils'
 
 import { ErrorAlert } from '../ErrorAlert'
 
-export const ListOfExpenses = ( { expenses, refetch } ) => {
+export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
+
 	const expensesReversed = expenses.slice(0).reverse()
 
 	if (expensesReversed.length) {
@@ -24,10 +26,12 @@ export const ListOfExpenses = ( { expenses, refetch } ) => {
 					<tbody>
 						{
 							expensesReversed.map(expense => {
+								const nameOfCategory = getNameOFCategoryOrSubcategory(expense.category, categories);
+								const nameOfSubcategory = getNameOFCategoryOrSubcategory(expense.subcategory, categories);
 								return (
 									<tr key={expense.uuid}>
 										<td>{parseUnixTimestamp(expense.date).substring(0, 10)}</td>
-										<td>{expense.category} {expense.subcategory}</td>
+										<td>{nameOfCategory}{(nameOfSubcategory) ? ` - ${nameOfSubcategory}` : ''}</td>
 										<td>{expense.quantity} {expense.currencyISO}</td>
 										<td>
 											No actions yet
@@ -56,6 +60,14 @@ ListOfExpenses.propTypes = {
 			subcategory: PropTypes.string,
 			quantity: PropTypes.number.isRequired,
 			currencyISO: PropTypes.string.isRequired
+		})
+	),
+	categories: PropTypes.arrayOf(
+		PropTypes.shape({
+			_id: PropTypes.string.isRequired,
+			name: PropTypes.string.isRequired,
+			subcategories: PropTypes.array.isRequired,
+			uuid: PropTypes.string.isRequired
 		})
 	)
 }
