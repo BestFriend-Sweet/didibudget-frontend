@@ -41,4 +41,5 @@ Don't worry, here you have a guide:
 ### 💻 Tricks for development
 * Run app in dev mode: `npm run start`
 * Run the linter: `npm run lint`
+* Run the test: `npm run test`
 
