@@ -9,6 +9,8 @@ This repository is for the frontend and is intended to work with [the backend](h
 
 ![preview_02](./docs-and-assets/preview_02.png)  
 
+![preview_03](./docs-and-assets/preview_03.png)  
+
 
 ### 📝 Frontend Requirements
 * Backend must be running
