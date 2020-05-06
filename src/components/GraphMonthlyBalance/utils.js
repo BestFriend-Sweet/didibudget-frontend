@@ -36,7 +36,7 @@ const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length
 * Parse the data for monthly balance graph. This function refill the empty data of every month and do an average of repeated months. All returned days are pointing at the first day of month 
 * @example
 *   const data = [{"balance": 678.74,"date": "2014-12-01"},{"balance": 800.75,"date": "2015-01-01"},{"balance": 1189.88,"date": "2015-01-01"},{"balance": 8110.37,"date": "2015-03-01"}];
-*   parseDataForGraph(data) // [ { date: '2014-12-01', balance: 678.74 }, { date: '2015-01-01', balance: 995.315 }, { date: '2015-02-01' }, { date: '2015-03-01', balance: 8110.37 } ]
+*   parseDataForGraph(data) // [ { date: '2014-12-01', balance: 678.74 }, { date: '2015-01-01', balance: 995.32 }, { date: '2015-02-01' }, { date: '2015-03-01', balance: 8110.37 } ]
 * @param  {Array.<Object>} data - An array of objects (the object must contain a date property. The array must be ordered in date ascendant)
 * @param  {String} data.date - A valid date with this format '2018-03-01'. 
 * @param  {float|integer} data.balance
