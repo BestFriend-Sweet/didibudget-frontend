@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
-export const ButtonDeleteMonthlyBalance = ( { uuid, deleteRegistry, disabled, text, className } ) => {
+export const ButtonDelete = ( { uuid, deleteRegistry, disabled, text, className } ) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
@@ -29,7 +29,7 @@ export const ButtonDeleteMonthlyBalance = ( { uuid, deleteRegistry, disabled, te
   )
 }
 
-ButtonDeleteMonthlyBalance.propTypes = {
+ButtonDelete.propTypes = {
 	uuid: PropTypes.string.isRequired,
 	deleteRegistry: PropTypes.func.isRequired,
 	disabled: PropTypes.bool,

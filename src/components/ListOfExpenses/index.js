@@ -4,6 +4,10 @@ import PropTypes from 'prop-types'
 import { parseUnixTimestamp } from '../../utils/utils'
 import { getNameOFCategoryOrSubcategory } from './utils'
 
+import { DeleteExpense } from '../../containers/DeleteExpense'
+
+import { ButtonDelete } from '../ButtonDelete'
+
 import { ErrorAlert } from '../ErrorAlert'
 
 export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
@@ -34,7 +38,22 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 										<td>{nameOfCategory}{(nameOfSubcategory) ? ` - ${nameOfSubcategory}` : ''}</td>
 										<td>{expense.quantity} {expense.currencyISO}</td>
 										<td>
-											No actions yet
+											<DeleteExpense>
+												{
+													(deleteExpense, { data, loading, error }) => { // eslint-disable-line no-unused-vars
+														const deleteRegistry = (uuid) => {
+															const variables = { uuid: uuid };
+															deleteExpense({ variables }).then(( {data} ) => {
+																refetch();
+															}).catch(e => {
+																console.error(e.message) // eslint-disable-line no-console
+															})
+														}
+
+														return <ButtonDelete disabled={loading} uuid={expense.uuid} deleteRegistry={deleteRegistry} text={'Delete'} className={'d-block d-md-inline-block mr-2'} />
+													}
+												}
+											</DeleteExpense>
 										</td>
 									</tr>
 								)

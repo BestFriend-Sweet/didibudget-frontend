@@ -5,7 +5,7 @@ import { parseUnixTimestamp } from '../../utils/utils'
 
 import { DeleteMonthlyBalance } from '../../containers/DeleteMonthlyBalance'
 
-import { ButtonDeleteMonthlyBalance } from '../ButtonDeleteMonthlyBalance'
+import { ButtonDelete } from '../ButtonDelete'
 
 import { ErrorAlert } from '../ErrorAlert'
 
@@ -44,7 +44,7 @@ export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 															})
 														}
 
-														return <ButtonDeleteMonthlyBalance disabled={loading} uuid={monthlyBalance.uuid} deleteRegistry={deleteRegistry} text={'Delete'} className={'d-block d-md-inline-block mr-2'} />
+														return <ButtonDelete disabled={loading} uuid={monthlyBalance.uuid} deleteRegistry={deleteRegistry} text={'Delete'} className={'d-block d-md-inline-block mr-2'} />
 													}
 												}
 											</DeleteMonthlyBalance>
