@@ -16,7 +16,6 @@ export const RegisterExpenseForm = ({ error, disabled, onSubmit }) => {
 	const [date, setDate] = useState(null)
 
 	const onChange = (date) => {
-		console.log(date);
 		setDate(date)
 	}
 
@@ -47,7 +46,7 @@ export const RegisterExpenseForm = ({ error, disabled, onSubmit }) => {
 							required
 							autoFocus
 						/>
-						<small id="quantityHelp" className="form-text text-muted">Use decimal point as decimal separator</small>
+						<small id="quantityHelp" className="form-text text-muted">Use decimal point as decimal separator. Negative numbers are not valid</small>
 					</div>
 
 					<div className="mt-2 ml-1">

@@ -82,7 +82,11 @@ const validateRegisterMonthlyBalanceForm = (balance, year, month) => {
 
 	let dataIsValid = true;
 
-	if (!balance || !year || !month) {
+	if (!year || !month) {
+		dataIsValid = false;
+	}
+
+	if (!balance && balance !== 0) {
 		dataIsValid = false;
 	}
 
@@ -107,15 +111,18 @@ const validateRegisterMonthlyBalanceForm = (balance, year, month) => {
 
 /**
  * Validate the registration of expense
- * @param  {Integer|Float} quantity
- * @param  {Integer} year
- * @param  {String} month
+ * @param  {Integer|Float|String} quantity - Zero is not a valid value
+ * @param  {Date} date
  * @return {Boolean}         		- True means data is valid
  */
 const validateRegisterExpenseForm = (quantity, date) => {
 	let dataIsValid = true;
 
-	if (!quantity || !date) {
+	if (!quantity || Math.sign(quantity) !== 1) {
+		dataIsValid = false;
+	}
+
+	if (!date || Object.prototype.toString.call(date) !== '[object Date]') {
 		dataIsValid = false;
 	}
 
