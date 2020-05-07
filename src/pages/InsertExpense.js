@@ -18,7 +18,7 @@ const InsertExpense = (props) => {
 						const onSubmit = ({ quantity, date }) => {
 							const variables = { category: props.categoryID, subcategory: subcategoryID, quantity: parseFloat(quantity), date };
 							registerExpense({ variables }).then(({ data }) => {
-								window.location.href = '/register-expense'
+								window.location.href = '/expenses-administration'
 							}).catch(e => {
 								console.error(e.message) // eslint-disable-line no-console
 							})
