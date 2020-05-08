@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 import { ErrorAlert } from './'
 
-describe('Footer', () => {
+describe('ErrorAlert', () => {
 	afterEach(cleanup)
 
 	it('renders correctly', () => {
