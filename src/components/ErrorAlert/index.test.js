@@ -4,10 +4,12 @@ import '@testing-library/jest-dom/extend-expect'
 
 import { ErrorAlert } from './'
 
-afterEach(cleanup)
+describe('Footer', () => {
+	afterEach(cleanup)
 
-it('renders correctly', () => {
-	const { getByText } = render(<ErrorAlert errorMessage='foo' />)
+	it('renders correctly', () => {
+		const { getByText } = render(<ErrorAlert errorMessage='foo' />)
 
-	expect(getByText('foo')).toBeInTheDocument()
+		expect(getByText('foo')).toBeInTheDocument()
+	})
 })
