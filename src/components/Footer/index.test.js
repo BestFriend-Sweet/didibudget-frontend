@@ -9,7 +9,7 @@
 
 
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render, cleanup, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 import { Footer } from './'
@@ -17,17 +17,29 @@ import { Footer } from './'
 describe('Footer', () => {
 	afterEach(cleanup)
 
-	it('renders correctly', () => {
+	it('renders a link with correct attributes', () => {
 		const { getByText } = render(<Footer />)
 
-		expect(getByText('Made by')).toBeInTheDocument()
+		expect(getByText('didaquis').href).toBe('https://didaquis.github.io/')
+		expect(getByText('didaquis').closest('a')).toHaveAttribute('href', 'https://didaquis.github.io/') /* Alternative way */
+
+		expect(getByText('didaquis').target).toBe('_blank')
+		expect(getByText('didaquis').rel).toBe('noreferrer noopener')
 	})
 
+	it('contains an expected text', () => {
+  		render(<Footer />)
 
-	it('have a link with correct href attribute', () => {
-		const { getByText } = render(<Footer />)
+  		const expectedText = 'Made by didaquis'
 
-		expect(getByText('didaquis').closest('a')).toHaveAttribute('href', 'https://didaquis.github.io/')
-		expect(getByText('didaquis').href).toBe('https://didaquis.github.io/')
+		screen.getByText((content, node) => {
+			const hasText = (node) => node.textContent === expectedText;
+			const nodeHasText = hasText(node);
+			const childrenDontHaveText = Array.from(node.children).every(
+			  (child) => !hasText(child)
+			);
+
+			return nodeHasText && childrenDontHaveText;
+		});
 	})
 })
