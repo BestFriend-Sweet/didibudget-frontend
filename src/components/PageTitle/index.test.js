@@ -18,6 +18,6 @@ describe('PageTitle', () => {
 
 		const nodeTitle = screen.getByText('foo')
 
-		expect(nodeTitle.localName).toBe('h2q')
+		expect(nodeTitle.localName).toBe('h2')
 	})
 })

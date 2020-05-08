@@ -33,7 +33,7 @@ describe('useInputValue', () => {
 
 		expect(input.value).toBe('default')
 		expect(typeof input.value).toBe('string')
-	})q
+	})
 
 	test('should change value', () => {
 		let input
