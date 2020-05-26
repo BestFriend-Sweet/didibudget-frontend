@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Mutation } from 'react-apollo'
+import { useMutation } from '@apollo/client'
 
 import { REGISTER } from '../gql/mutations/auth'
 
 export const RegisterMutation = ( { children } ) => {
 	return (
-		<Mutation mutation={REGISTER}>
+		<useMutation mutation={REGISTER}>
 			{children}
 		</Mutation>
 	)
