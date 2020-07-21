@@ -1,9 +1,9 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 
-import { Spinner } from '../components/Spinner'
-import { ErrorAlert } from '../components/ErrorAlert'
-import { ListOfExpenses } from '../components/ListOfExpenses'
+import { Spinner } from './Spinner'
+import { ErrorAlert } from './ErrorAlert'
+import { ListOfExpenses } from './ListOfExpenses'
 
 import { LIST_ALL_EXPENSES_AND_CATEGORIES } from '../gql/queries/expenses'
 

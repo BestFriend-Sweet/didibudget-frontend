@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { PageTitle } from '../components/PageTitle'
 
-import { GetListOfExpenseCategories } from '../containers/GetListOfExpenseCategories'
+import { GetListOfExpenseCategories } from '../components/GetListOfExpenseCategories'
 
 const ListExpenseCategories = () => {
 	return (

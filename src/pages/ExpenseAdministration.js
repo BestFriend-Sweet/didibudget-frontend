@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { PageTitle } from '../components/PageTitle'
 
-import { GetListOfExpenses } from '../containers/GetListOfExpenses'
+import { GetListOfExpenses } from '../components/GetListOfExpenses'
 
 const ExpenseAdministration = () => {
 	return (

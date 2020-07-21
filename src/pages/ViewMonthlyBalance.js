@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
 import { PageTitle } from '../components/PageTitle'
-import { GetGraphMonthlyBalance } from '../containers/GetGraphMonthlyBalance'
+import { GetGraphMonthlyBalance } from '../components/GetGraphMonthlyBalance'
 
 const ViewMonthlyBalance = () => {
 	return (
