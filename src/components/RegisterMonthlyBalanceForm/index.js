@@ -1,19 +1,24 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, Fragment } from 'react'
+import { useMutation } from '@apollo/client'
 
+import { ErrorAlert } from '../ErrorAlert'
 import { SubmitButton } from '../SubmitButton'
 import { SubmitButtonHelper } from '../SubmitButtonHelper'
-import { ErrorAlert } from '../ErrorAlert'
 
 import { useInputValue } from '../../hooks/useInputValue'
 import { validateRegisterMonthlyBalanceForm } from '../../utils/validations'
 
+import { REGISTER_MONTHLY_BALANCE } from '../../gql/mutations/monthlyBalance'
 
-export const RegisterMonthlyBalanceForm = ({ error, disabled, onSubmit }) => {
+export const RegisterMonthlyBalanceForm = () => {
 	const d = new Date()
 	const availableYears = [d.getFullYear() - 6, d.getFullYear() - 5, d.getFullYear() - 4, d.getFullYear() - 3, d.getFullYear() - 2, d.getFullYear() - 1, d.getFullYear(), d.getFullYear() + 1]
 	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+	const [disabled, setDisabled] = useState(false)
+	const [error, setError] = useState(null)
+
+	const [ registerMonthlyBalance ] = useMutation(REGISTER_MONTHLY_BALANCE);
 
 	const balance = useInputValue('')
 	const year = useInputValue(d.getFullYear())
@@ -22,8 +27,20 @@ export const RegisterMonthlyBalanceForm = ({ error, disabled, onSubmit }) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
+		setDisabled(true)
+		setError(null)
+
 		const dateToRegister = new Date(year.value, monthNames.indexOf(month.value), 1, 3)
-		onSubmit({ balance: balance.value, date: dateToRegister })
+
+		const variables = { balance: parseFloat(balance.value), date: dateToRegister }
+
+		registerMonthlyBalance({ variables }).then(({ data }) => {
+			window.location.href = '/view-monthly-balance'
+		}).catch(e => {
+			setError(e.message)
+			console.error(e.message) // eslint-disable-line no-console
+		})
+		setDisabled(false)
 	}
 
 	return (
@@ -88,10 +105,4 @@ export const RegisterMonthlyBalanceForm = ({ error, disabled, onSubmit }) => {
 			</div>
 		</Fragment>
 	)
-}
-
-RegisterMonthlyBalanceForm.propTypes = {
-	error: PropTypes.string,
-	disabled: PropTypes.bool.isRequired,
-	onSubmit: PropTypes.func.isRequired,
 }

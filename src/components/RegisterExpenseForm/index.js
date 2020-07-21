@@ -1,16 +1,23 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from '@apollo/client'
 
+import { ErrorAlert } from '../ErrorAlert'
 import { SubmitButton } from '../SubmitButton'
 import { SubmitButtonHelper } from '../SubmitButtonHelper'
-import { ErrorAlert } from '../ErrorAlert'
 import { DateSelector } from '../DateSelector';
 
 import { useInputValue } from '../../hooks/useInputValue'
 import { validateRegisterExpenseForm } from '../../utils/validations'
 
+import { REGISTER_EXPENSE } from '../../gql/mutations/expenses'
 
-export const RegisterExpenseForm = ({ error, disabled, onSubmit }) => {
+export const RegisterExpenseForm = ({ props }) => {
+
+	const [disabled, setDisabled] = useState(false)
+	const [error, setError] = useState(null)
+
+	const [ registerExpense ] = useMutation(REGISTER_EXPENSE);
 
 	const quantity = useInputValue('')
 	const [date, setDate] = useState(null)
@@ -21,7 +28,19 @@ export const RegisterExpenseForm = ({ error, disabled, onSubmit }) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		onSubmit({ quantity: quantity.value, date: date })
+		setDisabled(true)
+		setError(null)
+
+		const subcategoryID = props["*"] || null
+		const variables = { category: props.categoryID, subcategory: subcategoryID, quantity: parseFloat(quantity.value), date }
+
+		registerExpense({ variables }).then(({ data }) => {
+			window.location.href = '/expenses-administration'
+		}).catch(e => {
+			setError(e.message)
+			console.error(e.message) // eslint-disable-line no-console
+		})
+		setDisabled(false)
 	}
 
 	return (
@@ -65,7 +84,8 @@ export const RegisterExpenseForm = ({ error, disabled, onSubmit }) => {
 }
 
 RegisterExpenseForm.propTypes = {
-	error: PropTypes.string,
-	disabled: PropTypes.bool.isRequired,
-	onSubmit: PropTypes.func.isRequired,
+	props: PropTypes.shape({
+		'*': PropTypes.string.isRequired,
+		categoryID: PropTypes.string.isRequired,
+	})
 }
