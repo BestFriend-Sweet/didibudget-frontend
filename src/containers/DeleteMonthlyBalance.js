@@ -9,7 +9,7 @@ export const DeleteMonthlyBalance = ( { children } ) => {
 	return (
 		<useMutation mutation={DELETE_MONTHLY_BALANCE}>
 			{children}
-		</Mutation>
+		</useMutation>
 	)
 }
 

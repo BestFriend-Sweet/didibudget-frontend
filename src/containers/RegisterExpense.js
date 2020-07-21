@@ -9,7 +9,7 @@ export const RegisterExpense = ( { children } ) => {
 	return (
 		<useMutation mutation={REGISTER_EXPENSE}>
 			{children}
-		</Mutation>
+		</useMutation>
 	)
 }
 

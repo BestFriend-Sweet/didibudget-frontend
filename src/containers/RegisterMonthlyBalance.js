@@ -9,7 +9,7 @@ export const RegisterMonthlyBalance = ( { children } ) => {
 	return (
 		<useMutation mutation={REGISTER_MONTHLY_BALANCE}>
 			{children}
-		</Mutation>
+		</useMutation>
 	)
 }
 

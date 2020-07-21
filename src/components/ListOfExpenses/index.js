@@ -12,7 +12,7 @@ import { ErrorAlert } from '../ErrorAlert'
 
 import { useMutation } from '@apollo/client'
 
-import { DELETE_EXPENSE } from '../gql/mutations/expenses'
+import { DELETE_EXPENSE } from '../../gql/mutations/expenses'
 
 export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 
