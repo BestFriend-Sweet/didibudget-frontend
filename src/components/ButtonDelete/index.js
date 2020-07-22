@@ -3,36 +3,52 @@ import PropTypes from 'prop-types'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
-export const ButtonDelete = ( { uuid, deleteRegistry, disabled, text, className } ) => {
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
+	const [modal, setModal] = useState(false);
+	const toggle = () => setModal(!modal);
 
-  const handleClick = () => {
-	deleteRegistry(uuid)
-	toggle()
-  }
+	const [disabled, setDisabled] = useState(false)
+	const [error, setError] = useState(null)
 
-  return (
-    <div>
-		<Button color="danger" outline={true} disabled={disabled} onClick={toggle} className={className}>{text}</Button>
-		<Modal isOpen={modal} toggle={toggle}>
-			<ModalHeader toggle={toggle}>Are you sure?</ModalHeader>
-			<ModalBody>
-				Are you sure you want to delete this registry?
-			</ModalBody>
-			<ModalFooter>
-				<Button color="info" outline={true} onClick={toggle}>Cancel</Button>
-				<Button color="danger" outline={true} onClick={handleClick}>Delete</Button>
-			</ModalFooter>
-		</Modal>
-    </div>
-  )
+	const handleClick = () => {
+		setDisabled(true)
+		setError(null)
+
+		const variables = { uuid: uuid }
+
+		deleteMutation({ variables }).then(( {data} ) => {
+			onDelete();
+			toggle()
+		}).catch(e => {
+			console.error(e.message) // eslint-disable-line no-console
+			setError(e.message)
+		}).finally(() => {
+			setDisabled(false)
+		})
+	}
+
+	return (
+		<div>
+			<Button color="danger" outline={true} disabled={disabled} onClick={toggle} className="d-block d-md-inline-block mr-2">Delete</Button>
+			<Modal isOpen={modal} toggle={toggle}>
+				<ModalHeader toggle={toggle}>Are you sure?</ModalHeader>
+				<ModalBody>
+					Are you sure you want to delete this registry?
+				</ModalBody>
+				<ModalFooter>
+					<Button color="info" outline={true} onClick={toggle}>Cancel</Button>
+					<Button color="danger" outline={true} onClick={handleClick} disabled={disabled}>Delete</Button>
+				</ModalFooter>
+				{
+					error && <p className="alert alert-danger py-3 text-center m-3">{error}</p>
+				}
+			</Modal>
+		</div>
+  	)
 }
 
 ButtonDelete.propTypes = {
 	uuid: PropTypes.string.isRequired,
-	deleteRegistry: PropTypes.func.isRequired,
-	disabled: PropTypes.bool,
-	className: PropTypes.string,
-	text: PropTypes.string.isRequired
+	deleteMutation: PropTypes.func.isRequired,
+	onDelete: PropTypes.func.isRequired
 }

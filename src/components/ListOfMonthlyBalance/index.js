@@ -1,15 +1,19 @@
 import React from 'react'
+import { useMutation } from '@apollo/client'
 import PropTypes from 'prop-types'
 
 import { parseUnixTimestamp } from '../../utils/utils'
 
-import { DeleteMonthlyBalance } from '../../containers/DeleteMonthlyBalance'
-
+import { ErrorAlert } from '../ErrorAlert'
 import { ButtonDelete } from '../ButtonDelete'
 
-import { ErrorAlert } from '../ErrorAlert'
+
+import { DELETE_MONTHLY_BALANCE } from '../../gql/mutations/monthlyBalance'
 
 export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
+
+	const [ deleteMonthlyBalance ] = useMutation(DELETE_MONTHLY_BALANCE);
+
 	const monthlyBalanceReversed = monthlyBalance.slice(0).reverse()
 
 	if (monthlyBalanceReversed.length) {
@@ -32,22 +36,7 @@ export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 										<td>{parseUnixTimestamp(monthlyBalance.date).substring(0, 10)}</td>
 										<td>{monthlyBalance.balance}</td>
 										<td>
-											<DeleteMonthlyBalance>
-												{
-													(deleteMonthlyBalance, { data, loading, error }) => { // eslint-disable-line no-unused-vars
-														const deleteRegistry = (uuid) => {
-															const variables = { uuid: uuid };
-															deleteMonthlyBalance({ variables }).then(( {data} ) => {
-																refetch();
-															}).catch(e => {
-																console.error(e.message) // eslint-disable-line no-console
-															})
-														}
-
-														return <ButtonDelete disabled={loading} uuid={monthlyBalance.uuid} deleteRegistry={deleteRegistry} text={'Delete'} className={'d-block d-md-inline-block mr-2'} />
-													}
-												}
-											</DeleteMonthlyBalance>
+											<ButtonDelete uuid={monthlyBalance.uuid} deleteMutation={deleteMonthlyBalance}onDelete={refetch} />
 										</td>
 									</tr>
 								)
@@ -72,5 +61,6 @@ ListOfMonthlyBalance.propTypes = {
 			balance: PropTypes.number.isRequired,
 			currencyISO: PropTypes.string.isRequired
 		})
-	)
+	),
+	refetch: PropTypes.func.isRequired
 }
