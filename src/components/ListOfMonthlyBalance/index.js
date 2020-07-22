@@ -7,7 +7,6 @@ import { parseUnixTimestamp } from '../../utils/utils'
 import { ErrorAlert } from '../ErrorAlert'
 import { ButtonDelete } from '../ButtonDelete'
 
-
 import { DELETE_MONTHLY_BALANCE } from '../../gql/mutations/monthlyBalance'
 
 export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {

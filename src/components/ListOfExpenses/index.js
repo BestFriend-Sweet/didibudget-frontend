@@ -1,23 +1,20 @@
 import React from 'react'
+import { useMutation } from '@apollo/client'
 import PropTypes from 'prop-types'
 
 import { parseUnixTimestamp } from '../../utils/utils'
 import { getNameOFCategoryOrSubcategory } from './utils'
 
-//import { DeleteExpense } from '../../containers/DeleteExpense'
-
-import { ButtonDelete } from '../ButtonDelete'
-
 import { ErrorAlert } from '../ErrorAlert'
-
-import { useMutation } from '@apollo/client'
+import { ButtonDelete } from '../ButtonDelete'
 
 import { DELETE_EXPENSE } from '../../gql/mutations/expenses'
 
 export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 
-	const expensesReversed = expenses.slice(0).reverse()
-	const [ deleteExpense, { data, loading, error } ] = useMutation(DELETE_EXPENSE);
+	const [ deleteExpense ] = useMutation(DELETE_EXPENSE);
+
+	const expensesReversed = expenses.slice(0).reverse();
 
 	if (expensesReversed.length) {
 
@@ -43,20 +40,7 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 										<td>{nameOfCategory}{(nameOfSubcategory) ? ` - ${nameOfSubcategory}` : ''}</td>
 										<td>{expense.quantity} {expense.currencyISO}</td>
 										<td>
-											{
-												(deleteExpense, { data, loading, error }) => { // eslint-disable-line no-unused-vars
-													const deleteRegistry = (uuid) => {
-														const variables = { uuid: uuid };
-														deleteExpense({ variables }).then(( {data} ) => {
-															refetch();
-														}).catch(e => {
-															console.error(e.message) // eslint-disable-line no-console
-														})
-													}
-
-													return <ButtonDelete disabled={loading} uuid={expense.uuid} deleteRegistry={deleteRegistry} text={'Delete'} className={'d-block d-md-inline-block mr-2'} />
-												}
-											}
+											<ButtonDelete uuid={expense.uuid} deleteMutation={deleteExpense} onDelete={refetch} />
 										</td>
 									</tr>
 								)
@@ -91,5 +75,6 @@ ListOfExpenses.propTypes = {
 			subcategories: PropTypes.array.isRequired,
 			uuid: PropTypes.string.isRequired
 		})
-	)
+	),
+	refetch: PropTypes.func.isRequired
 }
