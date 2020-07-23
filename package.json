@@ -1,6 +1,6 @@
 {
   "name": "didibudget-frontend",
-  "version": "0.3.58",
+  "version": "0.3.59",
   "description": "didibudget-frontend",
   "private": true,
   "dependencies": {
@@ -55,6 +55,12 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.0",
-    "@testing-library/react": "^10.4.4"
+    "@testing-library/react": "^10.4.4",
+    "husky": "^4.2.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
