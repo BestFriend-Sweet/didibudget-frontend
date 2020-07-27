@@ -20,10 +20,8 @@ export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
 			onDelete();
 			toggle()
 		}).catch(e => {
-			console.error(e.message) // eslint-disable-line no-console
-			setError(e.message)
-		}).finally(() => {
 			setDisabled(false)
+			setError(e.message)
 		})
 	}
 
