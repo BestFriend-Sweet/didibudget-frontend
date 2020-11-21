@@ -12,7 +12,7 @@ export const UserCard = ( { userData } ) => (
 			<div className="card-body pb-0">
 				<p>You are logged as: <span className="font-weight-light pl-3">{userData.email}</span></p>
 				{
-					userData.isAdmin && <p>You are an administration user!</p>
+					userData.isAdmin && <p>You are an administrator user!</p>
 				}
 			</div>
 		</div>

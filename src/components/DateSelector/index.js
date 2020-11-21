@@ -14,7 +14,7 @@ export const DateSelector = ({ onChange }) => {
 
 	useEffect(() => {
 	    onChange(date)
-	}, [date])
+	}, [date, onChange])
 
 	return (
 		<Calendar
