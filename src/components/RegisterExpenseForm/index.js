@@ -55,6 +55,7 @@ export const RegisterExpenseForm = ({ props }) => {
 						<label htmlFor="inputQuantityRegisterExpenseForm" className="text-light">quantity <span className="text-danger">*</span></label>
 						<input
 							disabled={disabled}
+							inputMode="decimal"
 							className="form-control"
 							id="inputQuantityRegisterExpenseForm"
 							placeholder='€1234.99'
