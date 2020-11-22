@@ -50,7 +50,7 @@ export const RegisterMonthlyBalanceForm = () => {
 						<label htmlFor="inputbalanceRegisterMonthlyBalanceForm" className="text-light">Balance <span className="text-danger">*</span></label>
 						<input
 							disabled={disabled}
-							inputmode="decimal"
+							inputMode="decimal"
 							className="form-control"
 							id="inputbalanceRegisterMonthlyBalanceForm"
 							placeholder='€1234.99'
