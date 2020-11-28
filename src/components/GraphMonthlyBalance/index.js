@@ -1,12 +1,13 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 import { parseUnixTimestamp } from '../../utils/utils'
 
 import { ErrorAlert } from '../ErrorAlert'
+import { PageSubTitle } from '../PageSubTitle'
 
-import { parseDataForGraph } from './utils'
+import { parseDataForGraph, getLastYearData } from './utils'
 
 
 class CustomizedAxisTick extends PureComponent {
@@ -30,24 +31,48 @@ export const GraphMonthlyBalance = ({data}) => {
 		};
 	});
 
-	const parsedDataForMonthlyBalanceGraph = parseDataForGraph(dataForGraph)
+	const allDataParsed = parseDataForGraph(dataForGraph)
+	const lastYearDataParsed = getLastYearData(allDataParsed)
 
-	if (parsedDataForMonthlyBalanceGraph.length) {
+	if (allDataParsed.length) {
 		return (
-			<div style={{ width: '100%', height: 460 }}>
-				<ResponsiveContainer>
-					<LineChart
-						data={parsedDataForMonthlyBalanceGraph}
-						margin={{top: 5, right: 20, left: 20, bottom: 100}}
-					>
-						<CartesianGrid strokeDasharray="3 3"/>
-						<XAxis dataKey="date" interval="preserveStartEnd" tick={<CustomizedAxisTick />} />
-						<YAxis />
-						<Tooltip />
-						<Line dataKey="balance" fill="#8884d8" />
-					</LineChart>
-				</ResponsiveContainer>
-			</div>
+			<Fragment>
+				<PageSubTitle text="All data is displayed:"/>
+				<div style={{ width: '100%', height: 460 }}>
+					<ResponsiveContainer>
+						<LineChart
+							data={allDataParsed}
+							margin={{top: 5, right: 20, left: 20, bottom: 100}}
+						>
+							<CartesianGrid strokeDasharray="3 3"/>
+							<XAxis dataKey="date" interval="preserveStartEnd" tick={<CustomizedAxisTick />} />
+							<YAxis />
+							<Tooltip />
+							<Line dataKey="balance" fill="#8884d8" />
+						</LineChart>
+					</ResponsiveContainer>
+				</div>
+				{
+					lastYearDataParsed.length &&
+					<Fragment>
+						<PageSubTitle text="The data of the last 12 records is displayed:"/>
+						<div style={{ width: '100%', height: 460 }}>
+							<ResponsiveContainer>
+								<LineChart
+									data={lastYearDataParsed}
+									margin={{top: 5, right: 20, left: 20, bottom: 100}}
+								>
+									<CartesianGrid strokeDasharray="3 3"/>
+									<XAxis dataKey="date" interval="preserveStartEnd" tick={<CustomizedAxisTick />} />
+									<YAxis />
+									<Tooltip />
+									<Line dataKey="balance" fill="#8884d8" />
+								</LineChart>
+							</ResponsiveContainer>
+						</div>
+					</Fragment>
+				}
+		</Fragment>
 		);
 	} else {
 		const errorMessage = 'Not enough data to generate statistics';
