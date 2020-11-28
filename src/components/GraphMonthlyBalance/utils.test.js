@@ -1,27 +1,42 @@
-import { parseDataForGraph } from './utils'
+import { parseDataForGraph, getLastYearData } from './utils'
+import { rawData, allDataParsed, allDataParsedFewMonths, allDataParsedEnoughtMonths, allDataParsedLotOfMonths, lastYearDataParsed } from './fixtures'
 
 describe('parseDataForGraph', () => {
 	test('should return an empty array if receive an empty array', () => {
-		// Given 
 		const data = []
-
-		// When
 		const result = parseDataForGraph(data)
-
-		// Then
 	 	expect(result).toEqual([])
 	})
 
-	test('Should returns an array of valid data for the graph. Refill the empty data of every month (without balance) and do an average of repeated months. Respecte the balance with value 0', () => {
-		// Given
-		const data = [{"balance": 0,"date": "2014-11-01"}, {"balance": 678.74,"date": "2014-12-01"},{"balance": 800.75,"date": "2015-01-01"},{"balance": 1189.88,"date": "2015-01-01"},{"balance": 8110.37,"date": "2015-03-01"}]
+	test('should returns an array of valid data for the graph. Refill the empty data of every month (without balance) and do an average of repeated months. It must respect the balance with value 0', () => {
+		const result = parseDataForGraph(rawData)
+	 	expect(result).toEqual(allDataParsed)
+	})
+})
 
-		// When
-		const result = parseDataForGraph(data)
+describe('getLastYearData', () => {
+	test('should return an empty array if receive an empty array or nothing', () => {
+		const result = getLastYearData([])
+		const anotherResult = getLastYearData()
+	 	expect(result).toEqual([])
+	 	expect(anotherResult).toEqual([])
+	})
 
-		// Then
-		const expectedResult = [{ date: '2014-11-01', balance: 0 }, { date: '2014-12-01', balance: 678.74 }, { date: '2015-01-01', balance: 995.32 }, { date: '2015-02-01' }, { date: '2015-03-01', balance: 8110.37 }]
+	test('should return an empty array if receive an array with length minor than 12', () => {
+		const result = getLastYearData(allDataParsedFewMonths)
+	 	expect(result).toEqual([])
+	})
 
-	 	expect(result).toEqual(expectedResult)
+	test('should return the same array if receive a valid array with length equal of 12', () => {
+		const result = getLastYearData(allDataParsedEnoughtMonths)
+		expect(result).toEqual(lastYearDataParsed)
+		expect(result.length).toEqual(12)
+	})
+
+
+	test('should returns an array with length of 12 if receive an array of valid data with a length of more than 12 months', () => {
+		const result = getLastYearData(allDataParsedLotOfMonths)
+	 	expect(result).toEqual(lastYearDataParsed)
+	 	expect(result.length).toEqual(12)
 	})
 })
