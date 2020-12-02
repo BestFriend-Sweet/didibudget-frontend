@@ -58,5 +58,7 @@ ListOfUsers.propTypes = {
 			registrationDate: PropTypes.string.isRequired,
 			lastLogin: PropTypes.string.isRequired
 		})
-	)
+	),
+	startPolling: PropTypes.func.isRequired,
+	stopPolling: PropTypes.func.isRequired
 }
