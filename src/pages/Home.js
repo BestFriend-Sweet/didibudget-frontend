@@ -9,9 +9,9 @@ const Home = () => {
 
 	return (
 		<Fragment>
-			<Jumbotron title='Home' subtitle='Welcome! This is an app to manage your money' />
+			<Jumbotron title='didibudget' subtitle='Welcome! This is an app to manage your money' />
 			{
-				Object.keys(userData).length && <UserCard userData={userData} />
+				Object.keys(userData).length > 0 && <UserCard userData={userData} />
 			}
 		</Fragment>
 	)
