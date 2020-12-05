@@ -1,5 +1,8 @@
 # 💰 didibudget-frontend
 
+See this application in action here: https://didibudget.netlify.app  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/15c34301-7788-44d1-a36c-015b5ca94baa/deploy-status)](https://app.netlify.com/sites/didibudget/deploys)
+
 This is an app to manage your money.
 The proyect is splitted on two repositories: one for the backend and one for the frontend application.
 
