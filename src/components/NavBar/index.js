@@ -3,12 +3,15 @@ import { Link } from '@reach/router'
 
 import { MdHome, MdPeopleOutline } from 'react-icons/md'
 import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
-import { FaPiggyBank, FaListUl, FaRegCreditCard } from "react-icons/fa";
-import { GoGraph } from "react-icons/go";
 
 import { AuthContext } from '../../AuthContext'
 
-const SIZE = '36px'
+import { MonthlyBalanceDropdown } from './MonthlyBalanceDropdown'
+import { ExpensesDropdown } from './ExpensesDropdown'
+
+const SIZE_OF_PRIMARY_ICONS = '36px'
+const SIZE_OF_SECONDARY_ICONS = '24px'
+
 
 export const NavBar = () => {
 	const { isAuth } = useContext(AuthContext)
@@ -17,41 +20,25 @@ export const NavBar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark justify-content-between d-flex mb-5 border-bottom border-info">
 			<Link className="navbar-item text-light font-weight-bold pt-2" to='/'>
-				<MdHome size={SIZE}/>
+				<MdHome size={SIZE_OF_PRIMARY_ICONS}/>
 			</Link>
-			{ 
-				isAuth && <Link className="navbar-item text-light font-weight-bold pt-2" to='/register-monthly-balance'>
-					<FaPiggyBank size={SIZE}/>
-				</Link>
-			}
+
 			{
-				isAuth && <Link className="navbar-item text-light font-weight-bold pt-2" to='/view-monthly-balance'>
-					<GoGraph size={SIZE}/>
-				</Link>
+				isAuth && <MonthlyBalanceDropdown sizeOfPrimaryIcons={SIZE_OF_PRIMARY_ICONS} sizeOfSecondaryIcons={SIZE_OF_SECONDARY_ICONS} />
 			}
+
 			{
-				isAuth && <Link className="navbar-item text-light font-weight-bold pt-2" to='/monthly-balance-administration'>
-					<FaListUl size={SIZE}/>
-				</Link>
+				isAuth && <ExpensesDropdown sizeOfPrimaryIcons={SIZE_OF_PRIMARY_ICONS} sizeOfSecondaryIcons={SIZE_OF_SECONDARY_ICONS} />
 			}
-			{
-				isAuth && <Link className="navbar-item text-light font-weight-bold pt-2" to='/list-expense-categories'>
-					<FaRegCreditCard size={SIZE}/>
-				</Link>
-			}
-			{
-				isAuth && <Link className="navbar-item text-light font-weight-bold pt-2" to='/expenses-administration'>
-					<FaListUl size={SIZE}/>
-				</Link>
-			}
+
 			{ 
 				isAuth && userData.isAdmin && <Link className="navbar-item text-light font-weight-bold pt-2" to='/user-administration'>
-					<MdPeopleOutline size={SIZE}/>
+					<MdPeopleOutline size={SIZE_OF_PRIMARY_ICONS}/>
 				</Link>
 			}
 			<Link className="navbar-item text-light font-weight-bold pt-2" to='/logout'>
-				{ !isAuth && <IoMdLogIn size={SIZE}/> }
-				{ isAuth && <IoMdLogOut size={SIZE}/> }
+				{ !isAuth && <IoMdLogIn size={SIZE_OF_PRIMARY_ICONS}/> }
+				{ isAuth && <IoMdLogOut size={SIZE_OF_PRIMARY_ICONS}/> }
 			</Link>
 		</nav>
 	)
