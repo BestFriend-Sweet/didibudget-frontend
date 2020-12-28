@@ -42,7 +42,7 @@ export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
 				}
 			</Modal>
 		</div>
-  	)
+	)
 }
 
 ButtonDelete.propTypes = {

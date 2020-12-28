@@ -1,12 +1,10 @@
 import React from 'react'
-import { render, cleanup, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 import { PageSubTitle } from './'
 
 describe('PageSubTitle', () => {
-	afterEach(cleanup)
-
 	it('renders correctly', () => {
 		const { getByText } = render(<PageSubTitle text='biz' />)
 
