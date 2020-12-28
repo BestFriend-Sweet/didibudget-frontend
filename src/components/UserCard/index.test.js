@@ -32,6 +32,5 @@ describe('UserCard', () => {
 		}
 		rerender(<UserCard userData={newProps} />)
 		expect(queryByText('You are an administrator user!')).toBeInTheDocument()
-		
 	})
 })
