@@ -1,12 +1,10 @@
 import React from 'react'
-import { render, cleanup, fireEvent } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 import { SubmitButton } from './'
 
 describe('SubmitButton', () => {
-	afterEach(cleanup)
-
 	it('renders correctly', () => {
 		const _onClick = () => {}
 		const text = 'button-text'

@@ -1,12 +1,10 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { act } from 'react-dom/test-utils';
 
 import { useInputValue } from './useInputValue'
 
 describe('useInputValue', () => {
-	afterEach(cleanup)
-
 	test('should return two properties', () => {
 		let input
 		const Component = () => {

@@ -1,12 +1,10 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
 import { UserCard } from './'
 
 describe('UserCard', () => {
-	afterEach(cleanup)
-
 	it('should renders correctly and show the email of user', () => {
 		const data = {
 			email: 'foo@mail.com',
