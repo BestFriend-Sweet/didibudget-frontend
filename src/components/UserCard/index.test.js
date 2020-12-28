@@ -7,7 +7,7 @@ import { UserCard } from './'
 describe('UserCard', () => {
 	afterEach(cleanup)
 
-	it('renders correctly and show the email', () => {
+	it('should renders correctly and show the email of user', () => {
 		const data = {
 			email: 'foo@mail.com',
 			isAdmin: false
@@ -17,7 +17,7 @@ describe('UserCard', () => {
 		expect(getByText('foo@mail.com')).toBeInTheDocument()
 	})
 
-	it('renders correctly and show if you are an administrator user', () => {
+	it('should show if user is an administrator user', () => {
 		const props = {
 			email: 'foo@mail.com',
 			isAdmin: false
