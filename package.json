@@ -1,6 +1,6 @@
 {
   "name": "didibudget-frontend",
-  "version": "0.4.80",
+  "version": "0.4.81",
   "description": "didibudget-frontend",
   "private": true,
   "dependencies": {
@@ -55,7 +55,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "5.11.6",
     "@testing-library/react": "11.2.2",
-    "husky": "4.3.0"
+    "husky": "4.3.6"
   },
   "husky": {
     "hooks": {
