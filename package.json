@@ -1,6 +1,6 @@
 {
   "name": "didibudget-frontend",
-  "version": "0.4.81",
+  "version": "0.4.82",
   "description": "didibudget-frontend",
   "private": true,
   "dependencies": {
@@ -43,6 +43,10 @@
       "semi": [
         "warn",
         "never"
+      ],
+      "quotes": [
+        "warn",
+        "single"
       ]
     }
   },

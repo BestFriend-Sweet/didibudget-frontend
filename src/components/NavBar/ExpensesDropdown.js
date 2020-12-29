@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@reach/router'
 
-import { FaListUl, FaRegCreditCard } from "react-icons/fa"
+import { FaListUl, FaRegCreditCard } from 'react-icons/fa'
 
 import { useWindowSize } from '../../hooks/useWindowSize'
 

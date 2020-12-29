@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@reach/router'
 
-import { FaPiggyBank, FaListUl } from "react-icons/fa"
-import { GoGraph } from "react-icons/go"
+import { FaPiggyBank, FaListUl } from 'react-icons/fa'
+import { GoGraph } from 'react-icons/go'
 
 import { useWindowSize } from '../../hooks/useWindowSize'
 

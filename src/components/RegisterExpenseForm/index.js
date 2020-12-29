@@ -31,7 +31,7 @@ export const RegisterExpenseForm = ({ props }) => {
 		setDisabled(true)
 		setError(null)
 
-		const subcategoryID = props["*"] || null
+		const subcategoryID = props['*'] || null
 		const variables = { category: props.categoryID, subcategory: subcategoryID, quantity: parseFloat(quantity.value), date }
 
 		registerExpense({ variables }).then(({ data }) => {

@@ -13,7 +13,7 @@ import { REGISTER_MONTHLY_BALANCE } from '../../gql/mutations/monthlyBalance'
 export const RegisterMonthlyBalanceForm = () => {
 	const d = new Date()
 	const availableYears = [d.getFullYear() - 6, d.getFullYear() - 5, d.getFullYear() - 4, d.getFullYear() - 3, d.getFullYear() - 2, d.getFullYear() - 1, d.getFullYear(), d.getFullYear() + 1]
-	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 	const [disabled, setDisabled] = useState(false)
 	const [error, setError] = useState(null)

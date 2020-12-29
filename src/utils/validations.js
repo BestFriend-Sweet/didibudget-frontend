@@ -78,7 +78,7 @@ const validateRegisterForm = (email, password, repeatPassword) => {
  * @return {Boolean}         		- True means data is valid
  */
 const validateRegisterMonthlyBalanceForm = (balance, year, month) => {
-	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+	const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 	let dataIsValid = true
 
