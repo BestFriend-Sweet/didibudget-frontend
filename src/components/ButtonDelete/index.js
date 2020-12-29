@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
-	const [modal, setModal] = useState(false);
-	const toggle = () => setModal(!modal);
+	const [modal, setModal] = useState(false)
+	const toggle = () => setModal(!modal)
 
 	const [disabled, setDisabled] = useState(false)
 	const [error, setError] = useState(null)
@@ -17,7 +17,7 @@ export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
 		const variables = { uuid: uuid }
 
 		deleteMutation({ variables }).then(( {data} ) => {
-			onDelete();
+			onDelete()
 			toggle()
 		}).catch(e => {
 			setDisabled(false)

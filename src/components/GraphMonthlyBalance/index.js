@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 import { parseUnixTimestamp } from '../../utils/utils'
 
@@ -12,7 +12,7 @@ import { parseDataForGraph, getLastYearData } from './utils'
 
 class CustomizedAxisTick extends PureComponent {
 	render() {
-		const { x, y, payload } = this.props;
+		const { x, y, payload } = this.props
 
 		return (
 			<g transform={`translate(${x},${y})`}>
@@ -23,13 +23,13 @@ class CustomizedAxisTick extends PureComponent {
 }
 
 export const GraphMonthlyBalance = ({data}) => {	
-	const dataForGraph = [];
+	const dataForGraph = []
 	data.map((monthlyBalance, index) => {
 		return dataForGraph[index] = {
 			balance: monthlyBalance.balance,
 			date: parseUnixTimestamp(monthlyBalance.date).substring(0, 10)
-		};
-	});
+		}
+	})
 
 	const allDataParsed = parseDataForGraph(dataForGraph)
 	const lastYearDataParsed = getLastYearData(allDataParsed)
@@ -73,10 +73,10 @@ export const GraphMonthlyBalance = ({data}) => {
 					</Fragment>
 				}
 		</Fragment>
-		);
+		)
 	} else {
-		const errorMessage = 'Not enough data to generate statistics';
-		return <ErrorAlert errorMessage={errorMessage} />;
+		const errorMessage = 'Not enough data to generate statistics'
+		return <ErrorAlert errorMessage={errorMessage} />
 	}
 }
 

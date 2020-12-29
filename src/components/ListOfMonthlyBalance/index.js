@@ -11,7 +11,7 @@ import { DELETE_MONTHLY_BALANCE } from '../../gql/mutations/monthlyBalance'
 
 export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 
-	const [ deleteMonthlyBalance ] = useMutation(DELETE_MONTHLY_BALANCE);
+	const [ deleteMonthlyBalance ] = useMutation(DELETE_MONTHLY_BALANCE)
 
 	const monthlyBalanceReversed = monthlyBalance.slice(0).reverse()
 
@@ -46,8 +46,8 @@ export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 			</section>
 		)
 	} else {
-		const errorMessage = 'Not enough data to generate list';
-		return <ErrorAlert errorMessage={errorMessage} />;
+		const errorMessage = 'Not enough data to generate list'
+		return <ErrorAlert errorMessage={errorMessage} />
 	}
 }
 

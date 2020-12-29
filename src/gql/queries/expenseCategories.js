@@ -13,4 +13,4 @@ export const LIST_EXPENSE_CATEGORIES = gql`
 		uuid
 	}
 }
-`;
+`

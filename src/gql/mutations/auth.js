@@ -6,7 +6,7 @@ mutation authUser($email: String!, $password: String!) {
 		token
 	}
 }
-`;
+`
 
 
 export const REGISTER = gql`

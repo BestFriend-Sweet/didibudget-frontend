@@ -21,13 +21,13 @@ describe('Footer', () => {
   		const expectedText = 'Made by didaquis'
 
 		screen.getByText((content, node) => {
-			const hasText = (node) => node.textContent === expectedText;
-			const nodeHasText = hasText(node);
+			const hasText = (node) => node.textContent === expectedText
+			const nodeHasText = hasText(node)
 			const childrenDontHaveText = Array.from(node.children).every(
 			  (child) => !hasText(child)
-			);
+			)
 
-			return nodeHasText && childrenDontHaveText;
-		});
+			return nodeHasText && childrenDontHaveText
+		})
 	})
 })

@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client'
 import { ErrorAlert } from '../ErrorAlert'
 import { SubmitButton } from '../SubmitButton'
 import { SubmitButtonHelper } from '../SubmitButtonHelper'
-import { DateSelector } from '../DateSelector';
+import { DateSelector } from '../DateSelector'
 
 import { useInputValue } from '../../hooks/useInputValue'
 import { validateRegisterExpenseForm } from '../../utils/validations'
@@ -17,7 +17,7 @@ export const RegisterExpenseForm = ({ props }) => {
 	const [disabled, setDisabled] = useState(false)
 	const [error, setError] = useState(null)
 
-	const [ registerExpense ] = useMutation(REGISTER_EXPENSE);
+	const [ registerExpense ] = useMutation(REGISTER_EXPENSE)
 
 	const quantity = useInputValue('')
 	const [date, setDate] = useState(null)
@@ -31,7 +31,7 @@ export const RegisterExpenseForm = ({ props }) => {
 		setDisabled(true)
 		setError(null)
 
-		const subcategoryID = props["*"] || null
+		const subcategoryID = props['*'] || null
 		const variables = { category: props.categoryID, subcategory: subcategoryID, quantity: parseFloat(quantity.value), date }
 
 		registerExpense({ variables }).then(({ data }) => {

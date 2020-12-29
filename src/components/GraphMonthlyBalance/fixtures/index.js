@@ -1,4 +1,4 @@
-const rawData = [{"balance": 0,"date": "2014-11-01"}, {"balance": 678.74,"date": "2014-12-01"},{"balance": 800.75,"date": "2015-01-01"},{"balance": 1189.88,"date": "2015-01-01"},{"balance": 8110.37,"date": "2015-03-01"}]
+const rawData = [{'balance': 0,'date': '2014-11-01'}, {'balance': 678.74,'date': '2014-12-01'},{'balance': 800.75,'date': '2015-01-01'},{'balance': 1189.88,'date': '2015-01-01'},{'balance': 8110.37,'date': '2015-03-01'}]
 
 const allDataParsed = [{ date: '2014-11-01', balance: 0 }, { date: '2014-12-01', balance: 678.74 }, { date: '2015-01-01', balance: 995.32 }, { date: '2015-02-01' }, { date: '2015-03-01', balance: 8110.37 }]
 

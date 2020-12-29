@@ -4,7 +4,7 @@
  * @param {string} data - data to store
  */
 function saveSession(name, data) {
-	sessionStorage.setItem(name, data);
+	sessionStorage.setItem(name, data)
 }
 
 /**
@@ -12,14 +12,14 @@ function saveSession(name, data) {
  * @param {string} name - key for data to recover
  */
 function recoverSession(name) {
-	return sessionStorage.getItem(name);
+	return sessionStorage.getItem(name)
 }
 
 /**
  * Delete all data in Session Storage
  */
 function deleteSession() {
-	sessionStorage.clear();
+	sessionStorage.clear()
 }
 
 /**
@@ -29,11 +29,11 @@ function deleteSession() {
 function storeUserDataOnSessionStorage(data) {
 	const replacer = (key, value) => {
 		if (typeof value === 'boolean' || typeof value === 'number') {
-			return String(value);
+			return String(value)
 		}
-		return value;
-	};
-	sessionStorage.setItem('userData', JSON.stringify(data, replacer));
+		return value
+	}
+	sessionStorage.setItem('userData', JSON.stringify(data, replacer))
 }
 
 /**
@@ -48,16 +48,16 @@ function recoverUserDataFromSessionStorage() {
 		if (value === 'false') {
 			return false
 		}
-		return value;
-	};
-	return JSON.parse(sessionStorage.getItem('userData'), reviver) || {};
+		return value
+	}
+	return JSON.parse(sessionStorage.getItem('userData'), reviver) || {}
 }
 
 /**
  * Delete user data in Session Storage
  */
 function deleteUserDataFromSessionStorage() {
-	sessionStorage.removeItem('userData');
+	sessionStorage.removeItem('userData')
 }
 
 module.exports = {
@@ -67,4 +67,4 @@ module.exports = {
 	storeUserDataOnSessionStorage,
 	recoverUserDataFromSessionStorage,
 	deleteUserDataFromSessionStorage
-};
+}

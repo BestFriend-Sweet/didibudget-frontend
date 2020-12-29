@@ -16,7 +16,7 @@ export const LoginForm = ({ activateAuth }) => {
 	const [disabled, setDisabled] = useState(false)
 	const [error, setError] = useState(null)
 
-	const [ authUser ] = useMutation(LOGIN);
+	const [ authUser ] = useMutation(LOGIN)
 
 	const email = useInputValue('')
 	const password = useInputValue('')
