@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from '@reach/router'
 
 import { MdHome, MdPeopleOutline } from 'react-icons/md'
-import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
+import { IoMdLogIn, IoMdLogOut } from "react-icons/io"
 
 import { AuthContext } from '../../AuthContext'
 

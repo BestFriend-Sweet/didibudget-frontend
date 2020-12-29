@@ -19,7 +19,7 @@ const Provider = ({ children }) => {
 		isAuth,
 		userData,
 		activateAuth: (token) => {
-			const decodedToken = jwt.decode(token) || {};
+			const decodedToken = jwt.decode(token) || {}
 			const userData = {
 				email: decodedToken.email,
 				isAdmin: decodedToken.isAdmin,

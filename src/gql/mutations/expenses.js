@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 
 export const REGISTER_EXPENSE = gql`
@@ -23,4 +23,4 @@ mutation deleteExpense($uuid: String!) {
 		uuid
 	}
 }
-`;
+`

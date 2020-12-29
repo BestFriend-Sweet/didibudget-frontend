@@ -12,9 +12,9 @@ import { DELETE_EXPENSE } from '../../gql/mutations/expenses'
 
 export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 
-	const [ deleteExpense ] = useMutation(DELETE_EXPENSE);
+	const [ deleteExpense ] = useMutation(DELETE_EXPENSE)
 
-	const expensesReversed = expenses.slice(0).reverse();
+	const expensesReversed = expenses.slice(0).reverse()
 
 	if (expensesReversed.length) {
 
@@ -32,8 +32,8 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 					<tbody>
 						{
 							expensesReversed.map(expense => {
-								const nameOfCategory = getNameOFCategoryOrSubcategory(expense.category, categories);
-								const nameOfSubcategory = getNameOFCategoryOrSubcategory(expense.subcategory, categories);
+								const nameOfCategory = getNameOFCategoryOrSubcategory(expense.category, categories)
+								const nameOfSubcategory = getNameOFCategoryOrSubcategory(expense.subcategory, categories)
 								return (
 									<tr key={expense.uuid}>
 										<td>{parseUnixTimestamp(expense.date).substring(0, 10)}</td>
@@ -51,8 +51,8 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 			</section>
 		)
 	} else {
-		const errorMessage = 'Not enough data to generate list';
-		return <ErrorAlert errorMessage={errorMessage} />;
+		const errorMessage = 'Not enough data to generate list'
+		return <ErrorAlert errorMessage={errorMessage} />
 	}
 }
 

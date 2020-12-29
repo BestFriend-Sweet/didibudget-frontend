@@ -9,4 +9,4 @@ query getMonthlyBalance{
 		uuid 
 	}
 }
-`;
+`

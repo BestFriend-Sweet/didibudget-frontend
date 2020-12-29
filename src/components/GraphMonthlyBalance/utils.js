@@ -6,10 +6,10 @@
 * @return {String}
 */
 const firstDayOfNextMonth = (date) => {
-	const parts = date.split('-');
+	const parts = date.split('-')
 
-	let year = parts[0];
-	let month = parts[1];
+	let year = parts[0]
+	let month = parts[1]
 
 	month++
 
@@ -61,13 +61,13 @@ function parseDataForGraph (data = []) {
 
 	// For each date, calculate the balance.
 	// A date should not necessarily have a balance. If exist more than one balance for the same month, do an average.
-	const result = [];
+	const result = []
 	listOfAllDates.forEach(date => {
 		const monthlyData = {
 			date: date
 		}
 
-		let allBalancesOnThisMonth = [];
+		let allBalancesOnThisMonth = []
 		data.forEach(d => {
 			if (d.date === date) {
 				allBalancesOnThisMonth.push(d.balance)
@@ -108,4 +108,4 @@ function getLastYearData (dataParedForGraph = []) {
 module.exports = {
 	parseDataForGraph,
 	getLastYearData,
-};
+}

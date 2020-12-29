@@ -11,4 +11,4 @@ query listAllUsers{
 		uuid
 	}
 }
-`;
+`

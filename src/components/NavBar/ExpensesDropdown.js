@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@reach/router'
 
-import { FaListUl, FaRegCreditCard } from "react-icons/fa";
+import { FaListUl, FaRegCreditCard } from "react-icons/fa"
 
-import { useWindowSize } from '../../hooks/useWindowSize';
+import { useWindowSize } from '../../hooks/useWindowSize'
 
 export const ExpensesDropdown = (props) => {
-	const size = useWindowSize();
-	const largeBreakPoint = 992;
-	const isDropdownExpanded = size.width <= largeBreakPoint;
+	const size = useWindowSize()
+	const largeBreakPoint = 992
+	const isDropdownExpanded = size.width <= largeBreakPoint
 
 	return (
 		<div className={`dropdown ${ isDropdownExpanded ? 'position-static' : '' }`}>

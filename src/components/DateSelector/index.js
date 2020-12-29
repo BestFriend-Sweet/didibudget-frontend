@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
-import Moment from 'moment';
-import momentLocalizer from 'react-widgets-moment';
+import Moment from 'moment'
+import momentLocalizer from 'react-widgets-moment'
 
-import { Calendar } from 'react-widgets';
-import 'react-widgets/dist/css/react-widgets.css';
+import { Calendar } from 'react-widgets'
+import 'react-widgets/dist/css/react-widgets.css'
 
 export const DateSelector = ({ onChange }) => {
 	Moment.locale('en')

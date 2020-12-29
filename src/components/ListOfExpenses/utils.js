@@ -6,10 +6,10 @@
  */
 function getNameOFCategoryOrSubcategory(target, categories) {
 	if (target === null || categories.length === 0) {
-		return null;
+		return null
 	}
 
-	let result = null;
+	let result = null
 
 	categories.forEach(category => {
 		if (category._id === target) {
@@ -20,13 +20,13 @@ function getNameOFCategoryOrSubcategory(target, categories) {
 			if (subcategory._id === target) {
 				result = subcategory.name
 			}
-		});
-	});
+		})
+	})
 
-	return result;
+	return result
 }
 
 
 module.exports = {
 	getNameOFCategoryOrSubcategory
-};
+}

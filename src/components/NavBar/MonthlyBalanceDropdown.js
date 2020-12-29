@@ -2,15 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@reach/router'
 
-import { FaPiggyBank, FaListUl } from "react-icons/fa";
-import { GoGraph } from "react-icons/go";
+import { FaPiggyBank, FaListUl } from "react-icons/fa"
+import { GoGraph } from "react-icons/go"
 
-import { useWindowSize } from '../../hooks/useWindowSize';
+import { useWindowSize } from '../../hooks/useWindowSize'
 
 export const MonthlyBalanceDropdown = (props) => {
-	const size = useWindowSize();
-	const largeBreakPoint = 992;
-	const isDropdownExpanded = size.width <= largeBreakPoint;
+	const size = useWindowSize()
+	const largeBreakPoint = 992
+	const isDropdownExpanded = size.width <= largeBreakPoint
 
 	return (
 		<div className={`dropdown ${ isDropdownExpanded ? 'position-static' : '' }`}>

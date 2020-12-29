@@ -3,29 +3,29 @@ import { onError } from '@apollo/client/link/error'
 import { recoverSession, deleteSession } from '../utils/session'
 
 /* Configuration imported from '.env' file */
-const backendProtocol 	= process.env.REACT_APP_PROTOCOL;
-const backendHost 		= process.env.REACT_APP_HOST;
-const backendPort 		= process.env.REACT_APP_PORT;
-const backendGraphql 	= process.env.REACT_APP_GRAPHQL;
+const backendProtocol 	= process.env.REACT_APP_PROTOCOL
+const backendHost 		= process.env.REACT_APP_HOST
+const backendPort 		= process.env.REACT_APP_PORT
+const backendGraphql 	= process.env.REACT_APP_GRAPHQL
 
-const backendAddress = `${backendProtocol}://${backendHost}:${backendPort}${backendGraphql}`;
+const backendAddress = `${backendProtocol}://${backendHost}:${backendPort}${backendGraphql}`
 
 const httpLink = new HttpLink({
 	uri: backendAddress
 })
 
 const authMiddleware = new ApolloLink((operation, forward) => {
-	const token = recoverSession('token');
+	const token = recoverSession('token')
 	const authorization = token ? `Bearer ${token}` : ''
 	operation.setContext(({ headers = {} }) => ({
 		headers: {
 			...headers,
 			authorization: authorization,
 		},
-	}));
+	}))
 
-	return forward(operation);
-});
+	return forward(operation)
+})
 
 const errorLink = onError(({ operation, graphQLErrors, networkError, response }) => {
 	if (graphQLErrors) {
@@ -42,13 +42,13 @@ const errorLink = onError(({ operation, graphQLErrors, networkError, response })
 		deleteSession()
 		window.location.href = '/'
 	}
-});
+})
 
 const link = ApolloLink.from([authMiddleware, errorLink, httpLink])
 
 const apolloClient = new ApolloClient({
 	link,
 	cache: new InMemoryCache()
-});
+})
 
-export default apolloClient;
+export default apolloClient

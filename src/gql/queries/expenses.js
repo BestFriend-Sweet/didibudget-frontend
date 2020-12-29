@@ -11,7 +11,7 @@ query getExpenses {
 		uuid
 	}
 }
-`;
+`
 
 export const LIST_ALL_EXPENSES_AND_CATEGORIES = gql`
 query {
@@ -34,4 +34,4 @@ query {
 		uuid
 	}
 }
-`;
+`

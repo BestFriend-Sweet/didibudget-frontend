@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import { act } from 'react-dom/test-utils';
+import { act } from 'react-dom/test-utils'
 
 import { useInputValue } from './useInputValue'
 
@@ -9,7 +9,7 @@ describe('useInputValue', () => {
 		let input
 		const Component = () => {
 			input = useInputValue(42)
-			return null;
+			return null
 		}
 		render(<Component />)
 
@@ -25,7 +25,7 @@ describe('useInputValue', () => {
 		let input
 		const Component = () => {
 			input = useInputValue('default')
-			return null;
+			return null
 		}
 		render(<Component />)
 
@@ -37,7 +37,7 @@ describe('useInputValue', () => {
 		let input
 		const Component = () => {
 			input = useInputValue('')
-			return null;
+			return null
 		}
 		render(<Component />)
 

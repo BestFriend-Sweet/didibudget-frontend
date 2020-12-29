@@ -18,19 +18,19 @@ describe('SubmitButton', () => {
 		const text = 'button-text'
 		const { getByText } = render(<SubmitButton disabled={true} onClick={_onClick}>{text}</SubmitButton>)
 
-		expect(getByText(/button-text/i).closest('button')).toHaveAttribute('disabled');
+		expect(getByText(/button-text/i).closest('button')).toHaveAttribute('disabled')
 	})
 
 	it('captures clicks', () => {
 		const text = 'button-text'
-		const handleClick = jest.fn();
+		const handleClick = jest.fn()
 
 		const { getByText } = render(
 			<SubmitButton onClick={handleClick}>{text}</SubmitButton>
-		);
+		)
 
-		const node = getByText('button-text');
-		fireEvent.click(node);
-		expect(handleClick).toHaveBeenCalled();
-	});
+		const node = getByText('button-text')
+		fireEvent.click(node)
+		expect(handleClick).toHaveBeenCalled()
+	})
 })
