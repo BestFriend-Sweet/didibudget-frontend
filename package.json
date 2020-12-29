@@ -38,7 +38,13 @@
   "author": "Dídac García (https://didaquis.github.io/)",
   "license": "MIT",
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "semi": [
+        "warn",
+        "never"
+      ]
+    }
   },
   "browserslist": {
     "production": [
