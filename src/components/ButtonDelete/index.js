@@ -38,7 +38,7 @@ export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
 					<Button color="danger" outline={true} onClick={handleClick} disabled={disabled}>Delete</Button>
 				</ModalFooter>
 				{
-					error && <p className="alert alert-danger py-3 text-center m-3">{error}</p>
+					error && <p className="alert alert-danger py-3 text-center m-3" role="alert">{error}</p>
 				}
 			</Modal>
 		</div>
