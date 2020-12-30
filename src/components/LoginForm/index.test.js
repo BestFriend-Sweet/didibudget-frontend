@@ -73,4 +73,41 @@ describe('LoginForm', () => {
 		await waitFor(() => expect(activateAuth).toHaveBeenCalled())
 		expect(activateAuth).toHaveBeenCalledWith('f3b2c1a0d2')
 	})
+
+	it('should render an error if credentials are not valid', async () => {
+		const activateAuth = jest.fn()
+		const mocks = [
+			{
+				request: {
+					query: LOGIN,
+					variables: {
+						email: 'example@mail.com',
+						password: 'ABCabc*1234*4321',
+					},
+				},
+				result: {
+					errors: [new Error('Invalid credentials')],
+				},
+			},
+		]
+
+		render(
+			<MockedProvider mocks={mocks} addTypename={false}>
+				<LoginForm activateAuth={activateAuth}/>
+			</MockedProvider>
+		)
+
+		const emailInput = screen.getByRole('textbox', { name: /Email/i })
+		const passwordInput = screen.getByPlaceholderText(/password/)
+		const submitButton = screen.getByRole('button', { name: 'Log in' })
+
+		fireEvent.change(emailInput, { target: { value: 'example@mail.com' } })
+		fireEvent.change(passwordInput, { target: { value: 'ABCabc*1234*4321' } })
+		fireEvent.click(submitButton)
+
+		await waitFor(() => expect(activateAuth).not.toHaveBeenCalled())
+
+		expect(screen.getByRole('alert')).toBeInTheDocument()
+		expect(screen.getByText('Invalid credentials'))
+	})
 })

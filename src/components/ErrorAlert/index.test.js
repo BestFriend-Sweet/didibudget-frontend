@@ -6,8 +6,9 @@ import { ErrorAlert } from './'
 
 describe('ErrorAlert', () => {
 	it('renders correctly', () => {
-		const { getByText } = render(<ErrorAlert errorMessage='foo' />)
+		const { getByRole, getByText } = render(<ErrorAlert errorMessage='foo' />)
 
-		expect(getByText('foo')).toBeInTheDocument()
+		expect(getByRole('alert')).toBeInTheDocument()
+		expect(getByText('foo'))
 	})
 })
