@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent, act } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { MockedProvider } from '@apollo/client/testing'
 
@@ -66,14 +66,11 @@ describe('LoginForm', () => {
 		const passwordInput = screen.getByPlaceholderText(/password/)
 		const submitButton = screen.getByRole('button', { name: 'Log in' })
 
-		//act(() => {}) TODO: What is going on here???
 		fireEvent.change(emailInput, { target: { value: 'example@mail.com' } })
 		fireEvent.change(passwordInput, { target: { value: 'ABCabc*1234*4321' } })
 		fireEvent.click(submitButton)
 
-		await new Promise(resolve => setTimeout(resolve, 0))
-
-		expect(activateAuth).toHaveBeenCalled()
+		await waitFor(() => expect(activateAuth).toHaveBeenCalled())
 		expect(activateAuth).toHaveBeenCalledWith('f3b2c1a0d2')
 	})
 })
