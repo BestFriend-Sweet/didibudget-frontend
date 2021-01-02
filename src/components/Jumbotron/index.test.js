@@ -21,7 +21,7 @@ describe('Jumbotron', () => {
 
 		expect(nodeTitle.localName).toBe('h2')
 		expect(nodeTitle.dataset.easteregg).toBe('The cake is a lie')
-		expect(nodeTitle.className).toBe('display-4 m-4')
+		expect(nodeTitle.className).toBe('custom-title m-4')
 
 
 		const nodeSubtitle = screen.getByText('my-subtitle')
