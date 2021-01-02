@@ -7,7 +7,7 @@ import './styles.css'
 
 export const Jumbotron = ({ title, subtitle }) => (
 	<div className="jumbotron">
-		<div className="col-sm-12 offset-md-2 col-md-8 col-lg-8 mb-5">
+		<div className="col-sm-12 offset-md-2 col-md-8 col-lg-8 p-0 mb-4">
 			<DidibudgetLogo />
 		</div>
 		<h2 className="custom-title m-4" data-easteregg="The cake is a lie">{title}</h2>
