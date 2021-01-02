@@ -11,6 +11,14 @@ describe('Jumbotron', () => {
 		expect(getByText('foo')).toBeInTheDocument()
 		expect(getByText('bar')).toBeInTheDocument()
 	})
+	
+	it('contains an expected text, included more content as subtitle', () => {
+		const { getByText } = render(<Jumbotron title='foo' subtitle='bar' subtitleExtraLine='biz' />)
+
+		expect(getByText('foo')).toBeInTheDocument()
+		expect(getByText('bar')).toBeInTheDocument()
+		expect(getByText('biz')).toBeInTheDocument()
+	})
 
 	it('contains the correct DOM nodes', () => {
 		/* This test is just for learning purpose. Observe how you can get access to the DOM node properties */
