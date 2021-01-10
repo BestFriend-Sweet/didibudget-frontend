@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
+import { parseUnixTimestamp } from '../../utils/utils'
 
 import { ErrorAlert } from '../ErrorAlert'
 import { PageSubTitle } from '../PageSubTitle'
@@ -8,9 +9,18 @@ import { PageSubTitle } from '../PageSubTitle'
 
 export const DisplayExpensesData = ({data}) => {	
 
-	console.log(data)
 
-	if (data.length) {
+	const dataParsed = []
+	data.map((expense, index) => {
+		return dataParsed[index] = {
+			...expense,
+			date: parseUnixTimestamp(expense.date).substring(0, 10)
+		}
+	})
+
+	console.log(dataParsed)
+
+	if (dataParsed.length) {
 		return (
 			<Fragment>
 				<PageSubTitle text="All data is displayed:"/>
