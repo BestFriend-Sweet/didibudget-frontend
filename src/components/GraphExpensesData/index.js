@@ -9,7 +9,7 @@ import { ErrorAlert } from '../ErrorAlert'
 import { PageSubTitle } from '../PageSubTitle'
 
 
-export const DisplayExpensesData = ({data}) => {	
+export const GraphExpensesData = ({data}) => {	
 
 	const dataParsed = data.map((expense, index) => {
 		return {
@@ -46,6 +46,6 @@ export const DisplayExpensesData = ({data}) => {
 	}
 }
 
-DisplayExpensesData.propTypes = {
+GraphExpensesData.propTypes = {
 	data: PropTypes.array.isRequired,
 }

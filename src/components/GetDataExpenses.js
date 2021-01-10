@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 
 import { Spinner } from './Spinner'
 import { ErrorAlert } from './ErrorAlert'
-import { DisplayExpensesData } from './DisplayExpensesData'
+import { GraphExpensesData } from './GraphExpensesData'
 
 import { LIST_ALL_EXPENSES } from '../gql/queries/expenses'
 
@@ -13,5 +13,5 @@ export const GetDataExpenses = () => {
 	if (loading) return <Spinner />
 	if (error) return <ErrorAlert errorMessage={error.message} />
 
-	return <DisplayExpensesData data={data.getExpenses} />
+	return <GraphExpensesData data={data.getExpenses} />
 }
