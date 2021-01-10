@@ -3,24 +3,24 @@ import PropTypes from 'prop-types'
 
 import { parseUnixTimestamp } from '../../utils/utils'
 
+import { getSumPerMonth } from './utils'
+
 import { ErrorAlert } from '../ErrorAlert'
 import { PageSubTitle } from '../PageSubTitle'
 
 
 export const DisplayExpensesData = ({data}) => {	
 
-
-	const dataParsed = []
-	data.map((expense, index) => {
-		return dataParsed[index] = {
+	const dataParsed = data.map((expense, index) => {
+		return {
 			...expense,
 			date: parseUnixTimestamp(expense.date).substring(0, 10)
 		}
 	})
 
-	console.log(dataParsed)
+	const dataGroupedPerMonth = getSumPerMonth(dataParsed)
 
-	if (dataParsed.length) {
+	if (dataGroupedPerMonth.length) {
 		return (
 			<Fragment>
 				<PageSubTitle text="All data is displayed:"/>
