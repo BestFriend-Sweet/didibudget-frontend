@@ -15,11 +15,12 @@ import { Spinner } from './components/Spinner'
 
 const Home = React.lazy(() => import('./pages/Home'))
 const UserAdministration = React.lazy(() => import('./pages/UserAdministration'))
-const MonthlyBalanceAdministration = React.lazy(() => import('./pages/MonthlyBalanceAdministration'))
 const InsertMonthlyBalance = React.lazy(() => import('./pages/InsertMonthlyBalance'))
 const ViewMonthlyBalance = React.lazy(() => import('./pages/ViewMonthlyBalance'))
+const MonthlyBalanceAdministration = React.lazy(() => import('./pages/MonthlyBalanceAdministration'))
 const ListExpenseCategories = React.lazy(() => import('./pages/ListExpenseCategories'))
 const InsertExpense = React.lazy(() => import('./pages/InsertExpense'))
+const ViewExpenses = React.lazy(() => import('./pages/ViewExpenses'))
 const ExpenseAdministration = React.lazy(() => import('./pages/ExpenseAdministration'))
 
 
@@ -47,6 +48,7 @@ export const App = () => {
 									{ !isAuth && <Redirect from='/logout' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/register-monthly-balance' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/view-monthly-balance' to='/login' noThrow /> }
+									{ !isAuth && <Redirect from='/view-expenses' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/monthly-balance-administration' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/list-expense-categories' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/register-expense' to='/login' noThrow /> }
@@ -76,6 +78,7 @@ export const App = () => {
 									<ListExpenseCategories path='/list-expense-categories' />
 									<ListExpenseCategories path="/register-expense" />
 									<InsertExpense path='/register-expense/:categoryID/*' />
+									<ViewExpenses path='/view-expenses' />
 									<ExpenseAdministration path='/expenses-administration' />
 
 									<Logout path='/logout' />
