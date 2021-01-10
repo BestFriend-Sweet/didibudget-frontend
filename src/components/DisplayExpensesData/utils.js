@@ -1,9 +1,9 @@
-const { element } = require("prop-types")
-
 /**
 * Parse the data of expenses to obtain the sum per month. This function refill the empty data of every month and do a sum of every months.
-*
-* @param  {Array.<Object>} data - An array of objects (the object must contain a date property. The array must be ordered in date ascendant)
+* @example
+* 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}]
+* 	getSumPerMonth(data) // { label: 'October 2020', sum: 102.03 }
+* @param  {.<Object>} data - An array of objects (the object must contain a date property. The array must be ordered in date ascendant)
 * @param  {String} data.date - A valid date with this format '2018-03-01'
 * @param  {float|integer} data.quantity
 * @return {Array.<Object>}
