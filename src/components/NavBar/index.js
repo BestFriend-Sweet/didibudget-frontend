@@ -20,7 +20,7 @@ export const NavBar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark justify-content-between d-flex mb-5 border-bottom border-info">
 			<Link className="navbar-item text-light font-weight-bold pt-2" to='/'>
-				<MdHome size={SIZE_OF_PRIMARY_ICONS}/>
+				<MdHome size={SIZE_OF_PRIMARY_ICONS} title='Home' />
 			</Link>
 
 			{
@@ -33,12 +33,12 @@ export const NavBar = () => {
 
 			{ 
 				isAuth && userData.isAdmin && <Link className="navbar-item text-light font-weight-bold pt-2" to='/user-administration'>
-					<MdPeopleOutline size={SIZE_OF_PRIMARY_ICONS}/>
+					<MdPeopleOutline size={SIZE_OF_PRIMARY_ICONS} title='User Administration'/>
 				</Link>
 			}
 			<Link className="navbar-item text-light font-weight-bold pt-2" to='/logout'>
-				{ !isAuth && <IoMdLogIn size={SIZE_OF_PRIMARY_ICONS}/> }
-				{ isAuth && <IoMdLogOut size={SIZE_OF_PRIMARY_ICONS}/> }
+				{ !isAuth && <IoMdLogIn size={SIZE_OF_PRIMARY_ICONS} title='Login' /> }
+				{ isAuth && <IoMdLogOut size={SIZE_OF_PRIMARY_ICONS} title='Logout' /> }
 			</Link>
 		</nav>
 	)

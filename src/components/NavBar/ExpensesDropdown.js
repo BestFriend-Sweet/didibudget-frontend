@@ -14,16 +14,16 @@ export const ExpensesDropdown = (props) => {
 	return (
 		<div className={`dropdown ${ isDropdownExpanded ? 'position-static' : '' }`}>
 			<Link className="navbar-item text-light font-weight-bold pt-2 dropdown-toggle" to='/list-expense-categories' id="expenses-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<FaRegCreditCard size={props.sizeOfPrimaryIcons}/>
+				<FaRegCreditCard size={props.sizeOfPrimaryIcons} title='Expenses' />
 			</Link>
 			<div className={`dropdown-menu ${ isDropdownExpanded ? 'w-100' : '' }`} aria-labelledby="expenses-dropdown">
 				<span className="dropdown-item-text text-muted">Expenses</span>
 				<div className="dropdown-divider"></div>
 				<Link className="dropdown-item py-3" to='/list-expense-categories'>
-					<FaRegCreditCard size={props.sizeOfSecondaryIcons}/><span className="ml-3">List Of Expense Categories</span>
+					<FaRegCreditCard size={props.sizeOfSecondaryIcons} title='List of expense categories'/><span className="ml-3">List Of Expense Categories</span>
 				</Link>
 				<Link className="dropdown-item py-3" to='/expenses-administration'>
-					<FaListUl size={props.sizeOfSecondaryIcons}/><span className="ml-3">Expenses Administration</span>
+					<FaListUl size={props.sizeOfSecondaryIcons} title='Expenses administration' /><span className="ml-3">Expenses Administration</span>
 				</Link>
 			</div>
 		</div>
