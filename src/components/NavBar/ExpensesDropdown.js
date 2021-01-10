@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from '@reach/router'
 
 import { FaListUl, FaRegCreditCard } from 'react-icons/fa'
+import { GoGraph } from 'react-icons/go'
 
 import { useWindowSize } from '../../hooks/useWindowSize'
 
@@ -21,6 +22,9 @@ export const ExpensesDropdown = (props) => {
 				<div className="dropdown-divider"></div>
 				<Link className="dropdown-item py-3" to='/list-expense-categories'>
 					<FaRegCreditCard size={props.sizeOfSecondaryIcons} title='List of expense categories'/><span className="ml-3">List Of Expense Categories</span>
+				</Link>
+				<Link className="dropdown-item py-3" to='/view-expenses'>
+					<GoGraph size={props.sizeOfSecondaryIcons} title='View expenses'/><span className="ml-3">View Expenses</span>
 				</Link>
 				<Link className="dropdown-item py-3" to='/expenses-administration'>
 					<FaListUl size={props.sizeOfSecondaryIcons} title='Expenses administration' /><span className="ml-3">Expenses Administration</span>
