@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { ResponsiveContainer, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar } from 'recharts'
 
 import { parseUnixTimestamp } from '../../utils/utils'
-
 import { getSumPerMonth } from './utils'
 
 import { ErrorAlert } from '../ErrorAlert'
@@ -23,7 +23,21 @@ export const DisplayExpensesData = ({data}) => {
 	if (dataGroupedPerMonth.length) {
 		return (
 			<Fragment>
-				<PageSubTitle text="All data is displayed:"/>
+				<PageSubTitle text="Total expenses per month:"/>
+				<div style={{ width: '100%', height: 460 }}>
+					<ResponsiveContainer>
+						<BarChart
+							data={dataGroupedPerMonth}
+							margin={{top: 5, right: 20, left: 20, bottom: 100}}
+						>
+							<CartesianGrid strokeDasharray="3 3" />
+							<XAxis dataKey="label" />
+							<YAxis />
+							<Tooltip />
+							<Bar dataKey="sum" fill="#3182BD" />
+						</BarChart>
+					</ResponsiveContainer>
+				</div>
 			</Fragment>
 		)
 	} else {
