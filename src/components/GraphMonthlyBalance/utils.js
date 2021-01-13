@@ -51,7 +51,7 @@ function parseDataForGraph (data = []) {
 	const firstDate = data[0].date
 	const lastDate = data[data.length - 1].date
 
-	let listOfAllDates = [firstDate]
+	const listOfAllDates = [firstDate]
 	while (listOfAllDates[listOfAllDates.length -1] !== lastDate) {
 		const nextMonth = firstDayOfNextMonth(listOfAllDates[listOfAllDates.length -1])
 		if (!listOfAllDates.includes(nextMonth)) {
