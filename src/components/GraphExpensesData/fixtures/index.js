@@ -79,6 +79,10 @@ export const expectedData = [
 		sum: 99
 	},
 	{
+		label: 'November 2020',
+		sum: 0
+	},
+	{
 		label: 'December 2020',
 		sum: 166.16
 	},
