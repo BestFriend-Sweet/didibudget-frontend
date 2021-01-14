@@ -38,6 +38,6 @@ const getSumPerMonth = (data = []) => {
 	return result
 }
 
-module.exports = {
+export {
 	getSumPerMonth,
 }

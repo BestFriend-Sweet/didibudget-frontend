@@ -3,7 +3,7 @@
  * @param  {String|Number} timestamp
  * @return {String}
  */
-function parseUnixTimestamp(timestamp) {
+const parseUnixTimestamp = (timestamp) => {
 	timestamp = parseInt(timestamp)
 	const d = new Date(timestamp)
 
@@ -24,6 +24,32 @@ function parseUnixTimestamp(timestamp) {
 	return `${date} ${time}`
 }
 
-module.exports = {
-	parseUnixTimestamp
+/**
+* Calculate the first day of next month
+* @example
+*   firstDayOfNextMonth('2019-12-03') // 2020-01-01
+* @param  {String} date - Must represent a date with the same format as the example
+* @return {String}
+*/
+const firstDayOfNextMonth = (date) => {
+	const parts = date.split('-')
+
+	let year = parts[0]
+	let month = parts[1]
+
+	month++
+
+	if (month == '13') { // eslint-disable-line eqeqeq
+		year++
+		month = '01'
+	}
+
+	if (month.toString().length < 2) month = `0${month.toString()}`
+
+	return `${year}-${month}-01`
+}
+
+export {
+	parseUnixTimestamp, 
+	firstDayOfNextMonth, 
 }
