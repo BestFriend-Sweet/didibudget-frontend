@@ -49,7 +49,22 @@ const firstDayOfNextMonth = (date) => {
 	return `${year}-${month}-01`
 }
 
+/**
+* Calculate the first day of the month
+* @example
+*   firstDayOfTheMonth('2019-12-03') // 2019-12-01
+* @param  {String} date - Must represent a date with the same format as the example
+* @return {String}
+*/
+const firstDayOfTheMonth = (date) => {
+	const parts = date.split('-')
+	const year = parts[0]
+	const month = parts[1]
+	return `${year}-${month}-01`
+}
+
 export {
-	parseUnixTimestamp, 
-	firstDayOfNextMonth, 
+	parseUnixTimestamp,
+	firstDayOfNextMonth,
+	firstDayOfTheMonth,
 }
