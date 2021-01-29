@@ -17,7 +17,7 @@ This repository is for the frontend and is intended to work with [the backend](h
 
 ### 📝 Frontend Requirements
 * Backend must be running
-* Node.js 10 or higher (just for development)
+* Node.js 14 or higher
 
 ### 📚 How to run the application?
 * Use the command: `npm install`.
