@@ -15,8 +15,8 @@ mutation registerExpense($category: ID!,$subcategory: ID, $quantity: Float!, $da
 export const DELETE_EXPENSE = gql`
 mutation deleteExpense($uuid: String!) {
 	deleteExpense(uuid: $uuid) {
-    category
-    subcategory
+	category
+	subcategory
 		quantity
 		date
 		currencyISO
