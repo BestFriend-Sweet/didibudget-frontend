@@ -21,7 +21,7 @@ export const ExpensesDropdown = (props) => {
 				<span className="dropdown-item-text text-muted">Expenses</span>
 				<div className="dropdown-divider"></div>
 				<Link className="dropdown-item py-3" to='/list-expense-categories'>
-					<FaRegCreditCard size={props.sizeOfSecondaryIcons} title='List of expense categories'/><span className="ml-3">List Of Expense Categories</span>
+					<FaRegCreditCard size={props.sizeOfSecondaryIcons} title='Register Expense'/><span className="ml-3">Register Expense</span>
 				</Link>
 				<Link className="dropdown-item py-3" to='/view-expenses'>
 					<GoGraph size={props.sizeOfSecondaryIcons} title='View expenses'/><span className="ml-3">View Expenses</span>

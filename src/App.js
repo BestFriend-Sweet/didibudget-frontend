@@ -18,7 +18,7 @@ const UserAdministration = React.lazy(() => import('./pages/UserAdministration')
 const InsertMonthlyBalance = React.lazy(() => import('./pages/InsertMonthlyBalance'))
 const ViewMonthlyBalance = React.lazy(() => import('./pages/ViewMonthlyBalance'))
 const MonthlyBalanceAdministration = React.lazy(() => import('./pages/MonthlyBalanceAdministration'))
-const ListExpenseCategories = React.lazy(() => import('./pages/ListExpenseCategories'))
+const ExpenseCategorySelector = React.lazy(() => import('./pages/ExpenseCategorySelector'))
 const InsertExpense = React.lazy(() => import('./pages/InsertExpense'))
 const ViewExpenses = React.lazy(() => import('./pages/ViewExpenses'))
 const ExpenseAdministration = React.lazy(() => import('./pages/ExpenseAdministration'))
@@ -75,8 +75,8 @@ export const App = () => {
 
 									<UserAdministration path='/user-administration' />
 
-									<ListExpenseCategories path='/list-expense-categories' />
-									<ListExpenseCategories path="/register-expense" />
+									<ExpenseCategorySelector path='/list-expense-categories' />
+									<ExpenseCategorySelector path="/register-expense" />
 									<InsertExpense path='/register-expense/:categoryID/*' />
 									<ViewExpenses path='/view-expenses' />
 									<ExpenseAdministration path='/expenses-administration' />

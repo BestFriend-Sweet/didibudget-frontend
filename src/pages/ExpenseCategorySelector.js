@@ -4,15 +4,15 @@ import { PageTitle } from '../components/PageTitle'
 
 import { GetListOfExpenseCategories } from '../components/GetListOfExpenseCategories'
 
-const ListExpenseCategories = () => {
+const ExpenseCategorySelector = () => {
 	return (
 		<Fragment>
-			<PageTitle text='List of expense categories' />
+			<PageTitle text='Register expense' />
 			<GetListOfExpenseCategories />
 		</Fragment>
 	)
 }
 
-ListExpenseCategories.displayName = 'ListExpenseCategories'
+ExpenseCategorySelector.displayName = 'ExpenseCategorySelector'
 
-export default ListExpenseCategories
+export default ExpenseCategorySelector
