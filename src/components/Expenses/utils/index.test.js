@@ -185,6 +185,15 @@ describe('getDetailedExpendesPerMonth', () => {
 				'__typename': 'Expense'
 			},
 			{
+				'category': '5e64ec217048af874c4f14d7',
+				'subcategory': '5e64ec217048af874c4f14b4',
+				'quantity': 1,
+				'date': '2020-01-11',
+				'currencyISO': 'EUR',
+				'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be20',
+				'__typename': 'Expense'
+			},
+			{
 				'category': '5e64ec217048af874c4f14d8',
 				'subcategory': '5e64ec217048af874c4f14c1',
 				'quantity': 27,
@@ -223,11 +232,11 @@ describe('getDetailedExpendesPerMonth', () => {
 		]
 		const expectedResult = [{
 			month: 'January 2020',
-			totalInMonth: 239,
+			totalInMonth: 240,
 			perCategory: [
 				{
 					uuidCategory: '5e64ec217048af874c4f14d7',
-					totalInCategory: 206,
+					totalInCategory: 207,
 					perSubcategory: [
 						{
 							uuidSubcategory: '5ea7113296474318495ba3e5',
@@ -235,7 +244,7 @@ describe('getDetailedExpendesPerMonth', () => {
 						},
 						{
 							uuidSubcategory: '5e64ec217048af874c4f14b4',
-							totalInSubcategory: 66
+							totalInSubcategory: 67
 						}
 					]
 				},
