@@ -167,8 +167,8 @@ describe('getDetailedExpendesPerMonth', () => {
 	test('should return a formated results', () => {
 		const expenses = [
 			{
-				'category': '4f14cd',
-				'subcategory': '0be10',
+				'category': '5e64ec217048af874c4f14d7',
+				'subcategory': '5ea7113296474318495ba3e5',
 				'quantity': 140,
 				'date': '2020-01-05',
 				'currencyISO': 'EUR',
@@ -176,8 +176,8 @@ describe('getDetailedExpendesPerMonth', () => {
 				'__typename': 'Expense'
 			},
 			{
-				'category': '4f14cd',
-				'subcategory': '0be21',
+				'category': '5e64ec217048af874c4f14d7',
+				'subcategory': '5e64ec217048af874c4f14b4',
 				'quantity': 66,
 				'date': '2020-01-10',
 				'currencyISO': 'EUR',
@@ -185,8 +185,8 @@ describe('getDetailedExpendesPerMonth', () => {
 				'__typename': 'Expense'
 			},
 			{
-				'category': '5a14bb',
-				'subcategory': 'c814',
+				'category': '5e64ec217048af874c4f14d8',
+				'subcategory': '5e64ec217048af874c4f14c1',
 				'quantity': 27,
 				'date': '2020-01-12',
 				'currencyISO': 'EUR',
@@ -194,8 +194,8 @@ describe('getDetailedExpendesPerMonth', () => {
 				'__typename': 'Expense'
 			},
 			{
-				'category': '5a14bb',
-				'subcategory': 'c825',
+				'category': '5e64ec217048af874c4f14d8',
+				'subcategory': '5e64ec217048af874c4f14c2',
 				'quantity': 6,
 				'date': '2020-01-13',
 				'currencyISO': 'EUR',
@@ -203,7 +203,7 @@ describe('getDetailedExpendesPerMonth', () => {
 				'__typename': 'Expense'
 			},
 			{
-				'category': '6b23cc',
+				'category': '5e64ec217048af874c4f14d2',
 				'subcategory': null,
 				'quantity': 2,
 				'date': '2020-03-07',
@@ -212,7 +212,7 @@ describe('getDetailedExpendesPerMonth', () => {
 				'__typename': 'Expense'
 			},
 			{
-				'category': '6b23cc',
+				'category': '5e64ec217048af874c4f14d2',
 				'subcategory': null,
 				'quantity': 3,
 				'date': '2020-03-07',
@@ -226,29 +226,29 @@ describe('getDetailedExpendesPerMonth', () => {
 			totalInMonth: 239,
 			perCategory: [
 				{
-					uuidCategory: '4f14cd',
+					uuidCategory: '5e64ec217048af874c4f14d7',
 					totalInCategory: 206,
 					perSubcategory: [
 						{
-							uuidSubcategory: '0be10',
+							uuidSubcategory: '5ea7113296474318495ba3e5',
 							totalInSubcategory: 140
 						},
 						{
-							uuidSubcategory: '0be21',
+							uuidSubcategory: '5e64ec217048af874c4f14b4',
 							totalInSubcategory: 66
 						}
 					]
 				},
 				{
-					uuidCategory: '5a14bb',
+					uuidCategory: '5e64ec217048af874c4f14d8',
 					totalInCategory: 33,
 					perSubcategory: [
 						{
-							uuidSubcategory: 'c814',
+							uuidSubcategory: '5e64ec217048af874c4f14c1',
 							totalInSubcategory: 27
 						},
 						{
-							uuidSubcategory: 'c825',
+							uuidSubcategory: '5e64ec217048af874c4f14c2',
 							totalInSubcategory: 6
 						}
 					]
@@ -265,7 +265,7 @@ describe('getDetailedExpendesPerMonth', () => {
 			totalInMonth: 2,
 			perCategory: [
 				{
-					uuidCategory: '6b23cc',
+					uuidCategory: '5e64ec217048af874c4f14d2',
 					totalInCategory: 5,
 					perSubcategory: []
 				}
@@ -275,5 +275,9 @@ describe('getDetailedExpendesPerMonth', () => {
 
 		expect(Array.isArray(result)).toBe(true)
 		// expect(result).toEqual(expectedResult) // TODO: pending to improve the function
+
+		// TODO: todavía faltará cambiar los UUID por el nombre de la categoría o subcategoría correspondiente.
+
+		// TODO: recuerda mover estos fixtures al fichero de fixtures
 	})
 })
