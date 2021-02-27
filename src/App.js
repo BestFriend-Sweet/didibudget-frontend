@@ -14,15 +14,15 @@ import { Footer } from './components/Footer'
 import { Spinner } from './components/Spinner'
 
 const Home = React.lazy(() => import('./pages/Home'))
-const UserAdministration = React.lazy(() => import('./pages/UserAdministration'))
-const InsertMonthlyBalance = React.lazy(() => import('./pages/InsertMonthlyBalance'))
-const ViewMonthlyBalance = React.lazy(() => import('./pages/ViewMonthlyBalance'))
-const MonthlyBalanceAdministration = React.lazy(() => import('./pages/MonthlyBalanceAdministration'))
-const ExpenseCategorySelector = React.lazy(() => import('./pages/ExpenseCategorySelector'))
-const InsertExpense = React.lazy(() => import('./pages/InsertExpense'))
-const ViewExpenses = React.lazy(() => import('./pages/ViewExpenses'))
-const ExpenseAdministration = React.lazy(() => import('./pages/ExpenseAdministration'))
-const ExpenseAnalysis = React.lazy(() => import('./pages/ExpenseAnalysis'))
+const UserAdministration = React.lazy(() => import('./pages/Users/UserAdministration'))
+const InsertMonthlyBalance = React.lazy(() => import('./pages/MonthlyBalance/InsertMonthlyBalance'))
+const ViewMonthlyBalance = React.lazy(() => import('./pages/MonthlyBalance/ViewMonthlyBalance'))
+const MonthlyBalanceAdministration = React.lazy(() => import('./pages/MonthlyBalance/MonthlyBalanceAdministration'))
+const ExpenseCategorySelector = React.lazy(() => import('./pages/Expenses/ExpenseCategorySelector'))
+const InsertExpense = React.lazy(() => import('./pages/Expenses/InsertExpense'))
+const ViewExpenses = React.lazy(() => import('./pages/Expenses/ViewExpenses'))
+const ExpenseAdministration = React.lazy(() => import('./pages/Expenses/ExpenseAdministration'))
+const ExpenseAnalysis = React.lazy(() => import('./pages/Expenses/ExpenseAnalysis'))
 
 
 export const App = () => {
