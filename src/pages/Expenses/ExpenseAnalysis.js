@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 
-import { PageTitle } from '../components/PageTitle'
+import { PageTitle } from '../../components/PageTitle'
 
-import { GetExpensesForAnalysis } from '../components/Expenses/GetExpensesForAnalysis'
+import { GetExpensesForAnalysis } from '../../components/Expenses/GetExpensesForAnalysis'
 
 const ExpenseAnalysis = () => {
 	return (

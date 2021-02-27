@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
-import { PageTitle } from '../components/PageTitle'
-import { RegisterExpenseForm } from '../components/RegisterExpenseForm'
+import { PageTitle } from '../../components/PageTitle'
+import { RegisterExpenseForm } from '../../components/Expenses/RegisterExpenseForm'
 
 const InsertExpense = (props) => {
 	return (

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
-import { PageTitle } from '../components/PageTitle'
-import { GetDataExpenses } from '../components/Expenses/GetDataExpenses'
+import { PageTitle } from '../../components/PageTitle'
+import { GetDataExpenses } from '../../components/Expenses/GetDataExpenses'
 
 const ViewExpenses = () => {
 	return (

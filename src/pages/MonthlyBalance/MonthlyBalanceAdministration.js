@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 
-import { PageTitle } from '../components/PageTitle'
+import { PageTitle } from '../../components/PageTitle'
 
-import { GetListOfMonthlyBalance } from '../components/MonthlyBalance/GetListOfMonthlyBalance'
+import { GetListOfMonthlyBalance } from '../../components/MonthlyBalance/GetListOfMonthlyBalance'
 
 const MonthlyBalanceAdministration = () => {
 	return (
