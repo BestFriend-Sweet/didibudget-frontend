@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import { parseUnixTimestamp } from '../../utils/utils'
-import { EmojiGreenCheck } from '../EmojiGreenCheck'
-import { EmojiRedCross } from '../EmojiRedCross'
+import { parseUnixTimestamp } from '../../../utils/utils'
+import { EmojiGreenCheck } from '../../EmojiGreenCheck'
+import { EmojiRedCross } from '../../EmojiRedCross'
 
 export const ListOfUsers = ( { users, startPolling, stopPolling } ) => {
 

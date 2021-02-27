@@ -1,11 +1,11 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 
-import { Spinner } from './Spinner'
-import { ErrorAlert } from './ErrorAlert'
+import { Spinner } from '../Spinner'
+import { ErrorAlert } from '../ErrorAlert'
 import { ListOfUsers } from './ListOfUsers'
 
-import { LIST_ALL_USERS } from '../gql/queries/users'
+import { LIST_ALL_USERS } from '../../gql/queries/users'
 
 export const GetListOfUsers = () => {
 	const { loading, error, data, startPolling, stopPolling } = useQuery(LIST_ALL_USERS, { fetchPolicy: 'no-cache' })

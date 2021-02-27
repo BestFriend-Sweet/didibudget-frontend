@@ -14,7 +14,7 @@ import { Footer } from './components/Footer'
 import { Spinner } from './components/Spinner'
 
 const Home = React.lazy(() => import('./pages/Home'))
-const UserAdministration = React.lazy(() => import('./pages/UserAdministration'))
+const UserAdministration = React.lazy(() => import('./pages/Users/UserAdministration'))
 const InsertMonthlyBalance = React.lazy(() => import('./pages/MonthlyBalance/InsertMonthlyBalance'))
 const ViewMonthlyBalance = React.lazy(() => import('./pages/MonthlyBalance/ViewMonthlyBalance'))
 const MonthlyBalanceAdministration = React.lazy(() => import('./pages/MonthlyBalance/MonthlyBalanceAdministration'))
