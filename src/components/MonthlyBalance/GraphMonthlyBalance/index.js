@@ -2,12 +2,12 @@ import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
-import { parseUnixTimestamp } from '../../utils/utils'
+import { parseUnixTimestamp } from '../../../utils/utils'
 
-import { ErrorAlert } from '../ErrorAlert'
-import { PageSubTitle } from '../PageSubTitle'
+import { ErrorAlert } from '../../ErrorAlert'
+import { PageSubTitle } from '../../PageSubTitle'
 
-import { parseDataForGraph, getLastYearData } from './utils'
+import { parseDataForGraph, getLastYearData } from '../utils'
 
 
 class CustomizedAxisTick extends PureComponent {

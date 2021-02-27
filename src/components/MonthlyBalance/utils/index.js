@@ -1,4 +1,4 @@
-import { firstDayOfNextMonth } from '../../utils/utils'
+import { firstDayOfNextMonth } from '../../../utils/utils'
 
 /**
 * Calculate the average of values in an array

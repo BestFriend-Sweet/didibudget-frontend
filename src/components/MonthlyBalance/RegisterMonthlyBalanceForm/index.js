@@ -1,14 +1,14 @@
 import React, { useState, Fragment } from 'react'
 import { useMutation } from '@apollo/client'
 
-import { ErrorAlert } from '../ErrorAlert'
-import { SubmitButton } from '../SubmitButton'
-import { SubmitButtonHelper } from '../SubmitButtonHelper'
+import { ErrorAlert } from '../../ErrorAlert'
+import { SubmitButton } from '../../SubmitButton'
+import { SubmitButtonHelper } from '../../SubmitButtonHelper'
 
-import { useInputValue } from '../../hooks/useInputValue'
-import { validateRegisterMonthlyBalanceForm } from '../../utils/validations'
+import { useInputValue } from '../../../hooks/useInputValue'
+import { validateRegisterMonthlyBalanceForm } from '../../../utils/validations'
 
-import { REGISTER_MONTHLY_BALANCE } from '../../gql/mutations/monthlyBalance'
+import { REGISTER_MONTHLY_BALANCE } from '../../../gql/mutations/monthlyBalance'
 
 export const RegisterMonthlyBalanceForm = () => {
 	const d = new Date()

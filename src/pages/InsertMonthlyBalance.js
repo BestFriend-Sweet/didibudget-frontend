@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
 import { PageTitle } from '../components/PageTitle'
-import { RegisterMonthlyBalanceForm } from '../components/RegisterMonthlyBalanceForm'
+import { RegisterMonthlyBalanceForm } from '../components/MonthlyBalance/RegisterMonthlyBalanceForm'
 
 
 const InsertMonthlyBalance = () => {

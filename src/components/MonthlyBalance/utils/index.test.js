@@ -1,4 +1,4 @@
-import { parseDataForGraph, getLastYearData } from './utils'
+import { parseDataForGraph, getLastYearData } from './index'
 import { rawData, allDataParsed, allDataParsedFewMonths, allDataParsedEnoughtMonths, allDataParsedLotOfMonths, lastYearDataParsed } from './fixtures'
 
 describe('parseDataForGraph', () => {

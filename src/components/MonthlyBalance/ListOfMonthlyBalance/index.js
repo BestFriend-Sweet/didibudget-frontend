@@ -2,12 +2,12 @@ import React from 'react'
 import { useMutation } from '@apollo/client'
 import PropTypes from 'prop-types'
 
-import { parseUnixTimestamp } from '../../utils/utils'
+import { parseUnixTimestamp } from '../../../utils/utils'
 
-import { ErrorAlert } from '../ErrorAlert'
-import { ButtonDelete } from '../ButtonDelete'
+import { ErrorAlert } from '../../ErrorAlert'
+import { ButtonDelete } from '../../ButtonDelete'
 
-import { DELETE_MONTHLY_BALANCE } from '../../gql/mutations/monthlyBalance'
+import { DELETE_MONTHLY_BALANCE } from '../../../gql/mutations/monthlyBalance'
 
 export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 
