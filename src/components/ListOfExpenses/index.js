@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client'
 import PropTypes from 'prop-types'
 
 import { parseUnixTimestamp } from '../../utils/utils'
-import { getNameOFCategoryOrSubcategory } from './utils'
+import { getNameOfCategoryOrSubcategory } from './utils'
 
 import { ErrorAlert } from '../ErrorAlert'
 import { ButtonDelete } from '../ButtonDelete'
@@ -32,8 +32,8 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 					<tbody>
 						{
 							expensesReversed.map(expense => {
-								const nameOfCategory = getNameOFCategoryOrSubcategory(expense.category, categories)
-								const nameOfSubcategory = getNameOFCategoryOrSubcategory(expense.subcategory, categories)
+								const nameOfCategory = getNameOfCategoryOrSubcategory(expense.category, categories)
+								const nameOfSubcategory = getNameOfCategoryOrSubcategory(expense.subcategory, categories)
 								return (
 									<tr key={expense.uuid}>
 										<td>{parseUnixTimestamp(expense.date).substring(0, 10)}</td>

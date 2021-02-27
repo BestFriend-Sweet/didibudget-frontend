@@ -4,7 +4,7 @@
  * @param  {Array} categories 	Array with all categories and subcategories
  * @return {String|null}
  */
-function getNameOFCategoryOrSubcategory(target, categories) {
+function getNameOfCategoryOrSubcategory(target, categories) {
 	if (target === null || categories.length === 0) {
 		return null
 	}
@@ -28,5 +28,5 @@ function getNameOFCategoryOrSubcategory(target, categories) {
 
 
 module.exports = {
-	getNameOFCategoryOrSubcategory
+	getNameOfCategoryOrSubcategory
 }

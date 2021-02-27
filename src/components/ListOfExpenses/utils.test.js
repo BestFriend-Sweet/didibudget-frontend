@@ -1,8 +1,8 @@
-import { getNameOFCategoryOrSubcategory } from './utils'
+import { getNameOfCategoryOrSubcategory } from './utils'
 
 let categories
 
-describe('getNameOFCategoryOrSubcategory', () => {
+describe('getNameOfCategoryOrSubcategory', () => {
 
 	beforeEach(() => {
 		categories = [
@@ -46,7 +46,7 @@ describe('getNameOFCategoryOrSubcategory', () => {
 	test('should return null if receive null as first parameter', () => {
 		const target = null
 
-		const result = getNameOFCategoryOrSubcategory(target, categories)
+		const result = getNameOfCategoryOrSubcategory(target, categories)
 
 		expect(result).toBeNull()
 	})
@@ -55,7 +55,7 @@ describe('getNameOFCategoryOrSubcategory', () => {
 		const target = '4f14ca'
 		categories = []
 
-		const result = getNameOFCategoryOrSubcategory(target, categories)
+		const result = getNameOfCategoryOrSubcategory(target, categories)
 
 		expect(result).toBeNull()
 	})
@@ -63,7 +63,7 @@ describe('getNameOFCategoryOrSubcategory', () => {
 	test('should return null if the id is not on the array', () => {
 		const target = '77777'
 
-		const result = getNameOFCategoryOrSubcategory(target, categories)
+		const result = getNameOfCategoryOrSubcategory(target, categories)
 
 		expect(result).toBeNull()
 	})
@@ -71,7 +71,7 @@ describe('getNameOFCategoryOrSubcategory', () => {
 	test('should return the name of category if it is on the array', () => {
 		const target = '4f14ca'
 
-		const result = getNameOFCategoryOrSubcategory(target, categories)
+		const result = getNameOfCategoryOrSubcategory(target, categories)
 
 		expect(result).toBe('foo')
 	})
@@ -79,7 +79,7 @@ describe('getNameOFCategoryOrSubcategory', () => {
 	test('should return the name of subcategory if it is on the array', () => {
 		const target = '5ba3e5'
 
-		const result = getNameOFCategoryOrSubcategory(target, categories)
+		const result = getNameOfCategoryOrSubcategory(target, categories)
 
 		expect(result).toBe('biz biz')
 	})

@@ -22,6 +22,7 @@ const ExpenseCategorySelector = React.lazy(() => import('./pages/ExpenseCategory
 const InsertExpense = React.lazy(() => import('./pages/InsertExpense'))
 const ViewExpenses = React.lazy(() => import('./pages/ViewExpenses'))
 const ExpenseAdministration = React.lazy(() => import('./pages/ExpenseAdministration'))
+const ExpenseAnalysis = React.lazy(() => import('./pages/ExpenseAnalysis'))
 
 
 export const App = () => {
@@ -53,6 +54,7 @@ export const App = () => {
 									{ !isAuth && <Redirect from='/list-expense-categories' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/register-expense' to='/login' noThrow /> }
 									{ !isAuth && <Redirect from='/expenses-administration' to='/login' noThrow /> }
+									{ !isAuth && <Redirect from='/expenses-analysis' to='/login' noThrow /> }
 									{ !isAuth && <Login path='/register-expense/:categoryID/*' /> }
 
 
@@ -80,6 +82,7 @@ export const App = () => {
 									<InsertExpense path='/register-expense/:categoryID/*' />
 									<ViewExpenses path='/view-expenses' />
 									<ExpenseAdministration path='/expenses-administration' />
+									<ExpenseAnalysis path='/expenses-analysis' />
 
 									<Logout path='/logout' />
 

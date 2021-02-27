@@ -1,6 +1,6 @@
 {
   "name": "didibudget-frontend",
-  "version": "0.6.1",
+  "version": "0.7.1",
   "description": "didibudget-frontend",
   "private": true,
   "dependencies": {
@@ -14,7 +14,7 @@
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-icons": "3.11.0",
+    "react-icons": "4.2.0",
     "react-scripts": "4.0.1",
     "react-widgets": "4.6.1",
     "react-widgets-moment": "4.0.30",
