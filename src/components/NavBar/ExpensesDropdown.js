@@ -4,6 +4,7 @@ import { Link } from '@reach/router'
 
 import { FaListUl, FaRegCreditCard } from 'react-icons/fa'
 import { GoGraph } from 'react-icons/go'
+import { FaBalanceScaleLeft } from 'react-icons/fa'
 
 import { useWindowSize } from '../../hooks/useWindowSize'
 
@@ -28,6 +29,9 @@ export const ExpensesDropdown = (props) => {
 				</Link>
 				<Link className="dropdown-item py-3" to='/expenses-administration'>
 					<FaListUl size={props.sizeOfSecondaryIcons} title='Expenses administration' /><span className="ml-3">Expenses Administration</span>
+				</Link>
+				<Link className="dropdown-item py-3" to='/expenses-analysis'>
+					<FaBalanceScaleLeft size={props.sizeOfSecondaryIcons} title='Expenses analysis' /><span className="ml-3">Expenses Analysis</span>
 				</Link>
 			</div>
 		</div>
