@@ -1,11 +1,11 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 
-import { Spinner } from './Spinner'
-import { ErrorAlert } from './ErrorAlert'
+import { Spinner } from '../Spinner'
+import { ErrorAlert } from '../ErrorAlert'
 import { ListOfExpenses } from './ListOfExpenses'
 
-import { LIST_ALL_EXPENSES_AND_CATEGORIES } from '../gql/queries/expenses'
+import { LIST_ALL_EXPENSES_AND_CATEGORIES } from '../../gql/queries/expenses'
 
 export const GetListOfExpenses = () => {
 	const { loading, error, data, refetch } = useQuery(LIST_ALL_EXPENSES_AND_CATEGORIES, { fetchPolicy: 'no-cache' })

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { ErrorAlert } from '../ErrorAlert'
-import { ListOfExpenseSubcategories } from '../ListOfExpenseSubcategories'
+import { ErrorAlert } from '../../ErrorAlert'
+import { ListOfExpenseSubcategories } from '../../ListOfExpenseSubcategories'
 
 export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 	if (getExpenseCategory.length) {

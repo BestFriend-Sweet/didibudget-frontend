@@ -1,4 +1,4 @@
-import { getNameOfCategoryOrSubcategory } from './utils'
+import { getNameOfCategoryOrSubcategory } from './index'
 
 let categories
 

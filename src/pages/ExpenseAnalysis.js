@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { PageTitle } from '../components/PageTitle'
 
-import { GetExpensesForAnalysis } from '../components/GetExpensesForAnalysis'
+import { GetExpensesForAnalysis } from '../components/Expenses/GetExpensesForAnalysis'
 
 const ExpenseAnalysis = () => {
 	return (
