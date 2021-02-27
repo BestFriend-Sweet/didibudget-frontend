@@ -2,11 +2,11 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { ResponsiveContainer, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Bar } from 'recharts'
 
-import { parseUnixTimestamp } from '../../utils/utils'
-import { getSumPerMonth } from './utils'
+import { parseUnixTimestamp } from '../../../utils/utils'
+import { getSumPerMonth } from '../utils'
 
-import { ErrorAlert } from '../ErrorAlert'
-import { PageSubTitle } from '../PageSubTitle'
+import { ErrorAlert } from '../../ErrorAlert'
+import { PageSubTitle } from '../../PageSubTitle'
 
 
 export const GraphExpensesData = ({data}) => {	

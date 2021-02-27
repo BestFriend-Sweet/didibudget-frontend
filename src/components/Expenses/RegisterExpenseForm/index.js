@@ -2,15 +2,15 @@ import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useMutation } from '@apollo/client'
 
-import { ErrorAlert } from '../ErrorAlert'
-import { SubmitButton } from '../SubmitButton'
-import { SubmitButtonHelper } from '../SubmitButtonHelper'
-import { DateSelector } from '../DateSelector'
+import { ErrorAlert } from '../../ErrorAlert'
+import { SubmitButton } from '../../SubmitButton'
+import { SubmitButtonHelper } from '../../SubmitButtonHelper'
+import { DateSelector } from '../../DateSelector'
 
-import { useInputValue } from '../../hooks/useInputValue'
-import { validateRegisterExpenseForm } from '../../utils/validations'
+import { useInputValue } from '../../../hooks/useInputValue'
+import { validateRegisterExpenseForm } from '../../../utils/validations'
 
-import { REGISTER_EXPENSE } from '../../gql/mutations/expenses'
+import { REGISTER_EXPENSE } from '../../../gql/mutations/expenses'
 
 export const RegisterExpenseForm = ({ props }) => {
 

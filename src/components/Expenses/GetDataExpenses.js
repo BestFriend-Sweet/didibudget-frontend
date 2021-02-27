@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 
 import { Spinner } from '../Spinner'
 import { ErrorAlert } from '../ErrorAlert'
-import { GraphExpensesData } from '../GraphExpensesData'
+import { GraphExpensesData } from './GraphExpensesData'
 
 import { LIST_ALL_EXPENSES } from '../../gql/queries/expenses'
 
