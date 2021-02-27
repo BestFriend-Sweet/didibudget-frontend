@@ -129,20 +129,43 @@ const getDetailedExpendesPerMonth = (data = []) => {
 			perCategory: []
 		}
 	}
-	const categoryDTO = (uuid, quantity) => {
+	const categoryDTO = (uuid, quantity, subcategoriesParsed = []) => {
 		return {
 			uuidCategory: uuid,
 			totalInCategory: quantity,
-			perSubcategory: []
-		}
-	}
-	const subcategoryDTO = () => {
-		return {
-			uuidSubcategory: '',
-			totalInSubcategory: 0
+			perSubcategory: subcategoriesParsed
 		}
 	}
 	
+	const getParsedSubcategoriesInThisMonth = (expensesInThisMonth) => {
+		const listOfSubcategoriesInThisMonth = []
+		expensesInThisMonth.forEach(expense => {
+			if (!listOfSubcategoriesInThisMonth.includes(expense.subcategory)) {
+				listOfSubcategoriesInThisMonth.push(expense.subcategory)
+			}
+		})
+
+		const totalExpensePerSubcategory = []
+		listOfSubcategoriesInThisMonth.forEach(subcategory => {
+			if (subcategory) {
+				let quantity = 0
+				let uuidParentCategory
+				expensesInThisMonth.forEach(expense => {
+					if (expense.subcategory === subcategory) {
+						quantity += expense.quantity
+						uuidParentCategory = expense.category
+					}
+				})
+				totalExpensePerSubcategory.push({
+					uuidParentCategory: uuidParentCategory,
+					uuidSubcategory: subcategory,
+					totalInSubcategory: quantity
+				})
+			}
+		})
+
+		return totalExpensePerSubcategory
+	}
 
 	const sumPerMonth = getSumPerMonth(data)
 
@@ -150,40 +173,48 @@ const getDetailedExpendesPerMonth = (data = []) => {
 		return monthDTO(month.label, month.sum)
 	})
 
-	const parsedMonthsWithCategories = parsedMonths.map(month => {
+	const parsedMonthsWithCategoriesAndSubcategories = parsedMonths.map(month => {
 
-		const allExpensesOnThisMonth = data.filter(expense => {
+		const allExpensesInThisMonth = data.filter(expense => {
 			return getLocaleDateString(expense.date) === month.month
 		})
 
-		const listOfCategoriesOnThisMonth = []
-		allExpensesOnThisMonth.forEach(expense => {
-			if (!listOfCategoriesOnThisMonth.includes(expense.category)) {
-				listOfCategoriesOnThisMonth.push(expense.category)
+		const parsedSubcategoriesInThisMonth = getParsedSubcategoriesInThisMonth(allExpensesInThisMonth)
+
+		const listOfCategoriesInThisMonth = []
+		allExpensesInThisMonth.forEach(expense => {
+			if (!listOfCategoriesInThisMonth.includes(expense.category)) {
+				listOfCategoriesInThisMonth.push(expense.category)
 			}
 		})
 
-		const totalExpensePerCategory = listOfCategoriesOnThisMonth.map(category => {
+		const totalExpensePerCategory = listOfCategoriesInThisMonth.map(category => {
 			let quantity = 0
-			allExpensesOnThisMonth.forEach(expense => {
+			allExpensesInThisMonth.forEach(expense => {
 				if (expense.category === category) {
 					quantity += expense.quantity
 				}
 			})
 
-			return categoryDTO(category, quantity)
+			const subcategories = parsedSubcategoriesInThisMonth.filter(subcategory => subcategory.uuidParentCategory === category)
+			const subcategoriesParsed = subcategories.map(subcategory => {
+				const result = {
+					...subcategory
+				}
+				delete result.uuidParentCategory
+				return result
+			})
+
+			return categoryDTO(category, quantity, subcategoriesParsed)
 		})
 
-		//console.log('.... allExpensesOnThisMonth', allExpensesOnThisMonth)
-		//console.log('.... totalExpensePerCategory', totalExpensePerCategory)
 		return {
 			...month,
 			perCategory: totalExpensePerCategory
 		}
 	})
 
-	console.log(parsedMonthsWithCategories)
-	return parsedMonthsWithCategories
+	return parsedMonthsWithCategoriesAndSubcategories
 }
 
 

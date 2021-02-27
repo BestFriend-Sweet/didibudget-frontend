@@ -91,3 +91,120 @@ export const expectedData = [
 		sum: 40
 	}
 ]
+
+export const expensesRawDataForGetDetailedExpendesPerMonth = [
+	{
+		'category': '5e64ec217048af874c4f14d7',
+		'subcategory': '5ea7113296474318495ba3e5',
+		'quantity': 140,
+		'date': '2020-01-05',
+		'currencyISO': 'EUR',
+		'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be10',
+		'__typename': 'Expense'
+	},
+	{
+		'category': '5e64ec217048af874c4f14d7',
+		'subcategory': '5e64ec217048af874c4f14b4',
+		'quantity': 66,
+		'date': '2020-01-10',
+		'currencyISO': 'EUR',
+		'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be11',
+		'__typename': 'Expense'
+	},
+	{
+		'category': '5e64ec217048af874c4f14d7',
+		'subcategory': '5e64ec217048af874c4f14b4',
+		'quantity': 1,
+		'date': '2020-01-11',
+		'currencyISO': 'EUR',
+		'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be20',
+		'__typename': 'Expense'
+	},
+	{
+		'category': '5e64ec217048af874c4f14d8',
+		'subcategory': '5e64ec217048af874c4f14c1',
+		'quantity': 27,
+		'date': '2020-01-12',
+		'currencyISO': 'EUR',
+		'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be12',
+		'__typename': 'Expense'
+	},
+	{
+		'category': '5e64ec217048af874c4f14d8',
+		'subcategory': '5e64ec217048af874c4f14c2',
+		'quantity': 6,
+		'date': '2020-01-13',
+		'currencyISO': 'EUR',
+		'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be13',
+		'__typename': 'Expense'
+	},
+	{
+		'category': '5e64ec217048af874c4f14d2',
+		'subcategory': null,
+		'quantity': 2,
+		'date': '2020-03-07',
+		'currencyISO': 'EUR',
+		'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be14',
+		'__typename': 'Expense'
+	},
+	{
+		'category': '5e64ec217048af874c4f14d2',
+		'subcategory': null,
+		'quantity': 3,
+		'date': '2020-03-07',
+		'currencyISO': 'EUR',
+		'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be15',
+		'__typename': 'Expense'
+	},
+]
+
+export const expectedDataForGetDetailedExpendesPerMonth = [{
+	month: 'January 2020',
+	totalInMonth: 240,
+	perCategory: [
+		{
+			uuidCategory: '5e64ec217048af874c4f14d7',
+			totalInCategory: 207,
+			perSubcategory: [
+				{
+					uuidSubcategory: '5ea7113296474318495ba3e5',
+					totalInSubcategory: 140
+				},
+				{
+					uuidSubcategory: '5e64ec217048af874c4f14b4',
+					totalInSubcategory: 67
+				}
+			]
+		},
+		{
+			uuidCategory: '5e64ec217048af874c4f14d8',
+			totalInCategory: 33,
+			perSubcategory: [
+				{
+					uuidSubcategory: '5e64ec217048af874c4f14c1',
+					totalInSubcategory: 27
+				},
+				{
+					uuidSubcategory: '5e64ec217048af874c4f14c2',
+					totalInSubcategory: 6
+				}
+			]
+		}
+	]
+},
+{
+	month: 'February 2020',
+	totalInMonth: 0,
+	perCategory: []
+},
+{
+	month: 'March 2020',
+	totalInMonth: 5,
+	perCategory: [
+		{
+			uuidCategory: '5e64ec217048af874c4f14d2',
+			totalInCategory: 5,
+			perSubcategory: []
+		}
+	]
+}]
