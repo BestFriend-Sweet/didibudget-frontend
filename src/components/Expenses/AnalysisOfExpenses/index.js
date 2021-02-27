@@ -11,6 +11,8 @@ export const AnalysisOfExpenses = ( { expenses, categories } ) => {
 	const expensesReversed = expenses.slice(0).reverse()
 
 	if (expensesReversed.length) {
+		console.log(expenses)
+		console.log(categories)
 		return <ErrorAlert errorMessage={'WIP - feature not implemented yet'} />
 		// return (
 		// 	<section className="table-responsive">

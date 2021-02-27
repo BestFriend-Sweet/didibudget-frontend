@@ -1,4 +1,4 @@
-export const rawData = [
+export const expensesRawData = [
 	{
 		'category': '5e64ec217048af874c4f14cd',
 		'subcategory': null,

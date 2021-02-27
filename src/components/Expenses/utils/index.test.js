@@ -1,6 +1,6 @@
-import { getNameOfCategoryOrSubcategory, getSumPerMonth } from './index'
+import { getNameOfCategoryOrSubcategory, getSumPerMonth, getDetailedExpendesPerMonth } from './index'
 
-import { rawData, expectedData } from './fixtures'
+import { expensesRawData, expectedData } from './fixtures'
 
 
 describe('getNameOfCategoryOrSubcategory', () => {
@@ -95,7 +95,7 @@ describe('getSumPerMonth', () => {
 
 	test('should return an array of objects with properties "label" and "sum" if receive an array of valid data with at least one object', () => {
 		expect.hasAssertions()
-		const result = getSumPerMonth(rawData)
+		const result = getSumPerMonth(expensesRawData)
 
 		result.forEach(element => {
 			expect(element.label).toBeDefined()
@@ -107,7 +107,7 @@ describe('getSumPerMonth', () => {
 	})
 
 	test('should return an array of objects with a sum of quantity per month', () => {
-		const result = getSumPerMonth(rawData)
+		const result = getSumPerMonth(expensesRawData)
 
 		expect(result).toEqual(expectedData)
 	})
@@ -146,5 +146,125 @@ describe('getSumPerMonth', () => {
 
 		const result = getSumPerMonth(data)
 		expect(result).toEqual(expected)
+	})
+})
+
+describe('getDetailedExpendesPerMonth', () => {
+	test('should return an empty array if no receive params', () => {
+		const result = getDetailedExpendesPerMonth()
+
+		expect(Array.isArray(result)).toBe(true)
+		expect(result).toEqual([])
+	})
+
+	test('should return an empty array receive an empty array', () => {
+		const result = getDetailedExpendesPerMonth([])
+
+		expect(Array.isArray(result)).toBe(true)
+		expect(result).toEqual([])
+	})
+
+	test('should return a formated results', () => {
+		const expenses = [
+			{
+				'category': '4f14cd',
+				'subcategory': '0be10',
+				'quantity': 140,
+				'date': '2020-01-05',
+				'currencyISO': 'EUR',
+				'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be10',
+				'__typename': 'Expense'
+			},
+			{
+				'category': '4f14cd',
+				'subcategory': '0be21',
+				'quantity': 66,
+				'date': '2020-01-10',
+				'currencyISO': 'EUR',
+				'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be11',
+				'__typename': 'Expense'
+			},
+			{
+				'category': '5a14bb',
+				'subcategory': 'c814',
+				'quantity': 27,
+				'date': '2020-01-12',
+				'currencyISO': 'EUR',
+				'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be12',
+				'__typename': 'Expense'
+			},
+			{
+				'category': '5a14bb',
+				'subcategory': 'c825',
+				'quantity': 6,
+				'date': '2020-01-13',
+				'currencyISO': 'EUR',
+				'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be13',
+				'__typename': 'Expense'
+			},
+			{
+				'category': '6b23cc',
+				'subcategory': null,
+				'quantity': 2,
+				'date': '2020-03-07',
+				'currencyISO': 'EUR',
+				'uuid': '040b7060-6322-4cf7-9f52-2cacd5c0be14',
+				'__typename': 'Expense'
+			},
+		]
+		const expectedResult = [{
+			month: 'January 2020',
+			totalInMonth: 239,
+			perCategory: [
+				{
+					uuidCategory: '4f14cd',
+					totalInCategory: 206,
+					perSubcategory: [
+						{
+							uuidSubcategory: '0be10',
+							totalInSubcategory: 140
+						},
+						{
+							uuidSubcategory: '0be21',
+							totalInSubcategory: 66
+						}
+					]
+				},
+				{
+					uuidCategory: '5a14bb',
+					totalInCategory: 33,
+					perSubcategory: [
+						{
+							uuidSubcategory: 'c814',
+							totalInSubcategory: 27
+						},
+						{
+							uuidSubcategory: 'c825',
+							totalInSubcategory: 6
+						}
+					]
+				}
+			]
+		},
+		{
+			month: 'February 2020',
+			totalInMonth: 0,
+			perCategory: []
+		},
+		{
+			month: 'March 2020',
+			totalInMonth: 2,
+			perCategory: [
+				{
+					uuidCategory: '6b23cc',
+					totalInCategory: 2,
+					perSubcategory: []
+				}
+			]
+		}]
+		const result = getDetailedExpendesPerMonth(expenses)
+
+		expect(Array.isArray(result)).toBe(true)
+		// expect(result).toEqual(expectedResult) // TODO: pending to improve the function
 	})
 })
