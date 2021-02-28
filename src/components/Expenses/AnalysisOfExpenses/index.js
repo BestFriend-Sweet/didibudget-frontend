@@ -10,6 +10,7 @@ import { EmojiMagnifyingGlass } from '../../EmojiMagnifyingGlass'
 export const AnalysisOfExpenses = ( { expenses, categories } ) => {
 	if (expenses.length) {
 		const expensesData = getDetailedExpendesPerMonth(expenses)
+		//const expensesData = expensesFormatted.slice(0).reverse() // TODO: mostrar los meses más nuevos arriba y los más antiguos abajo
 		console.log(expensesData)
 		// TODO: hacer que las subcategorías se puedan expandir
 
@@ -48,7 +49,7 @@ export const AnalysisOfExpenses = ( { expenses, categories } ) => {
 												const subcategoriesCollapsed = category.perSubcategory.map(subcategory => {
 													const nameOfSubcategory = getNameOfCategoryOrSubcategory(subcategory.uuidSubcategory, categories)
 													return (
-														<tr key={subcategory.uuidSubcategory} className={`collapse table-light text-dark table-sm ${idToExpandSubcategory}`}>
+														<tr key={subcategory.uuidSubcategory} className={`collapse table-light text-dark table-sm ${idToExpandSubcategory}`} aria-expanded="false">
 															<td>{nameOfSubcategory}</td>
 															<td className="text-nowrap">{subcategory.totalInSubcategory} EUR</td>
 														</tr>
