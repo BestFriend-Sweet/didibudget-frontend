@@ -3,15 +3,14 @@ import PropTypes from 'prop-types'
 
 import { getNameOfCategoryOrSubcategory } from '../utils'
 
-export const DetailedMonth = ( { monthData, categories } ) => {
-	
-	// TODO: hacer que las subcategorías se puedan expandir => mejor una tabla dentro de otra!
+import { DetailedCategoryInMonth } from '../DetailedCategoryInMonth'
 
-	// Estoy usando la librería 'md5' ??? la puedo desinstalar ??
-	console.log('monthData', monthData)
+export const DetailedMonth = ( { monthData, categories } ) => {
+
+	// TODO: displaySubcategories => pasarle un boolean en función de si el usuario quiere expandir las subcategorías para éste mes
 	return (
 		<section className="table-responsive mb-5">
-			<table className="table table-dark table-hover">
+			<table className="table table-dark">
 				<thead>
 					<tr className="table-info text-dark">
 						<th scope="col" className="text-nowrap">{monthData.month}</th>
@@ -23,16 +22,6 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 						monthData.perCategory.map(category => {
 							const nameOfCategory = getNameOfCategoryOrSubcategory(category.uuidCategory, categories)
 							
-							const subcategoriesCollapsed = category.perSubcategory.map(subcategory => {
-								const nameOfSubcategory = getNameOfCategoryOrSubcategory(subcategory.uuidSubcategory, categories)
-								return (
-									<tr key={subcategory.uuidSubcategory}>
-										<td>{nameOfSubcategory}</td>
-										<td className="text-nowrap">{subcategory.totalInSubcategory} EUR</td>
-									</tr>
-								)
-							})
-
 							return (
 								<Fragment key={category.uuidCategory}>
 									<tr key={category.uuidCategory}>
@@ -40,20 +29,7 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 										<td className="text-nowrap">{category.totalInCategory} EUR</td>
 									</tr>
 
-									<tr>
-										<td colSpan="2">
-											<table className="table table-light table-sm">
-												<thead>
-													<tr>
-														<th scope="col" colSpan="2">Breakdown of: {nameOfCategory}</th>	
-													</tr>
-												</thead>
-												<tbody>
-													{ subcategoriesCollapsed }
-												</tbody>
-											</table>
-										</td>
-									</tr>
+									<DetailedCategoryInMonth displaySubcategories={false} categoryInMonth={category} categories={categories} />
 								</Fragment>
 							)
 						})

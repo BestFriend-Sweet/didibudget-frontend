@@ -1,6 +1,6 @@
 {
   "name": "didibudget-frontend",
-  "version": "0.8.4",
+  "version": "0.9.0",
   "description": "didibudget-frontend",
   "private": true,
   "dependencies": {
@@ -10,7 +10,6 @@
     "graphql": "15.5.0",
     "graphql-tag": "2.11.0",
     "jsonwebtoken": "8.5.1",
-    "md5": "2.3.0",
     "moment": "2.29.1",
     "prop-types": "15.7.2",
     "react": "16.13.1",
