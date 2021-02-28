@@ -38,6 +38,7 @@ const getListOfAllMonths = (data = []) => {
 /**
 * Parse the data of expenses to obtain the sum per month. This function refill the empty data of every month and do a sum of every months.
 * @requires getLocaleDateString
+* @requires trimDecimalPoints
 * @example
 * 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}, {'quantity': 2.45, 'date': '2020-12-07'}]
 * 	getSumPerMonth(data) // [{ label: 'October 2020', sum: 102.03 }, { label: 'November 2020', sum: 0 }, { label: 'December 2020', sum: 2.45 }]
@@ -82,6 +83,10 @@ const getSumPerMonth = (data = []) => {
 			result.push(element)
 			allLabelsInResult.push(element.label)
 		}
+	})
+
+	result.forEach(month => {
+		month.sum = trimDecimalPoints(month.sum)
 	})
 
 	return result
