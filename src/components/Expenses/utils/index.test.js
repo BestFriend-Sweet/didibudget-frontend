@@ -88,7 +88,7 @@ describe('getNameOfCategoryOrSubcategory', () => {
 })
 
 
-xdescribe('getSumPerMonth', () => {
+describe('getSumPerMonth', () => {
 	test('should return an array', () => {
 		expect(getSumPerMonth()).toEqual([])
 	})
@@ -164,43 +164,6 @@ describe('getDetailedExpendesPerMonth', () => {
 		expect(result).toEqual([])
 	})
 
-	xtest('should return a formated results lio con fechas!! ', () => {
-
-		const pruebas = [
-			{
-			  'category': '5e64ec217048af874c4f14cd',
-			  'subcategory': null,
-			  'quantity': 111,
-			  'date': '1514447205699',
-			  'currencyISO': 'EUR',
-			  'uuid': '2b5d31a5-1b26-422d-9432-8237bd9de88f',
-			  '__typename': 'Expense'
-			},
-			{
-			  'category': '5e64ec217048af874c4f14d2',
-			  'subcategory': null,
-			  'quantity': 0.01,
-			  'date': '1612047600000',
-			  'currencyISO': 'EUR',
-			  'uuid': 'ee3d4e3a-2766-47f4-9798-4aded231ec5c',
-			  '__typename': 'Expense'
-			},
-			{
-				'category': '5e64ec217048af874c4f14cd',
-				'subcategory': null,
-				'quantity': 23,
-				'date': '1504447205699',
-				'currencyISO': 'EUR',
-				'uuid': '2b5d31a5-1b26-422d-9432-8237bd9de88f',
-				'__typename': 'Expense'
-			},
-		  ]
-
-		const result = getDetailedExpendesPerMonth(pruebas)
-
-		expect(Array.isArray(result)).toBe(true)
-		expect(result).toEqual(expectedDataForGetDetailedExpendesPerMonth)
-	})
 	test('should return a formated results', () => {
 		const result = getDetailedExpendesPerMonth(expensesRawDataForGetDetailedExpendesPerMonth)
 
