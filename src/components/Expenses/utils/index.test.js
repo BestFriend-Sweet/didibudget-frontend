@@ -1,6 +1,6 @@
-import { getNameOfCategoryOrSubcategory, getSumPerMonth } from './index'
+import { getNameOfCategoryOrSubcategory, getSumPerMonth, getDetailedExpendesPerMonth } from './index'
 
-import { rawData, expectedData } from './fixtures'
+import { expensesRawData, expectedData, expensesRawDataForGetDetailedExpendesPerMonth, expectedDataForGetDetailedExpendesPerMonth } from './fixtures'
 
 
 describe('getNameOfCategoryOrSubcategory', () => {
@@ -95,7 +95,7 @@ describe('getSumPerMonth', () => {
 
 	test('should return an array of objects with properties "label" and "sum" if receive an array of valid data with at least one object', () => {
 		expect.hasAssertions()
-		const result = getSumPerMonth(rawData)
+		const result = getSumPerMonth(expensesRawData)
 
 		result.forEach(element => {
 			expect(element.label).toBeDefined()
@@ -107,7 +107,7 @@ describe('getSumPerMonth', () => {
 	})
 
 	test('should return an array of objects with a sum of quantity per month', () => {
-		const result = getSumPerMonth(rawData)
+		const result = getSumPerMonth(expensesRawData)
 
 		expect(result).toEqual(expectedData)
 	})
@@ -146,5 +146,28 @@ describe('getSumPerMonth', () => {
 
 		const result = getSumPerMonth(data)
 		expect(result).toEqual(expected)
+	})
+})
+
+describe('getDetailedExpendesPerMonth', () => {
+	test('should return an empty array if no receive params', () => {
+		const result = getDetailedExpendesPerMonth()
+
+		expect(Array.isArray(result)).toBe(true)
+		expect(result).toEqual([])
+	})
+
+	test('should return an empty array receive an empty array', () => {
+		const result = getDetailedExpendesPerMonth([])
+
+		expect(Array.isArray(result)).toBe(true)
+		expect(result).toEqual([])
+	})
+
+	test('should return a formated results', () => {
+		const result = getDetailedExpendesPerMonth(expensesRawDataForGetDetailedExpendesPerMonth)
+
+		expect(Array.isArray(result)).toBe(true)
+		expect(result).toEqual(expectedDataForGetDetailedExpendesPerMonth)
 	})
 })
