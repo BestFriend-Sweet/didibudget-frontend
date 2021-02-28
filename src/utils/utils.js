@@ -63,8 +63,19 @@ const firstDayOfTheMonth = (date) => {
 	return `${year}-${month}-01`
 }
 
+/**
+ * Trim an number to two decimal points
+ * @param {number} number 
+ * @returns {number}
+ */
+const trimDecimalPoints = (number) => {
+	const fixed = 2
+	return ~~(Math.pow(10, fixed) * number) / Math.pow(10, fixed)
+}
+
 export {
 	parseUnixTimestamp,
 	firstDayOfNextMonth,
 	firstDayOfTheMonth,
+	trimDecimalPoints
 }

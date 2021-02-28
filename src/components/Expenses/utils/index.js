@@ -1,4 +1,4 @@
-import { firstDayOfNextMonth, firstDayOfTheMonth, parseUnixTimestamp } from '../../../utils/utils'
+import { firstDayOfNextMonth, firstDayOfTheMonth, parseUnixTimestamp, trimDecimalPoints } from '../../../utils/utils'
 
 /**
  * Get name of month and year from a date
@@ -117,6 +117,8 @@ const getNameOfCategoryOrSubcategory = (target, categories) => {
 
 /**
  * This function performs a summation grouping the expenses by months. For each month, the categories of expenses are grouped. For each category their subcategories are also grouped
+ * @requires trimDecimalPoints
+ * @requires getSumPerMonth
  * @param  {Array.<Object>} rawData - An array of objects (the object must contain a date property
  * @param  {String} rawData.category - An UUID value to identify a category
  * @param  {String|null} rawData.subcategory - An UUID value to identify a subcategory or null
@@ -141,14 +143,14 @@ const getDetailedExpendesPerMonth = (rawData = []) => {
 	const monthDTO = (label, sum) => {
 		return {
 			month: label,
-			totalInMonth: sum,
+			totalInMonth: trimDecimalPoints(sum),
 			perCategory: []
 		}
 	}
 	const categoryDTO = (uuid, quantity, subcategoriesParsed = []) => {
 		return {
 			uuidCategory: uuid,
-			totalInCategory: quantity,
+			totalInCategory: trimDecimalPoints(quantity),
 			perSubcategory: subcategoriesParsed
 		}
 	}
@@ -175,7 +177,7 @@ const getDetailedExpendesPerMonth = (rawData = []) => {
 				totalExpensePerSubcategory.push({
 					uuidParentCategory: uuidParentCategory,
 					uuidSubcategory: subcategory,
-					totalInSubcategory: quantity
+					totalInSubcategory: trimDecimalPoints(quantity)
 				})
 			}
 		})
