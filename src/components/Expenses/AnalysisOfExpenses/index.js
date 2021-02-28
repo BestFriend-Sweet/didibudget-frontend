@@ -1,18 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-// import { parseUnixTimestamp } from '../../../utils/utils'
-// import { getNameOfCategoryOrSubcategory } from '../utils'
+import { getDetailedExpendesPerMonth } from '../utils'
 
 import { ErrorAlert } from '../../ErrorAlert'
 
 export const AnalysisOfExpenses = ( { expenses, categories } ) => {
-
-	const expensesReversed = expenses.slice(0).reverse()
-
-	if (expensesReversed.length) {
-		console.log(expenses)
-		console.log(categories)
+	if (expenses.length) {
+		const expensesData = getDetailedExpendesPerMonth(expenses)
+		console.log(expensesData)
 		return <ErrorAlert errorMessage={'WIP - feature not implemented yet'} />
 		// return (
 		// 	<section className="table-responsive">

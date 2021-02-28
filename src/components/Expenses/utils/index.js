@@ -1,4 +1,4 @@
-import { firstDayOfNextMonth, firstDayOfTheMonth } from '../../../utils/utils'
+import { firstDayOfNextMonth, firstDayOfTheMonth, parseUnixTimestamp } from '../../../utils/utils'
 
 /**
  * Get name of month and year from a date
@@ -15,14 +15,14 @@ const getLocaleDateString = (date) => {
  * Get an array with a date of the first day of the month for all months in "data" (included gaps)
  * @requires firstDayOfNextMonth
  * @requires firstDayOfTheMonth
- *  @example
- * 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}, {'quantity': 2.45, 'date': '2020-12-07'}]
- * 	getSumPerMonth(data) // [{ label: 'October 2020', sum: 102.03 }, { label: 'November 2020', sum: 0 }, { label: 'December 2020', sum: 2.45 }]
- * @param  {Array.<Object>} data - An array of objects (the object must contain a date property. The array must be ordered in date ascendant)
+ * @param  {Array.<Object>} data - An array of objects
  * @param  {String} data.date - A valid date with this format '2018-03-01'
  * @return {Array.<string>}
  */
 const getListOfAllMonths = (data = []) => {
+	const ensureDateAscending = (a, b) => new Date(a.date) - new Date(b.date)
+	data.sort(ensureDateAscending)
+
 	const firstMonth = firstDayOfTheMonth(data[0].date)
 	const lastMonth = firstDayOfTheMonth(data[data.length - 1].date)
 
@@ -37,13 +37,11 @@ const getListOfAllMonths = (data = []) => {
 
 /**
 * Parse the data of expenses to obtain the sum per month. This function refill the empty data of every month and do a sum of every months.
-* @requires firstDayOfNextMonth
-* @requires firstDayOfTheMonth
 * @requires getLocaleDateString
 * @example
 * 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}, {'quantity': 2.45, 'date': '2020-12-07'}]
 * 	getSumPerMonth(data) // [{ label: 'October 2020', sum: 102.03 }, { label: 'November 2020', sum: 0 }, { label: 'December 2020', sum: 2.45 }]
-* @param  {Array.<Object>} data - An array of objects (the object must contain a date property. The array must be ordered in date ascendant)
+* @param  {Array.<Object>} data - An array of objects
 * @param  {String} data.date - A valid date with this format '2018-03-01'
 * @param  {float|integer} data.quantity
 * @return {Array.<Object>}
@@ -117,10 +115,28 @@ const getNameOfCategoryOrSubcategory = (target, categories) => {
 	return result
 }
 
-const getDetailedExpendesPerMonth = (data = []) => {
-	if (!data.length) {
+/**
+ * This function performs a summation grouping the expenses by months. For each month, the categories of expenses are grouped. For each category their subcategories are also grouped
+ * @param  {Array.<Object>} rawData - An array of objects (the object must contain a date property
+ * @param  {String} rawData.category - An UUID value to identify a category
+ * @param  {String|null} rawData.subcategory - An UUID value to identify a subcategory or null
+ * @param  {Number} rawData.quantity - An integer o float number
+ * @param  {String} rawData.date - A valid date with this format: '1514447205699'
+ * @param  {String} rawData.currencyISO - A currency. Example: 'EUR'
+ * @param  {String} rawData.uuid - An UUID value
+ * @returns {Array.<Object>}
+ */
+const getDetailedExpendesPerMonth = (rawData = []) => {
+	if (!rawData.length) {
 		return []
 	}
+
+	const data = rawData.map(expenses => {
+		return {
+			...expenses,
+			date: parseUnixTimestamp(expenses.date).substring(0, 10)
+		}
+	})
 
 	const monthDTO = (label, sum) => {
 		return {
