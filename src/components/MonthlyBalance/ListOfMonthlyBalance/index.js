@@ -19,9 +19,9 @@ export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 
 		return (
 			<section className="table-responsive">
-				<table className="table text-light">
+				<table className="table table-dark table-hover">
 					<thead>
-						<tr>
+						<tr className="table-info text-dark">
 							<th scope="col">Date</th>
 							<th scope="col">Balance</th>
 							<th scope="col">Actions</th>
@@ -33,7 +33,7 @@ export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 								return (
 									<tr key={monthlyBalance.uuid}>
 										<td>{parseUnixTimestamp(monthlyBalance.date).substring(0, 10)}</td>
-										<td>{monthlyBalance.balance}</td>
+										<td>{monthlyBalance.balance} {monthlyBalance.currencyISO}</td>
 										<td>
 											<ButtonDelete uuid={monthlyBalance.uuid} deleteMutation={deleteMonthlyBalance}onDelete={refetch} />
 										</td>

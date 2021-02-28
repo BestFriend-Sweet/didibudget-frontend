@@ -1,7 +1,6 @@
-import { parseUnixTimestamp, firstDayOfNextMonth, firstDayOfTheMonth } from './utils'
+import { parseUnixTimestamp, firstDayOfNextMonth, firstDayOfTheMonth, trimDecimalPoints } from './utils'
 
 describe('parseUnixTimestamp', () => {
-
 	test('should return a valid date in a human readable format', () => {
 		const timestamp = 1588197712263
 
@@ -50,5 +49,37 @@ describe('firstDayOfTheMonth', () => {
 		const date = '2020-06-01'
 		const expectedResult = '2020-06-01'
 		expect(firstDayOfTheMonth(date)).toBe(expectedResult)
+	})
+})
+
+describe('trimDecimalPoints', () => {
+	test('should return 0', () => {
+		const result = trimDecimalPoints(0)
+		expect(result).toEqual(0)
+	})
+
+	test('should return 0 if no receive any parameter', () => {
+		const result = trimDecimalPoints()
+		expect(result).toEqual(0)
+	})
+
+	test('should return an integer if receive an integer', () => {
+		const result = trimDecimalPoints(7)
+		expect(result).toEqual(7)
+	})
+
+	test('should return a float number with two decimals if receive a float with more than two decimals', () => {
+		const result = trimDecimalPoints(1.23000001)
+		expect(result).toEqual(1.23)
+	})
+
+	test('should return a float number with one decimal if receive a float with one decimal', () => {
+		const result = trimDecimalPoints(4.2)
+		expect(result).toEqual(4.2)
+	})
+
+	test('should return a negative float number with two decimals if receive a negative float with more than two decimals', () => {
+		const result = trimDecimalPoints(-34.200000006)
+		expect(result).toEqual(-34.2)
 	})
 })

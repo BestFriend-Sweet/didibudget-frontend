@@ -1,4 +1,4 @@
-import { firstDayOfNextMonth, firstDayOfTheMonth, parseUnixTimestamp } from '../../../utils/utils'
+import { firstDayOfNextMonth, firstDayOfTheMonth, parseUnixTimestamp, trimDecimalPoints } from '../../../utils/utils'
 
 /**
  * Get name of month and year from a date
@@ -38,6 +38,7 @@ const getListOfAllMonths = (data = []) => {
 /**
 * Parse the data of expenses to obtain the sum per month. This function refill the empty data of every month and do a sum of every months.
 * @requires getLocaleDateString
+* @requires trimDecimalPoints
 * @example
 * 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}, {'quantity': 2.45, 'date': '2020-12-07'}]
 * 	getSumPerMonth(data) // [{ label: 'October 2020', sum: 102.03 }, { label: 'November 2020', sum: 0 }, { label: 'December 2020', sum: 2.45 }]
@@ -84,6 +85,10 @@ const getSumPerMonth = (data = []) => {
 		}
 	})
 
+	result.forEach(month => {
+		month.sum = trimDecimalPoints(month.sum)
+	})
+
 	return result
 }
 
@@ -117,6 +122,8 @@ const getNameOfCategoryOrSubcategory = (target, categories) => {
 
 /**
  * This function performs a summation grouping the expenses by months. For each month, the categories of expenses are grouped. For each category their subcategories are also grouped
+ * @requires trimDecimalPoints
+ * @requires getSumPerMonth
  * @param  {Array.<Object>} rawData - An array of objects (the object must contain a date property
  * @param  {String} rawData.category - An UUID value to identify a category
  * @param  {String|null} rawData.subcategory - An UUID value to identify a subcategory or null
@@ -141,14 +148,14 @@ const getDetailedExpendesPerMonth = (rawData = []) => {
 	const monthDTO = (label, sum) => {
 		return {
 			month: label,
-			totalInMonth: sum,
+			totalInMonth: trimDecimalPoints(sum),
 			perCategory: []
 		}
 	}
 	const categoryDTO = (uuid, quantity, subcategoriesParsed = []) => {
 		return {
 			uuidCategory: uuid,
-			totalInCategory: quantity,
+			totalInCategory: trimDecimalPoints(quantity),
 			perSubcategory: subcategoriesParsed
 		}
 	}
@@ -175,7 +182,7 @@ const getDetailedExpendesPerMonth = (rawData = []) => {
 				totalExpensePerSubcategory.push({
 					uuidParentCategory: uuidParentCategory,
 					uuidSubcategory: subcategory,
-					totalInSubcategory: quantity
+					totalInSubcategory: trimDecimalPoints(quantity)
 				})
 			}
 		})

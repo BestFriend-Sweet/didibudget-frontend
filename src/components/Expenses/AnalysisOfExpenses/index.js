@@ -55,9 +55,9 @@ export const AnalysisOfExpenses = ( { expenses, categories } ) => {
 					expensesData.map(monthData => {
 						return (
 							<section className="table-responsive mb-5" key={monthData.month}>
-								<table className="table text-light">
+								<table className="table table-dark table-hover">
 									<thead>
-										<tr>
+										<tr className="table-info text-dark">
 											<th scope="col" className="text-nowrap">{monthData.month}</th>
 											<th scope="col" className="text-nowrap">{monthData.totalInMonth} EUR</th>
 										</tr>
