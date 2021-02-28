@@ -1,25 +1,18 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import md5 from 'md5'
 
 import { getDetailedExpendesPerMonth, getNameOfCategoryOrSubcategory } from '../utils'
 
 import { ErrorAlert } from '../../ErrorAlert'
+import { EmojiMagnifyingGlass } from '../../EmojiMagnifyingGlass'
 
 export const AnalysisOfExpenses = ( { expenses, categories } ) => {
 	if (expenses.length) {
 		const expensesData = getDetailedExpendesPerMonth(expenses)
 		console.log(expensesData)
 		// TODO: hacer que las subcategorías se puedan expandir
-		// return (
-		// 	<table className="table">
-		// 	<thead>
-		// 	  <tr>
-		// 		<th></th>
-		// 		<th>Order Number</th>
-		// 		<th>Order Date</th>
-		// 		<th>Total Price</th>
-		// 	  </tr>
-		// 	</thead>
+
 		// 	<tbody>
 		// 	  <tr data-toggle="collapse" data-target=".order2">
 		// 		<td>&gt;</td>
@@ -33,22 +26,6 @@ export const AnalysisOfExpenses = ( { expenses, categories } ) => {
 		// 		<td>Item</td>
 		// 		<td>$12.27</td>
 		// 	  </tr>
-		// 	  <tr className="collapse order2">
-		// 		<td>2</td>
-		// 		<td></td>
-		// 		<td>Item</td>
-		// 		<td>$62.27</td>
-		// 	  </tr>
-		// 	  <tr>
-		// 		<td>&gt;</td>
-		// 		<td>1003</td>
-		// 		<td>9/01/2016</td>
-		// 		<td>$23.55</td>
-		// 	  </tr>
-		// 	</tbody>
-		//   </table>
-	  
-		// )
 		return (
 			<section className="pt-4">
 				{
@@ -66,12 +43,31 @@ export const AnalysisOfExpenses = ( { expenses, categories } ) => {
 										{
 											monthData.perCategory.map(category => {
 												const nameOfCategory = getNameOfCategoryOrSubcategory(category.uuidCategory, categories)
-												// const nameOfSubcategory = getNameOfCategoryOrSubcategory(expense.subcategory, categories)
+												const idToExpandSubcategory = md5(`${monthData.month}${category.uuidCategory}`)
+
+												const subcategoriesCollapsed = category.perSubcategory.map(subcategory => {
+													const nameOfSubcategory = getNameOfCategoryOrSubcategory(subcategory.uuidSubcategory, categories)
+													return (
+														<tr key={subcategory.uuidSubcategory} className={`collapse table-light text-dark table-sm ${idToExpandSubcategory}`}>
+															<td>{nameOfSubcategory}</td>
+															<td className="text-nowrap">{subcategory.totalInSubcategory} EUR</td>
+														</tr>
+													)
+												})
+
+												const opts = {}
+												if (category.perSubcategory.length) {
+													opts['data-toggle'] = 'collapse'
+													opts['data-target'] = `.${idToExpandSubcategory}`
+												}
 												return (
-													<tr key={category.uuidCategory}>
-														<td>{nameOfCategory}</td>
-														<td className="text-nowrap">{category.totalInCategory} EUR</td>
-													</tr>
+													<Fragment key={category.uuidCategory}>
+														<tr key={category.uuidCategory} {...opts}>
+															<td>{nameOfCategory} {category.perSubcategory.length ? <EmojiMagnifyingGlass />: ''}</td>
+															<td className="text-nowrap">{category.totalInCategory} EUR</td>
+														</tr>
+														{ subcategoriesCollapsed }
+													</Fragment>
 												)
 											})
 										}
