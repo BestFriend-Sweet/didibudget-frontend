@@ -20,9 +20,9 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 
 		return (
 			<section className="table-responsive">
-				<table className="table text-light">
+				<table className="table table-dark table-hover">
 					<thead>
-						<tr>
+						<tr className="table-info text-dark">
 							<th scope="col">Date</th>
 							<th scope="col">Category & subcategory</th>
 							<th scope="col">Quantity</th>
