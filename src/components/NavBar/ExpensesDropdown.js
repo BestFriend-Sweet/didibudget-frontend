@@ -15,9 +15,9 @@ export const ExpensesDropdown = (props) => {
 
 	return (
 		<div className={`dropdown ${ isDropdownExpanded ? 'position-static' : '' }`}>
-			<Link className="navbar-item text-light font-weight-bold pt-2 dropdown-toggle" to='/list-expense-categories' id="expenses-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<button className="navbar-item btn btn-link text-light font-weight-bold pt-2 dropdown-toggle" id="expenses-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<FaRegCreditCard size={props.sizeOfPrimaryIcons} title='Expenses' />
-			</Link>
+			</button>
 			<div className={`dropdown-menu ${ isDropdownExpanded ? 'w-100' : '' }`} aria-labelledby="expenses-dropdown">
 				<span className="dropdown-item-text text-muted">Expenses</span>
 				<div className="dropdown-divider"></div>
