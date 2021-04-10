@@ -1,20 +1,26 @@
-import React, { Fragment } from 'react'
+import React, { useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import { getNameOfCategoryOrSubcategory } from '../utils'
 
 import { DetailedCategoryInMonth } from '../DetailedCategoryInMonth'
+import { ToggleButton } from '../../ToggleButton'
 
 export const DetailedMonth = ( { monthData, categories } ) => {
 
-	// TODO: displaySubcategories => pasarle un boolean en función de si el usuario quiere expandir las subcategorías para éste mes
+	const [toggleState, setToggleState] = useState(false)
+
+	const onToggleDetailedInformation = (toggleState) => {
+		setToggleState(toggleState)
+	}
+
 	return (
 		<section className="table-responsive mb-5">
 			<table className="table table-dark">
 				<thead>
 					<tr className="table-info text-dark">
 						<th scope="col" className="text-nowrap">{monthData.month}</th>
-						<th scope="col" className="text-nowrap">{monthData.totalInMonth} EUR</th>
+						<th scope="col" className="text-nowrap text-right">{monthData.totalInMonth} EUR</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,16 +32,18 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 								<Fragment key={category.uuidCategory}>
 									<tr key={category.uuidCategory}>
 										<td>{nameOfCategory}</td>
-										<td className="text-nowrap">{category.totalInCategory} EUR</td>
+										<td className="text-nowrap text-right">{category.totalInCategory} EUR</td>
 									</tr>
 
-									<DetailedCategoryInMonth displaySubcategories={false} categoryInMonth={category} categories={categories} />
+									<DetailedCategoryInMonth displaySubcategories={toggleState} categoryInMonth={category} categories={categories} />
 								</Fragment>
 							)
 						})
 					}
 				</tbody>
 			</table>
+
+			<ToggleButton text='Show detailed information' defaultState={toggleState} onToggle={onToggleDetailedInformation} />
 		</section>
 	)
 }
