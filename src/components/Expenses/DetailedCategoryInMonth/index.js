@@ -18,7 +18,7 @@ export const DetailedCategoryInMonth = ( { displaySubcategories, categoryInMonth
 								return (
 									<tr key={subcategory.uuidSubcategory}>
 										<td>{nameOfSubcategory}</td>
-										<td className="text-nowrap">{subcategory.totalInSubcategory} EUR</td>
+										<td className="text-nowrap text-right">{subcategory.totalInSubcategory} EUR</td>
 									</tr>
 								)
 							})
