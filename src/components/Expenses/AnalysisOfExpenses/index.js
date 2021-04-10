@@ -9,15 +9,12 @@ import { DetailedMonth } from '../DetailedMonth'
 export const AnalysisOfExpenses = ( { expenses, categories } ) => {
 	if (expenses.length) {
 		const expensesData = getDetailedExpendesPerMonth(expenses)
-		//const reversedData = expensesFormatted.slice(0).reverse() // TODO: mostrar los meses más nuevos arriba y los más antiguos abajo
-		//console.log('reversedData')
-		//console.log(reversedData)
-		//console.log('expensesData')
-		//console.log(expensesData)
+		const reversedData = expensesData.slice(0).reverse()
+
 		return (
 			<section className="pt-4">
 				{
-					expensesData.map(monthData => {
+					reversedData.map(monthData => {
 						return (
 							<DetailedMonth monthData={monthData} categories={categories} key={monthData.month}/>
 						)
