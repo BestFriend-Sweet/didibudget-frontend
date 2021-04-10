@@ -14,7 +14,7 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 				<thead>
 					<tr className="table-info text-dark">
 						<th scope="col" className="text-nowrap">{monthData.month}</th>
-						<th scope="col" className="text-nowrap">{monthData.totalInMonth} EUR</th>
+						<th scope="col" className="text-nowrap text-right">{monthData.totalInMonth} EUR</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,7 +26,7 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 								<Fragment key={category.uuidCategory}>
 									<tr key={category.uuidCategory}>
 										<td>{nameOfCategory}</td>
-										<td className="text-nowrap">{category.totalInCategory} EUR</td>
+										<td className="text-nowrap text-right">{category.totalInCategory} EUR</td>
 									</tr>
 
 									<DetailedCategoryInMonth displaySubcategories={false} categoryInMonth={category} categories={categories} />
