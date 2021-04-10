@@ -18,7 +18,7 @@ export const ToggleButton = ({ text, defaultState, onToggle }) => {
 					disabled={false}
 					onChange={onChange}
 				/>
-				<span class="mx-2 text-white align-top">{text}</span>
+				<span className="mx-2 text-white align-top">{text}</span>
 			</label>
 		</Fragment>
 	)
