@@ -37,20 +37,27 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 										<td className="text-nowrap text-right">{category.totalInCategory} EUR</td>
 									</tr>
 
-									<DetailedCategoryInMonth displaySubcategories={toggleState} categoryInMonth={category} categories={categories} />
+									{
+										hasSubcategories && <DetailedCategoryInMonth
+											displaySubcategories={toggleState}
+											categoryInMonth={category}
+											categories={categories}
+										/>
+									}
 								</Fragment>
 							)
 						})
 					}
 				</tbody>
 			</table>
-
-			<ToggleButton
-				text='Show detailed information'
-				defaultState={toggleState}
-				onToggle={onToggleDetailedInformation}
-				isDisabled={!hasSubcategories}
-			/>
+			{
+				hasSubcategories && <ToggleButton
+					text='Show detailed information'
+					defaultState={toggleState}
+					onToggle={onToggleDetailedInformation}
+					isDisabled={!hasSubcategories}
+				/>
+			}
 		</section>
 	)
 }
