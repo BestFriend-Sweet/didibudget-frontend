@@ -14,9 +14,9 @@ export const MonthlyBalanceDropdown = (props) => {
 
 	return (
 		<div className={`dropdown ${ isDropdownExpanded ? 'position-static' : '' }`}>
-			<Link className="navbar-item text-light font-weight-bold pt-2 dropdown-toggle" to='/register-monthly-balance' id="monthly-balance-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<button className="navbar-item btn btn-link text-light font-weight-bold pt-2 dropdown-toggle" id="monthly-balance-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<FaPiggyBank size={props.sizeOfPrimaryIcons} title='Monthly Balance' />
-			</Link>
+			</button>
 			<div className={`dropdown-menu ${ isDropdownExpanded ? 'w-100' : '' }`} aria-labelledby="monthly-balance-dropdown">
 				<span className="dropdown-item-text text-muted">Monthly Balance</span>
 				<div className="dropdown-divider"></div>
