@@ -14,6 +14,8 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 		setToggleState(toggleState)
 	}
 
+	const hasSubcategories = monthData.perCategory.some(category => !!category.perSubcategory.length)
+
 	return (
 		<section className="table-responsive mb-5">
 			<table className="table table-dark">
@@ -35,15 +37,27 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 										<td className="text-nowrap text-right">{category.totalInCategory} EUR</td>
 									</tr>
 
-									<DetailedCategoryInMonth displaySubcategories={toggleState} categoryInMonth={category} categories={categories} />
+									{
+										hasSubcategories && <DetailedCategoryInMonth
+											displaySubcategories={toggleState}
+											categoryInMonth={category}
+											categories={categories}
+										/>
+									}
 								</Fragment>
 							)
 						})
 					}
 				</tbody>
 			</table>
-
-			<ToggleButton text='Show detailed information' defaultState={toggleState} onToggle={onToggleDetailedInformation} />
+			{
+				hasSubcategories && <ToggleButton
+					text='Show detailed information'
+					defaultState={toggleState}
+					onToggle={onToggleDetailedInformation}
+					isDisabled={!hasSubcategories}
+				/>
+			}
 		</section>
 	)
 }

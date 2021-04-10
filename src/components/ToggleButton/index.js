@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Toggle from 'react-toggle'
 import './styles.css'
 
-export const ToggleButton = ({ text, defaultState, onToggle }) => {
+export const ToggleButton = ({ text, defaultState, onToggle, isDisabled = false }) => {
 
 	const onChange = e => {
 		onToggle(e.target.checked)
@@ -15,10 +15,10 @@ export const ToggleButton = ({ text, defaultState, onToggle }) => {
 			<label>
 				<Toggle
 					defaultChecked={defaultState}
-					disabled={false}
+					disabled={isDisabled}
 					onChange={onChange}
 				/>
-				<span class="mx-2 text-white align-top">{text}</span>
+				<span className={`mx-2 text-white align-top ${isDisabled ? 'text-muted' : ''}`}>{text}</span>
 			</label>
 		</Fragment>
 	)
@@ -27,5 +27,6 @@ export const ToggleButton = ({ text, defaultState, onToggle }) => {
 ToggleButton.propTypes = {
 	text: PropTypes.string.isRequired,
 	defaultState: PropTypes.bool.isRequired,
-	onToggle: PropTypes.func.isRequired
+	onToggle: PropTypes.func.isRequired,
+	isDisabled: PropTypes.bool
 }
