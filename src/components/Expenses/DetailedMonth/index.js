@@ -14,6 +14,8 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 		setToggleState(toggleState)
 	}
 
+	const hasSubcategories = monthData.perCategory.some(category => !!category.perSubcategory.length)
+
 	return (
 		<section className="table-responsive mb-5">
 			<table className="table table-dark">
@@ -43,7 +45,12 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 				</tbody>
 			</table>
 
-			<ToggleButton text='Show detailed information' defaultState={toggleState} onToggle={onToggleDetailedInformation} />
+			<ToggleButton
+				text='Show detailed information'
+				defaultState={toggleState}
+				onToggle={onToggleDetailedInformation}
+				isDisabled={!hasSubcategories}
+			/>
 		</section>
 	)
 }
