@@ -4,6 +4,13 @@ import PropTypes from 'prop-types'
 import { getNameOfCategoryOrSubcategory } from '../utils'
 
 export const DetailedCategoryInMonth = ( { displaySubcategories, categoryInMonth, categories } ) => {
+
+	const hasSubcategories = categoryInMonth.perSubcategory.length
+
+	if (!hasSubcategories) {
+		return null
+	}
+
 	return (
 		displaySubcategories && <tr>
 			<td colSpan="2" className="pt-0 pb-4 text-info">
