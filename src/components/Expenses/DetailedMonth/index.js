@@ -36,14 +36,11 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 										<td>{nameOfCategory}</td>
 										<td className="text-nowrap text-right">{category.totalInCategory} EUR</td>
 									</tr>
-
-									{
-										hasSubcategories && <DetailedCategoryInMonth
-											displaySubcategories={toggleState}
-											categoryInMonth={category}
-											categories={categories}
-										/>
-									}
+									<DetailedCategoryInMonth
+										displaySubcategories={toggleState}
+										categoryInMonth={category}
+										categories={categories}
+									/>
 								</Fragment>
 							)
 						})
