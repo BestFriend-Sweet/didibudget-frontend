@@ -51,12 +51,14 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 				</tbody>
 			</table>
 			{
-				hasSubcategories && <ToggleButton
-					text='Show detailed information'
-					defaultState={toggleState}
-					onToggle={onToggleDetailedInformation}
-					isDisabled={!hasSubcategories}
-				/>
+				hasSubcategories && <div className="ml-2">
+					<ToggleButton
+						text='Show detailed information'
+						defaultState={toggleState}
+						onToggle={onToggleDetailedInformation}
+						isDisabled={!hasSubcategories}
+					/>
+				</div>
 			}
 		</section>
 	)
