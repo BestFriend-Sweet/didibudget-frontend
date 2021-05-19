@@ -7,7 +7,7 @@ import { GetListOfMonthlyBalance } from '../../components/MonthlyBalance/GetList
 const MonthlyBalanceAdministration = () => {
 	return (
 		<Fragment>
-			<PageTitle text='Monthly balance administration panel' />
+			<PageTitle text='Monthly balance list' />
 			<GetListOfMonthlyBalance />
 		</Fragment>
 	)
