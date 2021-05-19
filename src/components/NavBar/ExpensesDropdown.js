@@ -28,7 +28,7 @@ export const ExpensesDropdown = (props) => {
 					<GoGraph size={props.sizeOfSecondaryIcons} title='View expenses'/><span className="ml-3">View Expenses</span>
 				</Link>
 				<Link className="dropdown-item py-3" to='/expenses-administration'>
-					<FaListUl size={props.sizeOfSecondaryIcons} title='Expenses administration' /><span className="ml-3">Expenses Administration</span>
+					<FaListUl size={props.sizeOfSecondaryIcons} title='Expenses administration' /><span className="ml-3">Expenses List</span>
 				</Link>
 				<Link className="dropdown-item py-3" to='/expenses-analysis'>
 					<FaBalanceScaleLeft size={props.sizeOfSecondaryIcons} title='Expenses analysis' /><span className="ml-3">Expenses Analysis</span>

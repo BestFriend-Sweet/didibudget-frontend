@@ -7,7 +7,7 @@ import { GetListOfExpenses } from '../../components/Expenses/GetListOfExpenses'
 const ExpenseAdministration = () => {
 	return (
 		<Fragment>
-			<PageTitle text='Expenses administration panel' />
+			<PageTitle text='Expenses list' />
 			<GetListOfExpenses />
 		</Fragment>
 	)

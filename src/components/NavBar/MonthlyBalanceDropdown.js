@@ -27,7 +27,7 @@ export const MonthlyBalanceDropdown = (props) => {
 					<GoGraph size={props.sizeOfSecondaryIcons} title='View monthly balance'/><span className="ml-3">View Monthly Balance</span>
 				</Link>
 				<Link className="dropdown-item py-3" to='/monthly-balance-administration'>
-					<FaListUl size={props.sizeOfSecondaryIcons} title='Monthly balance administration'/><span className="ml-3">Monthly Balance Administration</span>
+					<FaListUl size={props.sizeOfSecondaryIcons} title='Monthly balance administration'/><span className="ml-3">Monthly Balance List</span>
 				</Link>
 			</div>
 		</div>
