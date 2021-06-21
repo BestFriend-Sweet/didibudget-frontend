@@ -1,6 +1,6 @@
 {
   "name": "didibudget-frontend",
-  "version": "0.10.6",
+  "version": "0.10.7",
   "description": "didibudget-frontend",
   "private": true,
   "dependencies": {
@@ -39,7 +39,11 @@
   "license": "MIT",
   "eslintConfig": {
     "extends": "react-app",
+    "plugins": [
+      "no-lenght"
+    ],
     "rules": {
+      "no-lenght/no-lenght": "error",
       "semi": [
         "warn",
         "never"
@@ -65,6 +69,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "5.11.10",
     "@testing-library/react": "11.2.6",
+    "eslint-plugin-no-lenght": "1.0.2-0",
     "husky": "4.3.8"
   },
   "husky": {
