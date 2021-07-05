@@ -92,6 +92,38 @@ const getSumPerMonth = (data = []) => {
 	return result
 }
 
+
+/**
+* Parse the data of expenses to obtain an array of sum per month. This function refill the empty data of every month and do a sum of every months. Moreover, we discard the current month and refill the results until the second last month
+* @requires getSumPerMonth
+* @requires parseUnixTimestamp
+* @example
+* 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}, {'quantity': 2.45, 'date': '2020-12-07'}]
+* 	getAveragePerMonth(data) // [102.03, 0, 2.45, 0, 0, 0, 0, 0]
+* @param  {Array.<Object>} data - An array of objects
+* @param  {String} data.date - A valid date with this format '2018-03-01'
+* @param  {float|integer} data.quantity
+* @return {Array.<Number>}
+*/
+const getAveragePerMonth = (data = []) => {
+	if (!data.length) {
+		return []
+	}
+
+	const today = parseUnixTimestamp(new Date(Date.now()).getTime()).substring(0, 10)
+	const currentlyMonth = {'quantity': 0, 'date': today}
+	const completedData = [...data]
+	completedData.push(currentlyMonth)
+
+	const totalPerMonth = getSumPerMonth(completedData)
+	totalPerMonth.pop()	
+
+	return totalPerMonth.map(month => {
+		return month.sum
+	})
+}
+
+
 /**
  * Get name of category or subcategory using provided data.
  * @param  {String} target 		MongoDB identifier of category or subcategory
@@ -244,5 +276,6 @@ const getDetailedExpendesPerMonth = (rawData = []) => {
 export {
 	getNameOfCategoryOrSubcategory,
 	getSumPerMonth,
-	getDetailedExpendesPerMonth
+	getDetailedExpendesPerMonth,
+	getAveragePerMonth
 }

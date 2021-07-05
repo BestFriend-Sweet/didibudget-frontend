@@ -208,3 +208,5 @@ export const expectedDataForGetDetailedExpendesPerMonth = [{
 		}
 	]
 }]
+
+export const expectedAverageData = [ 99, 0, 166.16, 40, 0, 0 ]

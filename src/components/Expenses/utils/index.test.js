@@ -1,6 +1,6 @@
-import { getNameOfCategoryOrSubcategory, getSumPerMonth, getDetailedExpendesPerMonth } from './index'
+import { getNameOfCategoryOrSubcategory, getSumPerMonth, getDetailedExpendesPerMonth, getAveragePerMonth } from './index'
 
-import { expensesRawData, expectedData, expensesRawDataForGetDetailedExpendesPerMonth, expectedDataForGetDetailedExpendesPerMonth } from './fixtures'
+import { expensesRawData, expectedData, expensesRawDataForGetDetailedExpendesPerMonth, expectedDataForGetDetailedExpendesPerMonth, expectedAverageData } from './fixtures'
 
 
 describe('getNameOfCategoryOrSubcategory', () => {
@@ -170,4 +170,33 @@ describe('getDetailedExpendesPerMonth', () => {
 		expect(Array.isArray(result)).toBe(true)
 		expect(result).toEqual(expectedDataForGetDetailedExpendesPerMonth)
 	})
+})
+
+describe('getAveragePerMonth', () => {
+	afterEach(() => {    
+		jest.clearAllMocks()
+	})
+
+	test('should return an array', () => {
+		expect(getAveragePerMonth()).toEqual([])
+	})
+
+	test('should return an array of numbers if receive an array of valid data with at least one object from a past month', () => {
+		expect.hasAssertions()
+		const result = getAveragePerMonth(expensesRawData)
+
+		result.forEach(element => {
+			expect(typeof element).toBe('number')
+			expect(element).not.toBeNaN()
+		})
+	})
+
+	test('should fill the gap from the last month until the second to last currently month', () => {
+		jest.spyOn(Date, 'now').mockImplementationOnce(() => 1619323711823)
+
+		const result = getAveragePerMonth(expensesRawData)
+
+		expect(result).toEqual(expectedAverageData)
+	})
+
 })
