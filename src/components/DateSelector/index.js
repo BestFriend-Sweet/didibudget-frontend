@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets-moment'

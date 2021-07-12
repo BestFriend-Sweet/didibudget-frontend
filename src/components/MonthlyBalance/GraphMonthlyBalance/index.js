@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react'
+import { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
