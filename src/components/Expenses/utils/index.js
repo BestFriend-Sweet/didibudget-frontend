@@ -123,12 +123,13 @@ const getAveragePerMonth = (data = []) => {
 	})
 }
 
+
 /**
- * Get the average value of a list of integers. This function only takes into account the last "x" values on the array. The "x" value should be provided as argument. If there are not enought data, this function returns null.
+ * Get the average value of a list of integers (rounded decimals). This function only takes into account the last "x" values on the array.
  * @requires trimDecimalPoints
- * @param {Array<Integer>} listOfData 
- * @param {Integer} numberOfPositions 
- * @returns {Integer | null}
+ * @param {Array<Integer>} listOfData - array with the data
+ * @param {Integer} numberOfPositions - number of last positions to use
+ * @returns {Number | null}
  */
 const averageOfLast = (listOfData = [], numberOfPositions) => {
 	if (!Number.isInteger(numberOfPositions) || numberOfPositions < 1) {

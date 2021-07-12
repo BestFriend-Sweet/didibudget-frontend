@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { ResponsiveContainer, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Bar } from 'recharts'
 
 import { parseUnixTimestamp } from '../../../utils/utils'
-import { getSumPerMonth } from '../utils'
+import { getSumPerMonth, getAveragePerMonth, averageOfLast } from '../utils'
 
 import { ErrorAlert } from '../../ErrorAlert'
 import { PageSubTitle } from '../../PageSubTitle'
@@ -20,6 +20,10 @@ export const GraphExpensesData = ({data}) => {
 
 	const dataGroupedPerMonth = getSumPerMonth(dataParsed)
 
+	const averagePerMonthExceptSecondLast = getAveragePerMonth(dataParsed)
+	const lastSixMonths = averageOfLast(averagePerMonthExceptSecondLast, 6)
+	const lastTwelveMonths = averageOfLast(averagePerMonthExceptSecondLast, 12)
+
 	if (dataGroupedPerMonth.length) {
 		return (
 			<Fragment>
@@ -28,7 +32,7 @@ export const GraphExpensesData = ({data}) => {
 					<ResponsiveContainer>
 						<BarChart
 							data={dataGroupedPerMonth}
-							margin={{top: 5, right: 20, left: 20, bottom: 100}}
+							margin={{top: 5, right: 20, left: 20, bottom: 20}}
 						>
 							<CartesianGrid strokeDasharray="3 3" />
 							<XAxis dataKey="label" />
@@ -38,6 +42,13 @@ export const GraphExpensesData = ({data}) => {
 						</BarChart>
 					</ResponsiveContainer>
 				</div>
+
+				{
+					lastSixMonths && <PageSubTitle text={`The average of the expenses of the last six months is ${lastSixMonths} €.`} />
+				}
+				{
+					lastTwelveMonths && <PageSubTitle text={`The average of the expenses of the last twelve months is ${lastTwelveMonths} €.`} />
+				}
 			</Fragment>
 		)
 	} else {
