@@ -1,4 +1,4 @@
-import React, { StrictMode, useContext, Suspense } from 'react'
+import { StrictMode, useContext, Suspense, lazy } from 'react'
 
 import { Router, Redirect } from '@reach/router'
 
@@ -13,16 +13,16 @@ import { NavBar } from './components/NavBar'
 import { Footer } from './components/Footer'
 import { Spinner } from './components/Spinner'
 
-const Home = React.lazy(() => import('./pages/Home'))
-const UserAdministration = React.lazy(() => import('./pages/Users/UserAdministration'))
-const InsertMonthlyBalance = React.lazy(() => import('./pages/MonthlyBalance/InsertMonthlyBalance'))
-const ViewMonthlyBalance = React.lazy(() => import('./pages/MonthlyBalance/ViewMonthlyBalance'))
-const MonthlyBalanceAdministration = React.lazy(() => import('./pages/MonthlyBalance/MonthlyBalanceAdministration'))
-const ExpenseCategorySelector = React.lazy(() => import('./pages/Expenses/ExpenseCategorySelector'))
-const InsertExpense = React.lazy(() => import('./pages/Expenses/InsertExpense'))
-const ViewExpenses = React.lazy(() => import('./pages/Expenses/ViewExpenses'))
-const ExpenseAdministration = React.lazy(() => import('./pages/Expenses/ExpenseAdministration'))
-const ExpenseAnalysis = React.lazy(() => import('./pages/Expenses/ExpenseAnalysis'))
+const Home = lazy(() => import('./pages/Home'))
+const UserAdministration = lazy(() => import('./pages/Users/UserAdministration'))
+const InsertMonthlyBalance = lazy(() => import('./pages/MonthlyBalance/InsertMonthlyBalance'))
+const ViewMonthlyBalance = lazy(() => import('./pages/MonthlyBalance/ViewMonthlyBalance'))
+const MonthlyBalanceAdministration = lazy(() => import('./pages/MonthlyBalance/MonthlyBalanceAdministration'))
+const ExpenseCategorySelector = lazy(() => import('./pages/Expenses/ExpenseCategorySelector'))
+const InsertExpense = lazy(() => import('./pages/Expenses/InsertExpense'))
+const ViewExpenses = lazy(() => import('./pages/Expenses/ViewExpenses'))
+const ExpenseAdministration = lazy(() => import('./pages/Expenses/ExpenseAdministration'))
+const ExpenseAnalysis = lazy(() => import('./pages/Expenses/ExpenseAnalysis'))
 
 
 export const App = () => {
