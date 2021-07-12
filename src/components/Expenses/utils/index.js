@@ -125,6 +125,29 @@ const getAveragePerMonth = (data = []) => {
 
 
 /**
+ * Get the average value of a list of integers (rounded decimals). This function only takes into account the last "x" values on the array.
+ * @requires trimDecimalPoints
+ * @param {Array<Integer>} listOfData - array with the data
+ * @param {Integer} numberOfPositions - number of last positions to use
+ * @returns {Number | null}
+ */
+const averageOfLast = (listOfData = [], numberOfPositions) => {
+	if (!Number.isInteger(numberOfPositions) || numberOfPositions < 1) {
+		throw new Error('You must specify the number of data to take into account in the average')
+	}
+
+	if (listOfData.length < numberOfPositions) {
+		return null
+	}
+
+	const selectedData = listOfData.slice(- numberOfPositions)
+	const average = selectedData.reduce((acc,v) => acc + v) / selectedData.length
+
+	return trimDecimalPoints(average)
+}
+
+
+/**
  * Get name of category or subcategory using provided data.
  * @param  {String} target 		MongoDB identifier of category or subcategory
  * @param  {Array} categories 	Array with all categories and subcategories
@@ -277,5 +300,6 @@ export {
 	getNameOfCategoryOrSubcategory,
 	getSumPerMonth,
 	getDetailedExpendesPerMonth,
-	getAveragePerMonth
+	getAveragePerMonth,
+	averageOfLast,
 }
