@@ -1,4 +1,4 @@
-import { getNameOfCategoryOrSubcategory, getSumPerMonth, getDetailedExpendesPerMonth, getAveragePerMonth } from './index'
+import { getNameOfCategoryOrSubcategory, getSumPerMonth, getDetailedExpendesPerMonth, getAveragePerMonth, averageOfLast } from './index'
 
 import { expensesRawData, expectedData, expensesRawDataForGetDetailedExpendesPerMonth, expectedDataForGetDetailedExpendesPerMonth, expectedAverageData } from './fixtures'
 
@@ -199,4 +199,28 @@ describe('getAveragePerMonth', () => {
 		expect(result).toEqual(expectedAverageData)
 	})
 
+})
+
+describe('averageOfLast', () => {
+	test('should return null if there are not enought data', () => {
+		expect(averageOfLast([], 6)).toBeNull()
+		expect(averageOfLast([2, 45, 765.23, 0, 0], 6)).toBeNull()
+	})
+
+	test('should return a number if there are enought data', () => {
+		expect(averageOfLast([0, 0, 0, 0, 0, 0], 6)).toBe(0)
+		expect(averageOfLast([1, 1, 1, 1, 1, 1], 6)).toBe(1)
+		expect(averageOfLast([2, 4, 2, 4, 2, 4], 6)).toBe(3)
+	})
+
+	test('should return the average of last 6 numbers', () => {
+		expect(averageOfLast([999, 0, 888, 2, 4, 2, 4, 2, 4], 6)).toBe(3)
+		expect(averageOfLast([88, 0, 0, 0, 0, 0, 0, 0,], 6)).toBe(0)
+	})
+
+	test('should return the average of last 3 numbers', () => {
+		expect(averageOfLast([20, 4, 2, 4], 3)).toBe(3.33)
+		expect(averageOfLast([77, 0, 0, 0,], 3)).toBe(0)
+		expect(averageOfLast([20.01, 13.67, 0,], 3)).toBe(11.22)
+	})
 })

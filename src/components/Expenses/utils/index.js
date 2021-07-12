@@ -123,6 +123,28 @@ const getAveragePerMonth = (data = []) => {
 	})
 }
 
+/**
+ * Get the average value of a list of integers. This function only takes into account the last "x" values on the array. The "x" value should be provided as argument. If there are not enought data, this function returns null.
+ * @requires trimDecimalPoints
+ * @param {Array<Integer>} listOfData 
+ * @param {Integer} numberOfPositions 
+ * @returns {Integer | null}
+ */
+const averageOfLast = (listOfData = [], numberOfPositions) => {
+	if (!Number.isInteger(numberOfPositions) || numberOfPositions < 1) {
+		throw new Error('You must specify the number of data to take into account in the average')
+	}
+
+	if (listOfData.length < numberOfPositions) {
+		return null
+	}
+
+	const selectedData = listOfData.slice(- numberOfPositions)
+	const average = selectedData.reduce((acc,v) => acc + v) / selectedData.length
+
+	return trimDecimalPoints(average)
+}
+
 
 /**
  * Get name of category or subcategory using provided data.
@@ -277,5 +299,6 @@ export {
 	getNameOfCategoryOrSubcategory,
 	getSumPerMonth,
 	getDetailedExpendesPerMonth,
-	getAveragePerMonth
+	getAveragePerMonth,
+	averageOfLast,
 }
