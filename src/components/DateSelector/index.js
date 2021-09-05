@@ -7,13 +7,17 @@ import { Calendar } from 'react-widgets'
 import 'react-widgets/dist/css/react-widgets.css'
 
 export const DateSelector = ({ onChange }) => {
-	Moment.locale('en')
+	Moment.locale('en', {
+		week : {
+			dow : 1, // Monday is the first day of the week.
+		}
+	})
 	momentLocalizer()
 
 	const [date, setDate] = useState(new Date())
 
 	useEffect(() => {
-	    onChange(date)
+		onChange(date)
 	}, [date, onChange])
 
 	return (
