@@ -71,7 +71,13 @@ ListOfExpenses.propTypes = {
 		PropTypes.shape({
 			_id: PropTypes.string.isRequired,
 			name: PropTypes.string.isRequired,
-			subcategories: PropTypes.array.isRequired,
+			subcategories: PropTypes.arrayOf(
+				PropTypes.shape({
+					_id: PropTypes.string.isRequired,
+					name: PropTypes.string.isRequired,
+					uuid: PropTypes.string.isRequired
+				})
+			),
 			uuid: PropTypes.string.isRequired
 		})
 	),
