@@ -1,13 +1,13 @@
 import { Fragment } from 'react'
 
 import { PageTitle } from '../../components/PageTitle'
-import { RegisterExpenseForm } from '../../components/Expenses/RegisterExpenseForm'
+import { GetExpenseCategory } from '../../components/Expenses/GetExpenseCategory'
 
 const InsertExpense = (props) => {
 	return (
 		<Fragment>
 			<PageTitle text='Register expense' />
-			<RegisterExpenseForm props={props}/>
+			<GetExpenseCategory props={props}/>
 		</Fragment>
 	)
 }
