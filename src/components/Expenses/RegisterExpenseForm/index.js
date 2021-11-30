@@ -9,11 +9,11 @@ import { DateSelector } from '../../DateSelector'
 
 import { useInputValue } from '../../../hooks/useInputValue'
 import { validateRegisterExpenseForm } from '../../../utils/validations'
+import { getNameOfCategoryOrSubcategory } from '../utils'
 
 import { REGISTER_EXPENSE } from '../../../gql/mutations/expenses'
 
-export const RegisterExpenseForm = ({ props }) => {
-
+export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID, categoryData }) => {
 	const [disabled, setDisabled] = useState(false)
 	const [error, setError] = useState(null)
 
@@ -31,8 +31,7 @@ export const RegisterExpenseForm = ({ props }) => {
 		setDisabled(true)
 		setError(null)
 
-		const subcategoryID = props['*'] || null
-		const variables = { category: props.categoryID, subcategory: subcategoryID, quantity: parseFloat(quantity.value), date }
+		const variables = { category: selectedCategoryID, subcategory: selectedSubcategoryID, quantity: parseFloat(quantity.value), date }
 
 		registerExpense({ variables }).then(({ data }) => {
 			window.location.href = '/expenses-administration'
@@ -42,10 +41,25 @@ export const RegisterExpenseForm = ({ props }) => {
 		})
 	}
 
+	const getCategoryInformation = () => {
+		const categoryName = getNameOfCategoryOrSubcategory(selectedCategoryID, [ categoryData ])
+		const subcategoryName = getNameOfCategoryOrSubcategory(selectedSubcategoryID, [ categoryData ])
+
+		if (!subcategoryName) {
+			return categoryName
+		}
+
+		return `${categoryName} - ${subcategoryName}`
+	}
+
+	const categoryInformation = getCategoryInformation()
+
 	return (
 		<Fragment>
 			<div className="row justify-content-center mt-4">
 				<form className="col-md-8" disabled={disabled} onSubmit={handleSubmit}>
+
+					<p className="text-white small text-truncate">{ categoryInformation }</p>
 
 					<div className="form-row">
 						<DateSelector onChange={onChange} />
@@ -84,8 +98,18 @@ export const RegisterExpenseForm = ({ props }) => {
 }
 
 RegisterExpenseForm.propTypes = {
-	props: PropTypes.shape({
-		'*': PropTypes.string.isRequired,
-		categoryID: PropTypes.string.isRequired,
-	})
+	selectedCategoryID: PropTypes.string.isRequired,
+	selectedSubcategoryID: PropTypes.string,
+	categoryData: PropTypes.shape({
+		_id: PropTypes.string.isRequired,
+		name: PropTypes.string.isRequired,
+		subcategories: PropTypes.arrayOf(
+			PropTypes.shape({
+				_id: PropTypes.string.isRequired,
+				name: PropTypes.string.isRequired,
+				uuid: PropTypes.string.isRequired
+			})
+		),
+		uuid: PropTypes.string.isRequired
+	}).isRequired,
 }

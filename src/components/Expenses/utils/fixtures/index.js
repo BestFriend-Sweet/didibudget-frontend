@@ -163,29 +163,29 @@ export const expectedDataForGetDetailedExpendesPerMonth = [{
 	totalInMonth: 240,
 	perCategory: [
 		{
-			uuidCategory: '5e64ec217048af874c4f14d7',
+			idCategory: '5e64ec217048af874c4f14d7',
 			totalInCategory: 207,
 			perSubcategory: [
 				{
-					uuidSubcategory: '5ea7113296474318495ba3e5',
+					idSubcategory: '5ea7113296474318495ba3e5',
 					totalInSubcategory: 140
 				},
 				{
-					uuidSubcategory: '5e64ec217048af874c4f14b4',
+					idSubcategory: '5e64ec217048af874c4f14b4',
 					totalInSubcategory: 67
 				}
 			]
 		},
 		{
-			uuidCategory: '5e64ec217048af874c4f14d8',
+			idCategory: '5e64ec217048af874c4f14d8',
 			totalInCategory: 33,
 			perSubcategory: [
 				{
-					uuidSubcategory: '5e64ec217048af874c4f14c1',
+					idSubcategory: '5e64ec217048af874c4f14c1',
 					totalInSubcategory: 27
 				},
 				{
-					uuidSubcategory: '5e64ec217048af874c4f14c2',
+					idSubcategory: '5e64ec217048af874c4f14c2',
 					totalInSubcategory: 6
 				}
 			]
@@ -202,7 +202,7 @@ export const expectedDataForGetDetailedExpendesPerMonth = [{
 	totalInMonth: 5,
 	perCategory: [
 		{
-			uuidCategory: '5e64ec217048af874c4f14d2',
+			idCategory: '5e64ec217048af874c4f14d2',
 			totalInCategory: 5,
 			perSubcategory: []
 		}

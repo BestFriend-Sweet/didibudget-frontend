@@ -209,7 +209,7 @@ const getDetailedExpendesPerMonth = (rawData = []) => {
 	}
 	const categoryDTO = (uuid, quantity, subcategoriesParsed = []) => {
 		return {
-			uuidCategory: uuid,
+			idCategory: uuid,
 			totalInCategory: trimDecimalPoints(quantity),
 			perSubcategory: subcategoriesParsed
 		}
@@ -236,7 +236,7 @@ const getDetailedExpendesPerMonth = (rawData = []) => {
 				})
 				totalExpensePerSubcategory.push({
 					uuidParentCategory: uuidParentCategory,
-					uuidSubcategory: subcategory,
+					idSubcategory: subcategory,
 					totalInSubcategory: trimDecimalPoints(quantity)
 				})
 			}

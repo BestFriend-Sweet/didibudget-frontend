@@ -28,11 +28,11 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 				<tbody>
 					{
 						monthData.perCategory.map(category => {
-							const nameOfCategory = getNameOfCategoryOrSubcategory(category.uuidCategory, categories)
+							const nameOfCategory = getNameOfCategoryOrSubcategory(category.idCategory, categories)
 							
 							return (
-								<Fragment key={category.uuidCategory}>
-									<tr key={category.uuidCategory}>
+								<Fragment key={category.idCategory}>
+									<tr key={category.idCategory}>
 										<td>{nameOfCategory}</td>
 										<td className="text-nowrap text-right">{category.totalInCategory} EUR</td>
 									</tr>
@@ -72,7 +72,13 @@ DetailedMonth.propTypes = {
 		PropTypes.shape({
 			_id: PropTypes.string.isRequired,
 			name: PropTypes.string.isRequired,
-			subcategories: PropTypes.array.isRequired,
+			subcategories: PropTypes.arrayOf(
+				PropTypes.shape({
+					_id: PropTypes.string.isRequired,
+					name: PropTypes.string.isRequired,
+					uuid: PropTypes.string.isRequired
+				})
+			),
 			uuid: PropTypes.string.isRequired
 		})
 	)
