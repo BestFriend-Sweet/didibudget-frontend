@@ -9,6 +9,7 @@ import { DateSelector } from '../../DateSelector'
 
 import { useInputValue } from '../../../hooks/useInputValue'
 import { validateRegisterExpenseForm } from '../../../utils/validations'
+import { getNameOfCategoryOrSubcategory } from '../utils'
 
 import { REGISTER_EXPENSE } from '../../../gql/mutations/expenses'
 
@@ -40,10 +41,25 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 		})
 	}
 
+	const getCategoryInformation = () => {
+		const categoryName = getNameOfCategoryOrSubcategory(selectedCategoryID, [ categoryData ])
+		const subcategoryName = getNameOfCategoryOrSubcategory(selectedSubcategoryID, [ categoryData ])
+
+		if (!subcategoryName) {
+			return categoryName
+		}
+
+		return `${categoryName} - ${subcategoryName}`
+	}
+
+	const categoryInformation = getCategoryInformation()
+
 	return (
 		<Fragment>
 			<div className="row justify-content-center mt-4">
 				<form className="col-md-8" disabled={disabled} onSubmit={handleSubmit}>
+
+					<p className="text-white small text-truncate">{ categoryInformation }</p>
 
 					<div className="form-row">
 						<DateSelector onChange={onChange} />
