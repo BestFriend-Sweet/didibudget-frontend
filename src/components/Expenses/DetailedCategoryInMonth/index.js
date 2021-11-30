@@ -15,9 +15,9 @@ export const DetailedCategoryInMonth = ( { displaySubcategories, categoryInMonth
 			<td colSpan="2" className="pt-0 pb-4 text-info">
 				{
 					categoryInMonth.perSubcategory.map(subcategory => {
-						const nameOfSubcategory = getNameOfCategoryOrSubcategory(subcategory.uuidSubcategory, categories)
+						const nameOfSubcategory = getNameOfCategoryOrSubcategory(subcategory.idSubcategory, categories)
 						return (
-							<div className="ml-4 py-2 pl-2 d-flex border border-info border-top-0 border-bottom-0 border-right-0" key={subcategory.uuidSubcategory} >
+							<div className="ml-4 py-2 pl-2 d-flex border border-info border-top-0 border-bottom-0 border-right-0" key={subcategory.idSubcategory} >
 								<div className="mr-auto px-2">{nameOfSubcategory}</div>
 								<div className="px-2 text-nowrap text-right">{subcategory.totalInSubcategory} EUR</div>
 							</div>
@@ -32,7 +32,7 @@ export const DetailedCategoryInMonth = ( { displaySubcategories, categoryInMonth
 DetailedCategoryInMonth.propTypes = {
 	displaySubcategories: PropTypes.bool.isRequired,
 	categoryInMonth: PropTypes.shape({
-		uuidCategory: PropTypes.string.isRequired,
+		idCategory: PropTypes.string.isRequired,
 		totalInCategory: PropTypes.number.isRequired,
 		perSubcategory: PropTypes.array.isRequired,
 	}),
