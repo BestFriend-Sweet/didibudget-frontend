@@ -12,7 +12,7 @@ export const ToggleButton = ({ text, defaultState, onToggle, isDisabled = false 
 
 	return (
 		<Fragment>
-			<label>
+			<label className="m-0">
 				<Toggle
 					defaultChecked={defaultState}
 					disabled={isDisabled}

@@ -6,6 +6,7 @@ import { ErrorAlert } from '../../ErrorAlert'
 import { SubmitButton } from '../../SubmitButton'
 import { SubmitButtonHelper } from '../../SubmitButtonHelper'
 import { DateSelector } from '../../DateSelector'
+import { ToggleButton } from '../../ToggleButton'
 
 import { useInputValue } from '../../../hooks/useInputValue'
 import { validateRegisterExpenseForm } from '../../../utils/validations'
@@ -16,6 +17,12 @@ import { REGISTER_EXPENSE } from '../../../gql/mutations/expenses'
 export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID, categoryData }) => {
 	const [disabled, setDisabled] = useState(false)
 	const [error, setError] = useState(null)
+	const [toggleState, setToggleState] = useState(false)
+
+	const onToggleRegisterAnotherExpense = (toggleState) => {
+		setToggleState(toggleState)
+	}
+
 
 	const [ registerExpense ] = useMutation(REGISTER_EXPENSE)
 
@@ -82,9 +89,20 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 						<small id="quantityHelp" className="form-text text-muted">Use decimal point as decimal separator. Negative numbers are not valid</small>
 					</div>
 
-					<div className="mt-2 ml-1">
-						<SubmitButton disabled={disabled || !validateRegisterExpenseForm(quantity.value, date)}>New expense</SubmitButton>
-						<SubmitButtonHelper mustShowHelper={!validateRegisterExpenseForm(quantity.value, date)}></SubmitButtonHelper>
+					<div className="form-row mt-2 ml-1">
+						<div className="col-auto">
+							<SubmitButton disabled={disabled || !validateRegisterExpenseForm(quantity.value, date)}>New expense</SubmitButton>
+						</div>
+						<div className="col pl-4 d-flex flex-row align-items-end">
+							<ToggleButton
+								text='Add more'
+								defaultState={toggleState}
+								onToggle={onToggleRegisterAnotherExpense}
+							/>
+						</div>
+						<div className="col-12">
+							<SubmitButtonHelper mustShowHelper={!validateRegisterExpenseForm(quantity.value, date)}></SubmitButtonHelper>
+						</div>
 					</div>
 				</form>
 				<div className="col-md-8">
