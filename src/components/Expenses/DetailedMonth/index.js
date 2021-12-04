@@ -8,10 +8,10 @@ import { ToggleButton } from '../../ToggleButton'
 
 export const DetailedMonth = ( { monthData, categories } ) => {
 
-	const [toggleState, setToggleState] = useState(false)
+	const [toggleShowDetailedInformation, setToggleShowDetailedInformation] = useState(false)
 
-	const onToggleDetailedInformation = (toggleState) => {
-		setToggleState(toggleState)
+	const onToggleDetailedInformation = (value) => {
+		setToggleShowDetailedInformation(value)
 	}
 
 	const hasSubcategories = monthData.perCategory.some(category => !!category.perSubcategory.length)
@@ -37,7 +37,7 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 										<td className="text-nowrap text-right">{category.totalInCategory} EUR</td>
 									</tr>
 									<DetailedCategoryInMonth
-										displaySubcategories={toggleState}
+										displaySubcategories={toggleShowDetailedInformation}
 										categoryInMonth={category}
 										categories={categories}
 									/>
@@ -51,7 +51,7 @@ export const DetailedMonth = ( { monthData, categories } ) => {
 				hasSubcategories && <div className="ml-2">
 					<ToggleButton
 						text='Show detailed information'
-						defaultState={toggleState}
+						defaultState={toggleShowDetailedInformation}
 						onToggle={onToggleDetailedInformation}
 						isDisabled={!hasSubcategories}
 					/>

@@ -16,7 +16,7 @@ export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
 
 		const variables = { uuid: uuid }
 
-		deleteMutation({ variables }).then(( {data} ) => {
+		deleteMutation({ variables }).then(() => {
 			onDelete()
 			toggle()
 		}).catch(e => {

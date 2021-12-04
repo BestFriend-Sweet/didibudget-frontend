@@ -17,12 +17,7 @@ import { REGISTER_EXPENSE } from '../../../gql/mutations/expenses'
 export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID, categoryData }) => {
 	const [disabled, setDisabled] = useState(false)
 	const [error, setError] = useState(null)
-	const [toggleState, setToggleState] = useState(false)
-
-	const onToggleRegisterAnotherExpense = (toggleState) => {
-		setToggleState(toggleState)
-	}
-
+	const [toggleRegisterOneMoreExpense, setToggleRegisterOneMoreExpense] = useState(false)
 
 	const [ registerExpense ] = useMutation(REGISTER_EXPENSE)
 
@@ -33,6 +28,10 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 		setDate(date)
 	}
 
+	const onToggleRegisterAnotherExpense = (value) => {
+		setToggleRegisterOneMoreExpense(value)
+	}
+
 	const handleSubmit = (event) => {
 		event.preventDefault()
 		setDisabled(true)
@@ -40,7 +39,12 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 
 		const variables = { category: selectedCategoryID, subcategory: selectedSubcategoryID, quantity: parseFloat(quantity.value), date }
 
-		registerExpense({ variables }).then(({ data }) => {
+		registerExpense({ variables }).then(() => {
+			if (toggleRegisterOneMoreExpense) {
+				window.location.href = '/list-expense-categories'
+				return
+			}
+
 			window.location.href = '/expenses-administration'
 		}).catch(e => {
 			setError(e.message)
@@ -96,7 +100,7 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 						<div className="col pl-4 d-flex flex-row align-items-end">
 							<ToggleButton
 								text='Add more'
-								defaultState={toggleState}
+								defaultState={toggleRegisterOneMoreExpense}
 								onToggle={onToggleRegisterAnotherExpense}
 							/>
 						</div>
