@@ -34,7 +34,7 @@ export const RegisterMonthlyBalanceForm = () => {
 
 		const variables = { balance: parseFloat(balance.value), date: dateToRegister }
 
-		registerMonthlyBalance({ variables }).then(({ data }) => {
+		registerMonthlyBalance({ variables }).then(() => {
 			window.location.href = '/view-monthly-balance'
 		}).catch(e => {
 			setError(e.message)
