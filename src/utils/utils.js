@@ -1,7 +1,7 @@
 /**
  * Convert an Unix timestamp to human readable datetime (local time zone)
- * @param  {String|Number} timestamp
- * @return {String}
+ * @param {string|number} timestamp
+ * @returns {string}
  */
 const parseUnixTimestamp = (timestamp) => {
 	timestamp = parseInt(timestamp)
@@ -28,8 +28,8 @@ const parseUnixTimestamp = (timestamp) => {
 * Calculate the first day of next month
 * @example
 *   firstDayOfNextMonth('2019-12-03') // 2020-01-01
-* @param  {String} date - Must represent a date with the same format as the example
-* @return {String}
+* @param {string} date - Must represent a date with the same format as the example
+* @returns {string}
 */
 const firstDayOfNextMonth = (date) => {
 	const parts = date.split('-')
@@ -53,8 +53,8 @@ const firstDayOfNextMonth = (date) => {
 * Calculate the first day of the month
 * @example
 *   firstDayOfTheMonth('2019-12-03') // 2019-12-01
-* @param  {String} date - Must represent a date with the same format as the example
-* @return {String}
+* @param {string} date - Must represent a date with the same format as the example
+* @returns {string}
 */
 const firstDayOfTheMonth = (date) => {
 	const parts = date.split('-')

@@ -21,9 +21,9 @@ const regexQuantityOfMoney = new RegExp(/^\s*-?\d+(\.\d{1,2})?\s*$/)
 
 /**
  * Validate the login form data. This is useful for reduce traffic to backend
- * @param  {string} email
- * @param  {string} password
- * @return {Boolean}                - True means data is valid
+ * @param {string} email
+ * @param {string} password
+ * @returns {boolean}                - True means data is valid
  */
 const validateLoginForm = (email, password) => {
 	let dataIsValid = true
@@ -44,10 +44,10 @@ const validateLoginForm = (email, password) => {
 
 /**
  * Validate the registration form data
- * @param  {string} email
- * @param  {string} password
- * @param  {string} repeatPassword
- * @return {Boolean}                - True means data is valid
+ * @param {string} email
+ * @param {string} password
+ * @param {string} repeatPassword
+ * @returns {boolean}                - True means data is valid
  */
 const validateRegisterForm = (email, password, repeatPassword) => {
 	let dataIsValid = true
@@ -72,10 +72,10 @@ const validateRegisterForm = (email, password, repeatPassword) => {
 
 /**
  * Validate the registration of monthly balance
- * @param  {Integer|Float} balance
- * @param  {Integer} year
- * @param  {String} month
- * @return {Boolean}         		- True means data is valid
+ * @param {Integer|Float} balance
+ * @param {Integer} year
+ * @param {string} month
+ * @returns {boolean}         		- True means data is valid
  */
 const validateRegisterMonthlyBalanceForm = (balance, year, month) => {
 	const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -111,9 +111,9 @@ const validateRegisterMonthlyBalanceForm = (balance, year, month) => {
 
 /**
  * Validate the registration of expense
- * @param  {Integer|Float|String} quantity - Zero is not a valid value
- * @param  {Date} date
- * @return {Boolean}         		- True means data is valid
+ * @param {Integer|Float|string} quantity - Zero is not a valid value
+ * @param {Date} date
+ * @returns {boolean}         		- True means data is valid
  */
 const validateRegisterExpenseForm = (quantity, date) => {
 	let dataIsValid = true

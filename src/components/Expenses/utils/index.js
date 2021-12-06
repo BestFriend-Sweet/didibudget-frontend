@@ -15,9 +15,9 @@ const getLocaleDateString = (date) => {
  * Get an array with a date of the first day of the month for all months in "data" (included gaps)
  * @requires firstDayOfNextMonth
  * @requires firstDayOfTheMonth
- * @param  {Array.<Object>} data - An array of objects
- * @param  {String} data.date - A valid date with this format '2018-03-01'
- * @return {Array.<string>}
+ * @param {Array.<Object>} data - An array of objects
+ * @param {string} data.date - A valid date with this format '2018-03-01'
+ * @returns {Array.<string>}
  */
 const getListOfAllMonths = (data = []) => {
 	const ensureDateAscending = (a, b) => new Date(a.date) - new Date(b.date)
@@ -42,10 +42,10 @@ const getListOfAllMonths = (data = []) => {
 * @example
 * 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}, {'quantity': 2.45, 'date': '2020-12-07'}]
 * 	getSumPerMonth(data) // [{ label: 'October 2020', sum: 102.03 }, { label: 'November 2020', sum: 0 }, { label: 'December 2020', sum: 2.45 }]
-* @param  {Array.<Object>} data - An array of objects
-* @param  {String} data.date - A valid date with this format '2018-03-01'
-* @param  {float|integer} data.quantity
-* @return {Array.<Object>}
+* @param {Array.<Object>} data - An array of objects
+* @param {string} data.date - A valid date with this format '2018-03-01'
+* @param {float|integer} data.quantity
+* @returns {Array.<Object>}
 */
 const getSumPerMonth = (data = []) => {
 	if (!data.length) {
@@ -100,10 +100,10 @@ const getSumPerMonth = (data = []) => {
 * @example
 * 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}, {'quantity': 2.45, 'date': '2020-12-07'}]
 * 	getAveragePerMonth(data) // [102.03, 0, 2.45, 0, 0, 0, 0, 0]
-* @param  {Array.<Object>} data - An array of objects
-* @param  {String} data.date - A valid date with this format '2018-03-01'
-* @param  {float|integer} data.quantity
-* @return {Array.<Number>}
+* @param {Array.<Object>} data - An array of objects
+* @param {string} data.date - A valid date with this format '2018-03-01'
+* @param {float|integer} data.quantity
+* @returns {Array.<number>}
 */
 const getAveragePerMonth = (data = []) => {
 	if (!data.length) {
@@ -129,7 +129,7 @@ const getAveragePerMonth = (data = []) => {
  * @requires trimDecimalPoints
  * @param {Array<Integer>} listOfData - array with the data
  * @param {Integer} numberOfPositions - number of last positions to use
- * @returns {Number | null}
+ * @returns {number | null}
  */
 const averageOfLast = (listOfData = [], numberOfPositions) => {
 	if (!Number.isInteger(numberOfPositions) || numberOfPositions < 1) {
@@ -149,9 +149,9 @@ const averageOfLast = (listOfData = [], numberOfPositions) => {
 
 /**
  * Get name of category or subcategory using provided data.
- * @param  {String} target 		MongoDB identifier of category or subcategory
- * @param  {Array} categories 	Array with all categories and subcategories
- * @return {String|null}
+ * @param {string} target 		MongoDB identifier of category or subcategory
+ * @param {Array} categories 	Array with all categories and subcategories
+ * @returns {string|null}
  */
 const getNameOfCategoryOrSubcategory = (target, categories) => {
 	if (target === null || categories.length === 0) {
@@ -179,13 +179,13 @@ const getNameOfCategoryOrSubcategory = (target, categories) => {
  * This function performs a summation grouping the expenses by months. For each month, the categories of expenses are grouped. For each category their subcategories are also grouped
  * @requires trimDecimalPoints
  * @requires getSumPerMonth
- * @param  {Array.<Object>} rawData - An array of objects (the object must contain a date property
- * @param  {String} rawData.category - An UUID value to identify a category
- * @param  {String|null} rawData.subcategory - An UUID value to identify a subcategory or null
- * @param  {Number} rawData.quantity - An integer o float number
- * @param  {String} rawData.date - A valid date with this format: '1514447205699'
- * @param  {String} rawData.currencyISO - A currency. Example: 'EUR'
- * @param  {String} rawData.uuid - An UUID value
+ * @param {Array.<Object>} rawData - An array of objects (the object must contain a date property
+ * @param {string} rawData.category - An UUID value to identify a category
+ * @param {string|null} rawData.subcategory - An UUID value to identify a subcategory or null
+ * @param {number} rawData.quantity - An integer o float number
+ * @param {string} rawData.date - A valid date with this format: '1514447205699'
+ * @param {string} rawData.currencyISO - A currency. Example: 'EUR'
+ * @param {string} rawData.uuid - An UUID value
  * @returns {Array.<Object>}
  */
 const getDetailedExpendesPerMonth = (rawData = []) => {
