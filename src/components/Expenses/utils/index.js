@@ -40,7 +40,7 @@ const getListOfAllMonths = (data = []) => {
 * @requires getLocaleDateString
 * @requires trimDecimalPoints
 * @example
-* 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}, {'quantity': 2.45, 'date': '2020-12-07'}]
+* 	const data = [{quantity: 3, date: '2020-10-31'}, {quantity: 99.03, date: '2020-10-31'}, {quantity: 2.45, date: '2020-12-07'}]
 * 	getSumPerMonth(data) // [{ label: 'October 2020', sum: 102.03 }, { label: 'November 2020', sum: 0 }, { label: 'December 2020', sum: 2.45 }]
 * @param {Array.<Object>} data - An array of objects
 * @param {string} data.date - A valid date with this format '2018-03-01'
@@ -98,7 +98,7 @@ const getSumPerMonth = (data = []) => {
 * @requires getSumPerMonth
 * @requires parseUnixTimestamp
 * @example
-* 	const data = [{'quantity': 3, 'date': '2020-10-31'},{'quantity': 99.03, 'date': '2020-10-31'}, {'quantity': 2.45, 'date': '2020-12-07'}]
+* 	const data = [{quantity: 3, date: '2020-10-31'}, {quantity: 99.03, date: '2020-10-31'}, {quantity: 2.45, date: '2020-12-07'}]
 * 	getAveragePerMonth(data) // [102.03, 0, 2.45, 0, 0, 0, 0, 0]
 * @param {Array.<Object>} data - An array of objects
 * @param {string} data.date - A valid date with this format '2018-03-01'
@@ -111,7 +111,7 @@ const getAveragePerMonth = (data = []) => {
 	}
 
 	const today = parseUnixTimestamp(new Date(Date.now()).getTime()).substring(0, 10)
-	const currentlyMonth = {'quantity': 0, 'date': today}
+	const currentlyMonth = { quantity: 0, date: today }
 	const completedData = [...data]
 	completedData.push(currentlyMonth)
 
