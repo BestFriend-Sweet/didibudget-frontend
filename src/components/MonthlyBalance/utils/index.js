@@ -4,8 +4,8 @@ import { firstDayOfNextMonth } from '../../../utils/utils'
 * Calculate the average of values in an array
 * @example
 *   average( [ 4, 4, 5, 6, 6 ] ) // 5
-* @param  {Array} arr - An array of integers or floats
-* @return {Number}
+* @param {Array} arr - An array of integers or floats
+* @returns {number}
 */
 const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length
 
@@ -15,10 +15,10 @@ const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length
 * @example
 *   const data = [{"balance": 0,"date": "2014-11-01"},{"balance": 678.74,"date": "2014-12-01"},{"balance": 800.75,"date": "2015-01-01"},{"balance": 1189.88,"date": "2015-01-01"},{"balance": 8110.37,"date": "2015-03-01"}];
 *   parseDataForGraph(data) // [ { date: '2014-11-01', balance: 0 }, { date: '2014-12-01', balance: 678.74 }, { date: '2015-01-01', balance: 995.32 }, { date: '2015-02-01' }, { date: '2015-03-01', balance: 8110.37 } ]
-* @param  {Array.<Object>} data - An array of objects (the object must contain a date property. The array must be ordered in date ascendant)
-* @param  {String} data.date - A valid date with this format '2018-03-01'. It is very important that all dates are on the first day of the month 
-* @param  {float|integer} data.balance
-* @return {Array.<Object>}
+* @param {Array.<Object>} data - An array of objects (the object must contain a date property. The array must be ordered in date ascendant)
+* @param {string} data.date - A valid date with this format '2018-03-01'. It is very important that all dates are on the first day of the month
+* @param {float|integer} data.balance
+* @returns {Array.<Object>}
 */
 function parseDataForGraph (data = []) {
 	if (!data.length) {

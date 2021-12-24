@@ -38,7 +38,7 @@ function storeUserDataOnSessionStorage(data) {
 
 /**
  * Recover and unserialize user data from Session Storage
- * @return {Object}
+ * @returns {Object}
  */
 function recoverUserDataFromSessionStorage() {
 	const reviver = (key, value) => {
