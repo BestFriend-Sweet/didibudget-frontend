@@ -15,7 +15,7 @@ export const RegisterMonthlyBalanceForm = () => {
 	const availableYears = [d.getFullYear() - 6, d.getFullYear() - 5, d.getFullYear() - 4, d.getFullYear() - 3, d.getFullYear() - 2, d.getFullYear() - 1, d.getFullYear(), d.getFullYear() + 1]
 	const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-	const [disabled, setDisabled] = useState(false)
+	const [isDisabled, setIsDisabled] = useState(false)
 	const [error, setError] = useState(null)
 
 	const [ registerMonthlyBalance ] = useMutation(REGISTER_MONTHLY_BALANCE)
@@ -27,7 +27,7 @@ export const RegisterMonthlyBalanceForm = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		setDisabled(true)
+		setIsDisabled(true)
 		setError(null)
 
 		const dateToRegister = new Date(year.value, monthNames.indexOf(month.value), 1, 3)
@@ -38,18 +38,18 @@ export const RegisterMonthlyBalanceForm = () => {
 			window.location.href = '/view-monthly-balance'
 		}).catch(e => {
 			setError(e.message)
-			setDisabled(false)
+			setIsDisabled(false)
 		})
 	}
 
 	return (
 		<Fragment>
 			<div className="row justify-content-center mt-4">
-				<form className="col-md-8" disabled={disabled} onSubmit={handleSubmit}>
+				<form className="col-md-8" disabled={isDisabled} onSubmit={handleSubmit}>
 					<div className="form-group">
 						<label htmlFor="inputbalanceRegisterMonthlyBalanceForm" className="text-light">Balance <span className="text-danger">*</span></label>
 						<input
-							disabled={disabled}
+							disabled={isDisabled}
 							inputMode="decimal"
 							className="form-control"
 							id="inputbalanceRegisterMonthlyBalanceForm"
@@ -93,7 +93,7 @@ export const RegisterMonthlyBalanceForm = () => {
 					</div>
 
 					<div className="mt-2 ml-1">
-						<SubmitButton disabled={disabled || !validateRegisterMonthlyBalanceForm(balance.value, year.value, month.value)}>New monthly balance</SubmitButton>
+						<SubmitButton disabled={isDisabled || !validateRegisterMonthlyBalanceForm(balance.value, year.value, month.value)}>New monthly balance</SubmitButton>
 						<SubmitButtonHelper mustShowHelper={!validateRegisterMonthlyBalanceForm(balance.value, year.value, month.value)}></SubmitButtonHelper>
 					</div>
 				</form>
