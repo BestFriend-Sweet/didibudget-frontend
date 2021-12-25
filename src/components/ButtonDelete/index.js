@@ -7,11 +7,11 @@ export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
 	const [modal, setModal] = useState(false)
 	const toggle = () => setModal(!modal)
 
-	const [disabled, setDisabled] = useState(false)
+	const [isDisabled, setIsDisabled] = useState(false)
 	const [error, setError] = useState(null)
 
 	const handleClick = () => {
-		setDisabled(true)
+		setIsDisabled(true)
 		setError(null)
 
 		const variables = { uuid: uuid }
@@ -20,14 +20,14 @@ export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
 			onDelete()
 			toggle()
 		}).catch(e => {
-			setDisabled(false)
+			setIsDisabled(false)
 			setError(e.message)
 		})
 	}
 
 	return (
 		<div>
-			<Button color="danger" outline={true} disabled={disabled} onClick={toggle} className="d-block d-md-inline-block mr-2">Delete</Button>
+			<Button color="danger" outline={true} disabled={isDisabled} onClick={toggle} className="d-block d-md-inline-block mr-2">Delete</Button>
 			<Modal isOpen={modal} toggle={toggle}>
 				<ModalHeader toggle={toggle}>Are you sure?</ModalHeader>
 				<ModalBody>
@@ -35,7 +35,7 @@ export const ButtonDelete = ( { uuid, deleteMutation, onDelete } ) => {
 				</ModalBody>
 				<ModalFooter>
 					<Button color="info" outline={true} onClick={toggle}>Cancel</Button>
-					<Button color="danger" outline={true} onClick={handleClick} disabled={disabled}>Delete</Button>
+					<Button color="danger" outline={true} onClick={handleClick} disabled={isDisabled}>Delete</Button>
 				</ModalFooter>
 				{
 					error && <p className="alert alert-danger py-3 text-center m-3" role="alert">{error}</p>

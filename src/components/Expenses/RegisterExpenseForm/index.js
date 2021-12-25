@@ -15,7 +15,7 @@ import { getNameOfCategoryOrSubcategory } from '../utils'
 import { REGISTER_EXPENSE } from '../../../gql/mutations/expenses'
 
 export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID, categoryData }) => {
-	const [disabled, setDisabled] = useState(false)
+	const [isDisabled, setIsDisabled] = useState(false)
 	const [error, setError] = useState(null)
 	const [toggleRegisterOneMoreExpense, setToggleRegisterOneMoreExpense] = useState(false)
 
@@ -34,7 +34,7 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		setDisabled(true)
+		setIsDisabled(true)
 		setError(null)
 
 		const variables = { category: selectedCategoryID, subcategory: selectedSubcategoryID, quantity: parseFloat(quantity.value), date }
@@ -48,7 +48,7 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 			window.location.href = '/expenses-administration'
 		}).catch(e => {
 			setError(e.message)
-			setDisabled(false)
+			setIsDisabled(false)
 		})
 	}
 
@@ -68,7 +68,7 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 	return (
 		<Fragment>
 			<div className="row justify-content-center mt-4">
-				<form className="col-md-8" disabled={disabled} onSubmit={handleSubmit}>
+				<form className="col-md-8" disabled={isDisabled} onSubmit={handleSubmit}>
 
 					<p className="text-white small text-truncate">{ categoryInformation }</p>
 
@@ -79,7 +79,7 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 					<div className="form-group">
 						<label htmlFor="inputQuantityRegisterExpenseForm" className="text-light">quantity <span className="text-danger">*</span></label>
 						<input
-							disabled={disabled}
+							disabled={isDisabled}
 							inputMode="decimal"
 							className="form-control"
 							id="inputQuantityRegisterExpenseForm"
@@ -95,7 +95,7 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 
 					<div className="form-row mt-2 ml-1">
 						<div className="col-auto">
-							<SubmitButton disabled={disabled || !validateRegisterExpenseForm(quantity.value, date)}>New expense</SubmitButton>
+							<SubmitButton disabled={isDisabled || !validateRegisterExpenseForm(quantity.value, date)}>New expense</SubmitButton>
 						</div>
 						<div className="col pl-4 d-flex flex-row align-items-end">
 							<ToggleButton
