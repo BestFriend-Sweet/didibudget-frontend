@@ -37,7 +37,7 @@ export const RegisterForm = ({ activateAuth }) => {
 		}).catch(e => {
 			setError(e.message)
 			setDisabled(false)
-			setDisabled(false)
+			setIsLoading(false)
 		})
 	}
 
