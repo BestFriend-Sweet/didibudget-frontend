@@ -14,22 +14,22 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 
 						return (
 							<div className="card" key={category.uuid}>
-								<div className="card-header" id={`heading-${category.uuid}`}>
+								<div className="card-header py-2" id={`heading-${category.uuid}`}>
 									<h2 className="mb-0">
 
 										{
 											(hasSubcategories)
 												?
-													<button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>{category.name} <span className="text-dark mr-2"> ❖ </span>
+													<button className="btn btn-link text-left" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>{category.name} <span className="text-dark mr-2"> ❖ </span>
 													</button>
 												:
-													<a className="btn btn-link" href={`/register-expense/${category._id}`} role="button">{category.name}</a>
+													<a className="btn btn-link text-left" href={`/register-expense/${category._id}`} role="button">{category.name}</a>
 										}
 									</h2>
 								</div>
 
 								<div id={`collapse-${category.uuid}`} className="collapse" aria-labelledby={`heading-${category.uuid}`} data-parent="#listOfCategories">
-									<div className="card-body">
+									<div className="card-body py-2">
 										<ListOfExpenseSubcategories categoryID={category._id} subcategories={category.subcategories}/>
 									</div>
 								</div>
