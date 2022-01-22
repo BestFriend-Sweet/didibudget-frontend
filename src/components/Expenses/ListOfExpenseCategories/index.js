@@ -7,31 +7,31 @@ import { ListOfExpenseSubcategories } from '../ListOfExpenseSubcategories'
 export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 	if (getExpenseCategory.length) {
 		return (
-			<section className="accordion mt-5" id="listOfCategories">
+			<section className="accordion my-5" id="listOfCategories">
 				{
 					getExpenseCategory.map((category) => {
 
 						const hasSubcategories = (category.subcategories.length) ? true : false
 
 						return (
-							<div className="card" key={category.uuid}>
+							<div className="card bg-dark border-info" key={category.uuid}>
 								<div className="card-header py-2" id={`heading-${category.uuid}`}>
 									<h2 className="mb-0">
 
 										{
 											(hasSubcategories)
 												?
-													<button className="btn btn-link text-left" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>
+													<button className="btn btn-link text-left text-light" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>
 														<BsFillCaretDownFill
 															size={'16px'}
 															title={`Expand the category: ${category.name}`}
-															color={'black'}
+															color={'white'}
 															className={'mr-2'}
 														/>
 														{category.name}
 													</button>
 												:
-													<a className="btn btn-link text-left" href={`/register-expense/${category._id}`} role="button">{category.name}</a>
+													<a className="btn btn-link text-left text-light" href={`/register-expense/${category._id}`} role="button">{category.name}</a>
 										}
 									</h2>
 								</div>
