@@ -15,7 +15,7 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 
 						return (
 							<div className="card bg-dark border-info" key={category.uuid}>
-								<div className="card-header d-flex p-2 mb-0" id={`heading-${category.uuid}`}>
+								<div className="card-header d-flex p-2 mb-0">
 									{
 										(hasSubcategories)
 											?
