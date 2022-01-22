@@ -16,12 +16,12 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 						return (
 							<div className="card bg-dark border-info" key={category.uuid}>
 								<div className="card-header py-2" id={`heading-${category.uuid}`}>
-									<h2 className="mb-0">
+									<h2 className="mb-0 d-flex">
 
 										{
 											(hasSubcategories)
 												?
-													<button className="btn btn-link text-left text-light" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>
+													<button className="flex-grow-1 btn btn-link text-left text-light" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>
 														<BsFillCaretDownFill
 															size={'16px'}
 															title={`Expand the category: ${category.name}`}
@@ -31,7 +31,7 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 														{category.name}
 													</button>
 												:
-													<a className="btn btn-link text-left text-light" href={`/register-expense/${category._id}`} role="button">{category.name}</a>
+													<a className="d-flex flex-grow-1 btn btn-link text-left text-light" href={`/register-expense/${category._id}`} role="button">{category.name}</a>
 										}
 									</h2>
 								</div>
