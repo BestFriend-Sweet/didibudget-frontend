@@ -15,29 +15,26 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 
 						return (
 							<div className="card bg-dark border-info" key={category.uuid}>
-								<div className="card-header py-2" id={`heading-${category.uuid}`}>
-									<h2 className="mb-0 d-flex">
-
-										{
-											(hasSubcategories)
-												?
-													<button className="flex-grow-1 btn btn-link text-left text-light" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>
-														<BsFillCaretDownFill
-															size={'16px'}
-															title={`Expand the category: ${category.name}`}
-															color={'white'}
-															className={'mr-2'}
-														/>
-														{category.name}
-													</button>
-												:
-													<a className="d-flex flex-grow-1 btn btn-link text-left text-light" href={`/register-expense/${category._id}`} role="button">{category.name}</a>
-										}
-									</h2>
+								<div className="card-header d-flex p-2 mb-0" id={`heading-${category.uuid}`}>
+									{
+										(hasSubcategories)
+											?
+												<button className="flex-grow-1 btn btn-link text-left text-light" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>
+													<BsFillCaretDownFill
+														size={'16px'}
+														title={`Expand the category: ${category.name}`}
+														color={'white'}
+														className={'mr-2'}
+													/>
+													{category.name}
+												</button>
+											:
+												<a className="d-flex flex-grow-1 btn btn-link text-left text-light" href={`/register-expense/${category._id}`} role="button">{category.name}</a>
+									}
 								</div>
 
 								<div id={`collapse-${category.uuid}`} className="collapse" aria-labelledby={`heading-${category.uuid}`} data-parent="#listOfCategories">
-									<div className="card-body py-2">
+									<div className="card-body p-0 pl-1">
 										<ListOfExpenseSubcategories categoryID={category._id} subcategories={category.subcategories}/>
 									</div>
 								</div>
