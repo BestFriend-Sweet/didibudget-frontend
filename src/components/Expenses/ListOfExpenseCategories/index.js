@@ -1,3 +1,4 @@
+import { BsFillCaretDownFill } from 'react-icons/bs'
 import PropTypes from 'prop-types'
 
 import { ErrorAlert } from '../../ErrorAlert'
@@ -20,7 +21,14 @@ export const ListOfExpenseCategories = ( { getExpenseCategory } ) => {
 										{
 											(hasSubcategories)
 												?
-													<button className="btn btn-link text-left" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>{category.name} <span className="text-dark mr-2"> ❖ </span>
+													<button className="btn btn-link text-left" type="button" data-toggle="collapse" data-target={`#collapse-${category.uuid}`} aria-expanded="true" aria-controls={`collapse-${category.uuid}`}>
+														<BsFillCaretDownFill
+															size={'16px'}
+															title={`Expand the category: ${category.name}`}
+															color={'black'}
+															className={'mr-2'}
+														/>
+														{category.name}
 													</button>
 												:
 													<a className="btn btn-link text-left" href={`/register-expense/${category._id}`} role="button">{category.name}</a>
