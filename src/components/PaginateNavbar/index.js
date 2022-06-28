@@ -24,7 +24,7 @@ export const PaginateNavbar = ( { currentPage, totalPages, fetchMore } ) => {
 	}
 
 	return (
-		<nav aria-label="Paginate the results my-5">
+		<nav aria-label="Paginate the results">
 			<ul className="pagination justify-content-center m-4">
 				{
 					Array.from({ length: totalPages }, (_, i) => {
