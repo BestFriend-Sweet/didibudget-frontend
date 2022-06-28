@@ -35,3 +35,32 @@ query {
 	}
 }
 `
+
+export const LIST_ALL_EXPENSES_WITH_PAGINATION_AND_CATEGORIES = gql`
+query ($page: Int!, $pageSize: Int!) {
+	getExpensesWithPagination (page: $page, pageSize: $pageSize) {
+		expenses {
+			category
+			subcategory
+			quantity
+			date
+			currencyISO
+			uuid
+		}
+		pagination {
+			currentPage
+			totalPages
+		}
+	}
+	getExpenseCategory {
+		_id
+		name
+		subcategories {
+			_id
+			name
+			uuid
+		}
+		uuid
+	}
+}
+`

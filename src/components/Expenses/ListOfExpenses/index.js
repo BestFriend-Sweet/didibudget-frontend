@@ -6,10 +6,11 @@ import { getNameOfCategoryOrSubcategory } from '../utils'
 
 import { ErrorAlert } from '../../ErrorAlert'
 import { ButtonDelete } from '../../ButtonDelete'
+import { PaginateNavbar } from '../../PaginateNavbar'
 
 import { DELETE_EXPENSE } from '../../../gql/mutations/expenses'
 
-export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
+export const ListOfExpenses = ( { expenses, paginationData, categories, refetch, fetchMore } ) => {
 
 	const [ deleteExpense ] = useMutation(DELETE_EXPENSE)
 
@@ -47,6 +48,8 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 						}
 					</tbody>
 				</table>
+
+				<PaginateNavbar currentPage={paginationData.currentPage} totalPages={paginationData.totalPages} fetchMore={fetchMore} />
 			</section>
 		)
 	} else {
@@ -67,6 +70,10 @@ ListOfExpenses.propTypes = {
 			currencyISO: PropTypes.string.isRequired
 		})
 	),
+	paginationData: PropTypes.shape({
+		currentPage: PropTypes.number.isRequired,
+		totalPages: PropTypes.number.isRequired,
+	}),
 	categories: PropTypes.arrayOf(
 		PropTypes.shape({
 			_id: PropTypes.string.isRequired,
@@ -81,5 +88,6 @@ ListOfExpenses.propTypes = {
 			uuid: PropTypes.string.isRequired
 		})
 	),
-	refetch: PropTypes.func.isRequired
+	refetch: PropTypes.func.isRequired,
+	fetchMore: PropTypes.func.isRequired
 }
