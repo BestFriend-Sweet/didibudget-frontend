@@ -2,8 +2,10 @@ import PropTypes from 'prop-types'
 
 export const PaginateNavbar = ( { currentPage, totalPages, fetchMore } ) => {
 
+	// TODO: Something is wrong with pagination. After fetchMore seems like the query is executed again.
+
 	const handleClick = async (event) => {
-		event.preventDefault()
+		event.preventDefault() // TODO: This is not working. I need to prevent to load the page when a button is clicked.
 		const selectedPage = parseInt(event.target.value)
 
 		if (selectedPage !== currentPage) {
