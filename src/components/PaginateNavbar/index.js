@@ -1,24 +1,16 @@
 import PropTypes from 'prop-types'
 
-export const PaginateNavbar = ( { currentPage, totalPages, fetchMore } ) => {
+export const PaginateNavbar = ( { currentPage, totalPages, onChangePage } ) => {
 
 	// TODO: Something is wrong with pagination. After fetchMore seems like the query is executed again.
 
 	const handleClick = async (event) => {
-		event.preventDefault() // TODO: This is not working. I need to prevent to load the page when a button is clicked.
+		event.preventDefault()
 		const selectedPage = parseInt(event.target.value)
 
 		if (selectedPage !== currentPage) {
-			await fetchMore(
-				{
-					variables: {
-						page: selectedPage
-					}
-				}
-			)
+			onChangePage(selectedPage)
 		}
-
-		// TODO: Scroll to top of page
 	}
 
 	if (totalPages <= 1) {
@@ -56,5 +48,5 @@ export const PaginateNavbar = ( { currentPage, totalPages, fetchMore } ) => {
 PaginateNavbar.propTypes = {
 	currentPage: PropTypes.number.isRequired,
 	totalPages: PropTypes.number.isRequired,
-	fetchMore: PropTypes.func.isRequired
+	onChangePage: PropTypes.func.isRequired
 }

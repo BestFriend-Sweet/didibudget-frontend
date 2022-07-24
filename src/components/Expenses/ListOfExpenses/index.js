@@ -10,14 +10,24 @@ import { PaginateNavbar } from '../../PaginateNavbar'
 
 import { DELETE_EXPENSE } from '../../../gql/mutations/expenses'
 
-export const ListOfExpenses = ( { expenses, paginationData, categories, refetch, fetchMore } ) => {
+export const ListOfExpenses = ( { expenses, paginationData, categories, refetch, onChangePage } ) => {
 
 	const [ deleteExpense ] = useMutation(DELETE_EXPENSE)
 
-	const expensesReversed = expenses.slice(0).reverse()
+	const onDeleteExpense = () => {
+		const isLastResultOnPage = expenses.length === 1
+		const isNotLastPage = paginationData.totalPages > 1
+		const isNecessaryRequestThePreviousPage = isLastResultOnPage && isNotLastPage
 
-	if (expensesReversed.length) {
+		if (!isNecessaryRequestThePreviousPage) {
+			refetch()
+		} else {
+			const previousPage = paginationData.currentPage - 1
+			onChangePage(previousPage)
+		}
+	}
 
+	if (expenses.length) {
 		return (
 			<section className="table-responsive">
 				<table className="table table-dark table-hover">
@@ -31,7 +41,7 @@ export const ListOfExpenses = ( { expenses, paginationData, categories, refetch,
 					</thead>
 					<tbody>
 						{
-							expensesReversed.map(expense => {
+							expenses.map(expense => {
 								const nameOfCategory = getNameOfCategoryOrSubcategory(expense.category, categories)
 								const nameOfSubcategory = getNameOfCategoryOrSubcategory(expense.subcategory, categories)
 								return (
@@ -40,7 +50,7 @@ export const ListOfExpenses = ( { expenses, paginationData, categories, refetch,
 										<td>{nameOfCategory}{(nameOfSubcategory) ? ` - ${nameOfSubcategory}` : ''}</td>
 										<td>{expense.quantity} {expense.currencyISO}</td>
 										<td>
-											<ButtonDelete uuid={expense.uuid} deleteMutation={deleteExpense} onDelete={refetch} />
+											<ButtonDelete uuid={expense.uuid} deleteMutation={deleteExpense} onDelete={onDeleteExpense} />
 										</td>
 									</tr>
 								)
@@ -49,7 +59,7 @@ export const ListOfExpenses = ( { expenses, paginationData, categories, refetch,
 					</tbody>
 				</table>
 
-				<PaginateNavbar currentPage={paginationData.currentPage} totalPages={paginationData.totalPages} fetchMore={fetchMore} />
+				<PaginateNavbar currentPage={paginationData.currentPage} totalPages={paginationData.totalPages} onChangePage={onChangePage} />
 			</section>
 		)
 	} else {
@@ -89,5 +99,5 @@ ListOfExpenses.propTypes = {
 		})
 	),
 	refetch: PropTypes.func.isRequired,
-	fetchMore: PropTypes.func.isRequired
+	onChangePage: PropTypes.func.isRequired
 }
