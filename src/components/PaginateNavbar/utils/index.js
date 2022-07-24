@@ -7,7 +7,7 @@
 const createActivePaginationItem = (pageNumber, handleClick) => {
 	return (
 		<li className="page-item active" key={pageNumber}>
-			<button className="page-link" aria-label={`Page ${pageNumber}`} value={pageNumber} onClick={e => handleClick(e)}>{pageNumber}</button>
+			<button className="page-link bg-info text-light border-info" aria-label={`Page ${pageNumber}`} value={pageNumber} onClick={e => handleClick(e)}>{pageNumber}</button>
 		</li>
 	)
 }
@@ -21,7 +21,7 @@ const createActivePaginationItem = (pageNumber, handleClick) => {
 const createPaginationItem = (pageNumber, handleClick) => {
 	return (
 		<li className="page-item" key={pageNumber}>
-			<button className="page-link" aria-label={`Page ${pageNumber}`} value={pageNumber} onClick={e => handleClick(e)}>{pageNumber}</button>
+			<button className="page-link bg-dark text-light border-info" aria-label={`Page ${pageNumber}`} value={pageNumber} onClick={e => handleClick(e)}>{pageNumber}</button>
 		</li>
 	)
 }
@@ -34,7 +34,7 @@ const createPaginationItem = (pageNumber, handleClick) => {
 const createEllipsisPaginationItem = (identifier) => {
 	return (
 		<li className="page-item disabled" key={identifier}>
-			<span className="page-link" tabIndex="-1" aria-disabled="true">…</span>
+			<span className="page-link bg-dark text-light border-info" tabIndex="-1" aria-disabled="true">…</span>
 		</li>
 	)
 }
