@@ -15,7 +15,7 @@ export const PaginateNavbar = ( { currentPage, totalPages, onChangePage } ) => {
 		return null
 	}
 
-	const adjacentPagesNumberToDisplay = 2
+	const adjacentPagesNumberToDisplay = 1
 	let previousEllipsisHasAlreadyBeenDisplayed = false
 	let nextEllipsisHasAlreadyBeenDisplayed = false
 
