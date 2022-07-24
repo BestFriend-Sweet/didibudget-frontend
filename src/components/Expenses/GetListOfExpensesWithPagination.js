@@ -9,7 +9,7 @@ import { LIST_ALL_EXPENSES_WITH_PAGINATION_AND_CATEGORIES } from '../../gql/quer
 
 export const GetListOfExpensesWithPagination = () => {
 	const defaultPage = 1
-	const defaultPageSize = 50
+	const defaultPageSize = 25
 
 	const [page, setPage] = useState(defaultPage)
 
