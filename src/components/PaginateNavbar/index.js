@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types'
 
 export const PaginateNavbar = ( { currentPage, totalPages, onChangePage } ) => {
-
-	// TODO: Something is wrong with pagination. After fetchMore seems like the query is executed again.
-
 	const handleClick = async (event) => {
 		event.preventDefault()
 		const selectedPage = parseInt(event.target.value)
