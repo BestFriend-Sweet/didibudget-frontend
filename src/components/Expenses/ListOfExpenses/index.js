@@ -6,17 +6,28 @@ import { getNameOfCategoryOrSubcategory } from '../utils'
 
 import { ErrorAlert } from '../../ErrorAlert'
 import { ButtonDelete } from '../../ButtonDelete'
+import { PaginateNavbar } from '../../PaginateNavbar'
 
 import { DELETE_EXPENSE } from '../../../gql/mutations/expenses'
 
-export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
+export const ListOfExpenses = ( { expenses, paginationData, categories, refetch, onChangePage } ) => {
 
 	const [ deleteExpense ] = useMutation(DELETE_EXPENSE)
 
-	const expensesReversed = expenses.slice(0).reverse()
+	const onDeleteExpense = () => {
+		const isLastResultOnPage = expenses.length === 1
+		const isNotLastPage = paginationData.totalPages > 1
+		const isNecessaryRequestThePreviousPage = isLastResultOnPage && isNotLastPage
 
-	if (expensesReversed.length) {
+		if (!isNecessaryRequestThePreviousPage) {
+			refetch()
+		} else {
+			const previousPage = paginationData.currentPage - 1
+			onChangePage(previousPage)
+		}
+	}
 
+	if (expenses.length) {
 		return (
 			<section className="table-responsive">
 				<table className="table table-dark table-hover">
@@ -30,7 +41,7 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 					</thead>
 					<tbody>
 						{
-							expensesReversed.map(expense => {
+							expenses.map(expense => {
 								const nameOfCategory = getNameOfCategoryOrSubcategory(expense.category, categories)
 								const nameOfSubcategory = getNameOfCategoryOrSubcategory(expense.subcategory, categories)
 								return (
@@ -39,7 +50,7 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 										<td>{nameOfCategory}{(nameOfSubcategory) ? ` - ${nameOfSubcategory}` : ''}</td>
 										<td>{expense.quantity} {expense.currencyISO}</td>
 										<td>
-											<ButtonDelete uuid={expense.uuid} deleteMutation={deleteExpense} onDelete={refetch} />
+											<ButtonDelete uuid={expense.uuid} deleteMutation={deleteExpense} onDelete={onDeleteExpense} />
 										</td>
 									</tr>
 								)
@@ -47,6 +58,8 @@ export const ListOfExpenses = ( { expenses, categories, refetch } ) => {
 						}
 					</tbody>
 				</table>
+
+				<PaginateNavbar currentPage={paginationData.currentPage} totalPages={paginationData.totalPages} onChangePage={onChangePage} />
 			</section>
 		)
 	} else {
@@ -67,6 +80,10 @@ ListOfExpenses.propTypes = {
 			currencyISO: PropTypes.string.isRequired
 		})
 	),
+	paginationData: PropTypes.shape({
+		currentPage: PropTypes.number.isRequired,
+		totalPages: PropTypes.number.isRequired,
+	}),
 	categories: PropTypes.arrayOf(
 		PropTypes.shape({
 			_id: PropTypes.string.isRequired,
@@ -81,5 +98,6 @@ ListOfExpenses.propTypes = {
 			uuid: PropTypes.string.isRequired
 		})
 	),
-	refetch: PropTypes.func.isRequired
+	refetch: PropTypes.func.isRequired,
+	onChangePage: PropTypes.func.isRequired
 }
