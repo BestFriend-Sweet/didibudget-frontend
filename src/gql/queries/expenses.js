@@ -50,7 +50,6 @@ query ($page: Int!, $pageSize: Int!) {
 		pagination {
 			currentPage
 			totalPages
-			totalCount
 		}
 	}
 	getExpenseCategory {
