@@ -179,7 +179,7 @@ const getNameOfCategoryOrSubcategory = (target, categories) => {
  * This function performs a summation grouping the expenses by months. For each month, the categories of expenses are grouped. For each category their subcategories are also grouped
  * @requires trimDecimalPoints
  * @requires getSumPerMonth
- * @param {Array.<Object>} rawData - An array of objects (the object must contain a date property
+ * @param {Array.<Object>} rawData - An array of objects (the object must contain a date property)
  * @param {string} rawData.category - An UUID value to identify a category
  * @param {string|null} rawData.subcategory - An UUID value to identify a subcategory or null
  * @param {number} rawData.quantity - An integer o float number
