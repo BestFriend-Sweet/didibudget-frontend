@@ -295,6 +295,18 @@ const getDetailedExpendesPerMonth = (rawData = []) => {
 	return parsedMonthsWithCategoriesAndSubcategories
 }
 
+/**
+ * Returns a new array with the last 12 elements of original array. If the original array does not have a length of 12 or more, this function returns an empty array.
+ * @param {Array} anArray - An array of any values
+ * @returns {Array}
+ */
+const getLastTwelveValuesFromArrayIfTheyExist = (anArray) => {
+	if (anArray.length < 12) {
+		return []
+	}
+
+	return anArray.slice(-12)
+}
 
 export {
 	getNameOfCategoryOrSubcategory,
@@ -302,4 +314,5 @@ export {
 	getDetailedExpendesPerMonth,
 	getAveragePerMonth,
 	averageOfLast,
+	getLastTwelveValuesFromArrayIfTheyExist,
 }
