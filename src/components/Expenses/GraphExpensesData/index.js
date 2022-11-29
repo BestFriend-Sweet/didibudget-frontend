@@ -67,12 +67,12 @@ export const GraphExpensesData = ({data}) => {
 
 				{
 					lastSixMonths && <PageSubTitle>
-						The average of the expenses of the <strong>last six months</strong> is ${lastSixMonths} €.
+						The average of the expenses of the <strong>last six months</strong> is {lastSixMonths} €.
 					</PageSubTitle>
 				}
 				{
 					lastTwelveMonths && <PageSubTitle>
-						The average of the expenses of the <strong>last twelve months</strong> is ${lastTwelveMonths} €.
+						The average of the expenses of the <strong>last twelve months</strong> is {lastTwelveMonths} €.
 					</PageSubTitle>
 				}
 			</Fragment>
