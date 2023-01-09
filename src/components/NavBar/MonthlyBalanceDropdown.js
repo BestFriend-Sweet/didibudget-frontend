@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { Link } from '@reach/router'
+import { Link } from 'react-router-dom'
 
 import { FaPiggyBank, FaListUl } from 'react-icons/fa'
 import { GoGraph } from 'react-icons/go'

@@ -1,8 +1,6 @@
-import { StrictMode, useContext, Suspense, lazy } from 'react'
+import { StrictMode, Suspense, lazy } from 'react'
 
-import { Router, Redirect } from '@reach/router'
-
-import { AuthContext } from './AuthContext'
+import { Routes, Route } from 'react-router-dom'
 
 import { Login } from './pages/Login'
 import { Registration } from './pages/Registration'
@@ -12,24 +10,23 @@ import { Page404 } from './pages/Page404'
 import { NavBar } from './components/NavBar'
 import { Footer } from './components/Footer'
 import { Spinner } from './components/Spinner'
-import { OnRouteChange } from './components/OnRouteChange'
+import { RequireAuth } from './components/RequireAuth'
+import { RequireUnauthenticated } from './components/RequireUnauthenticated'
+import { RequireAdminRole } from './components/RequireAdminRole'
 
 const Home = lazy(() => import('./pages/Home'))
 const UserAdministration = lazy(() => import('./pages/Users/UserAdministration'))
 const InsertMonthlyBalance = lazy(() => import('./pages/MonthlyBalance/InsertMonthlyBalance'))
-const ViewMonthlyBalance = lazy(() => import('./pages/MonthlyBalance/ViewMonthlyBalance'))
-const MonthlyBalanceAdministration = lazy(() => import('./pages/MonthlyBalance/MonthlyBalanceAdministration'))
-const ExpenseCategorySelector = lazy(() => import('./pages/Expenses/ExpenseCategorySelector'))
-const InsertExpense = lazy(() => import('./pages/Expenses/InsertExpense'))
-const ViewExpenses = lazy(() => import('./pages/Expenses/ViewExpenses'))
-const ExpenseAdministration = lazy(() => import('./pages/Expenses/ExpenseAdministration'))
-const ExpenseAnalysis = lazy(() => import('./pages/Expenses/ExpenseAnalysis'))
+// const ViewMonthlyBalance = lazy(() => import('./pages/MonthlyBalance/ViewMonthlyBalance'))
+// const MonthlyBalanceAdministration = lazy(() => import('./pages/MonthlyBalance/MonthlyBalanceAdministration'))
+// const ExpenseCategorySelector = lazy(() => import('./pages/Expenses/ExpenseCategorySelector'))
+// const InsertExpense = lazy(() => import('./pages/Expenses/InsertExpense'))
+// const ViewExpenses = lazy(() => import('./pages/Expenses/ViewExpenses'))
+// const ExpenseAdministration = lazy(() => import('./pages/Expenses/ExpenseAdministration'))
+//const ExpenseAnalysis = lazy(() => import('./pages/Expenses/ExpenseAnalysis'))
 
 
 export const App = () => {
-	const { isAuth } = useContext(AuthContext)
-	const { userData } = useContext(AuthContext)
-
 	return (
 		<StrictMode>
 			<div className="container-fluid bg-dark">
@@ -37,58 +34,54 @@ export const App = () => {
 					<Suspense fallback={<Spinner />}>
 						<NavBar />
 							<main className="pb-4">
-								<Router>
-									<Page404 default />
-									<Home path='/' />
+								<Routes>
+									<Route path='/' element={<Home />} />
+									<Route path="*" element={<Page404 />} />
 
 									{
-										// If user is not authenticated...
+										// Restricted routes for non-authenticated users
 									}
-									{ !isAuth && <Login path='/login' /> }
-									{ !isAuth && <Registration path='/register' /> }
-									{ !isAuth && <Redirect from='/user-administration' to='/login' noThrow /> }
-									{ !isAuth && <Redirect from='/logout' to='/login' noThrow /> }
-									{ !isAuth && <Redirect from='/register-monthly-balance' to='/login' noThrow /> }
-									{ !isAuth && <Redirect from='/view-monthly-balance' to='/login' noThrow /> }
-									{ !isAuth && <Redirect from='/view-expenses' to='/login' noThrow /> }
-									{ !isAuth && <Redirect from='/monthly-balance-administration' to='/login' noThrow /> }
-									{ !isAuth && <Redirect from='/list-expense-categories' to='/login' noThrow /> }
-									{ !isAuth && <Redirect from='/register-expense' to='/login' noThrow /> }
-									{ !isAuth && <Redirect from='/expenses-administration' to='/login' noThrow /> }
-									{ !isAuth && <Redirect from='/expenses-analysis' to='/login' noThrow /> }
-									{ !isAuth && <Login path='/register-expense/:categoryID/*' /> }
-
+									<Route path='/login' element={
+										<RequireUnauthenticated>
+											<Login />
+										</RequireUnauthenticated>
+									} />
+									<Route path='/register' element={
+										<RequireUnauthenticated>
+											<Registration />
+										</RequireUnauthenticated>
+									} />
 
 									{
-										// If user is authenticated...
+										// Restricted routes for authenticated users
 									}
-									{ isAuth && <Redirect from='/login' to='/' noThrow /> }
-									{ isAuth && <Redirect from='/register' to='/' noThrow /> }
-
+									<Route path='/register-monthly-balance' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<InsertMonthlyBalance />
+											</RequireAuth>
+										</Suspense>
+									} />
+									<Route path='/logout' element={
+										<RequireAuth>
+											<Logout />
+										</RequireAuth>
+									} />
 
 									{
-										// If user is authenticated but don't have administrator role...
+										// Restricted routes for authenticated administrator users
 									}
-									{ isAuth && !userData.isAdmin && <Redirect from='/user-administration' to='/' noThrow /> }
+									<Route path='/user-administration' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<RequireAdminRole>
+													<UserAdministration />
+												</RequireAdminRole>
+											</RequireAuth>
+										</Suspense>
+									} />
 
-
-									<InsertMonthlyBalance path='/register-monthly-balance' />
-									<ViewMonthlyBalance path='/view-monthly-balance' />
-									<MonthlyBalanceAdministration path='/monthly-balance-administration' />
-
-									<UserAdministration path='/user-administration' />
-
-									<ExpenseCategorySelector path='/list-expense-categories' />
-									<ExpenseCategorySelector path="/register-expense" />
-									<InsertExpense path='/register-expense/:categoryID/*' />
-									<ViewExpenses path='/view-expenses' />
-									<ExpenseAdministration path='/expenses-administration' />
-									<ExpenseAnalysis path='/expenses-analysis' />
-
-									<Logout path='/logout' />
-
-								</Router>
-								<OnRouteChange />{/* Use this always after the Reach Router! */}
+								</Routes>
 							</main>
 						<div className="row pb-5"></div>
 						<Footer />

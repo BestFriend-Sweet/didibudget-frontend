@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react'
-import { Location } from '@reach/router'
+import { useEffect, useRef, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 export const OnRouteChangeWorker = ({
@@ -25,11 +24,11 @@ export const OnRouteChange = ({
 	action = defaultAction
 }) => {
 	return (
-		<Location>
+		<Fragment>
 			{({ location }) => (
 				<OnRouteChangeWorker location={location} action={action} />
 			)}
-		</Location>
+		</Fragment>
 	)
 }
 
