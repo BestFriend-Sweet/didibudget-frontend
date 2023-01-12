@@ -1,4 +1,4 @@
-import { parseUnixTimestamp, firstDayOfNextMonth, firstDayOfTheMonth, trimDecimalPoints } from './utils'
+import { parseUnixTimestamp, firstDayOfNextMonth, firstDayOfTheMonth, trimDecimalPoints, getFirstParamFromSplat } from './utils'
 
 describe('parseUnixTimestamp', () => {
 	test('should return a valid date in a human readable format', () => {
@@ -81,5 +81,27 @@ describe('trimDecimalPoints', () => {
 	test('should return a negative float number with two decimals if receive a negative float with more than two decimals', () => {
 		const result = trimDecimalPoints(-34.200000006)
 		expect(result).toEqual(-34.2)
+	})
+})
+
+describe('getFirstParamFromSplat', () => {
+	test('should return null if no receive any parameter', () => {
+		const result = getFirstParamFromSplat()
+		expect(result).toBeNull()
+	})
+
+	test('should return null if receive an empty string as parameter', () => {
+		const result = getFirstParamFromSplat('')
+		expect(result).toBeNull()
+	})
+
+	test('should return all chars before the first slash', () => {
+		const result = getFirstParamFromSplat('5ea7113296474318495ba3e5/discarted/text')
+		expect(result).toEqual('5ea7113296474318495ba3e5')
+	})
+
+	test('should return all chars before the first slash even if there are not any slash', () => {
+		const result = getFirstParamFromSplat('47433e518495ea71132965ba')
+		expect(result).toEqual('47433e518495ea71132965ba')
 	})
 })

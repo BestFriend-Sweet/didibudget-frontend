@@ -73,9 +73,26 @@ const trimDecimalPoints = (number) => {
 	return ~~(Math.pow(10, fixed) * number) / Math.pow(10, fixed)
 }
 
+/**
+ * Split a string and get the first part befor slash character
+ * @example
+ *   getFirstParamFromSplat('5ea7113296474318495ba3e5/discarted/text') //'5ea7113296474318495ba3e5'
+ *   getFirstParamFromSplat('') // null
+ * @param {string} splat
+ * @returns {string|null}
+ */
+const getFirstParamFromSplat = (splat) => {
+	if (!splat) {
+		return null
+	}
+
+	return splat.split('/')[0]
+}
+
 export {
 	parseUnixTimestamp,
 	firstDayOfNextMonth,
 	firstDayOfTheMonth,
-	trimDecimalPoints
+	trimDecimalPoints,
+	getFirstParamFromSplat
 }

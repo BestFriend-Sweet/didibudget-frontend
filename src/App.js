@@ -83,18 +83,6 @@ export const App = () => {
 											</RequireAuth>
 										</Suspense>
 									} />
-
-									{ /* TODO: Creo que la siguiente ruta no es necesaria 
-									<Route path='/register-expense' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<ExpenseCategorySelector />
-											</RequireAuth>
-										</Suspense>
-									} />
-									*/ }
-
-									{ /* TODO: Pending to migrate...
 									<Route path='/register-expense/:categoryID/*' element={
 										<Suspense fallback={<Spinner />}>
 											<RequireAuth>
@@ -102,7 +90,6 @@ export const App = () => {
 											</RequireAuth>
 										</Suspense>
 									} />
-									*/ }
 									<Route path='/view-expenses' element={
 										<Suspense fallback={<Spinner />}>
 											<RequireAuth>
