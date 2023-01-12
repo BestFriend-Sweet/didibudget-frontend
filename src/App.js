@@ -17,13 +17,13 @@ import { RequireAdminRole } from './components/RequireAdminRole'
 const Home = lazy(() => import('./pages/Home'))
 const UserAdministration = lazy(() => import('./pages/Users/UserAdministration'))
 const InsertMonthlyBalance = lazy(() => import('./pages/MonthlyBalance/InsertMonthlyBalance'))
-// const ViewMonthlyBalance = lazy(() => import('./pages/MonthlyBalance/ViewMonthlyBalance'))
-// const MonthlyBalanceAdministration = lazy(() => import('./pages/MonthlyBalance/MonthlyBalanceAdministration'))
-// const ExpenseCategorySelector = lazy(() => import('./pages/Expenses/ExpenseCategorySelector'))
-// const InsertExpense = lazy(() => import('./pages/Expenses/InsertExpense'))
-// const ViewExpenses = lazy(() => import('./pages/Expenses/ViewExpenses'))
-// const ExpenseAdministration = lazy(() => import('./pages/Expenses/ExpenseAdministration'))
-//const ExpenseAnalysis = lazy(() => import('./pages/Expenses/ExpenseAnalysis'))
+const ViewMonthlyBalance = lazy(() => import('./pages/MonthlyBalance/ViewMonthlyBalance'))
+const MonthlyBalanceAdministration = lazy(() => import('./pages/MonthlyBalance/MonthlyBalanceAdministration'))
+const ExpenseCategorySelector = lazy(() => import('./pages/Expenses/ExpenseCategorySelector'))
+const InsertExpense = lazy(() => import('./pages/Expenses/InsertExpense'))
+const ViewExpenses = lazy(() => import('./pages/Expenses/ViewExpenses'))
+const ExpenseAdministration = lazy(() => import('./pages/Expenses/ExpenseAdministration'))
+const ExpenseAnalysis = lazy(() => import('./pages/Expenses/ExpenseAnalysis'))
 
 
 export const App = () => {
@@ -59,6 +59,68 @@ export const App = () => {
 										<Suspense fallback={<Spinner />}>
 											<RequireAuth>
 												<InsertMonthlyBalance />
+											</RequireAuth>
+										</Suspense>
+									} />
+									<Route path='/view-monthly-balance' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<ViewMonthlyBalance />
+											</RequireAuth>
+										</Suspense>
+									} />
+									<Route path='/monthly-balance-administration' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<MonthlyBalanceAdministration />
+											</RequireAuth>
+										</Suspense>
+									} />
+									<Route path='/list-expense-categories' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<ExpenseCategorySelector />
+											</RequireAuth>
+										</Suspense>
+									} />
+
+									{ /* TODO: Creo que la siguiente ruta no es necesaria 
+									<Route path='/register-expense' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<ExpenseCategorySelector />
+											</RequireAuth>
+										</Suspense>
+									} />
+									*/ }
+
+									{ /* TODO: Pending to migrate...
+									<Route path='/register-expense/:categoryID/*' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<InsertExpense />
+											</RequireAuth>
+										</Suspense>
+									} />
+									*/ }
+									<Route path='/view-expenses' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<ViewExpenses />
+											</RequireAuth>
+										</Suspense>
+									} />
+									<Route path='/expenses-administration' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<ExpenseAdministration />
+											</RequireAuth>
+										</Suspense>
+									} />
+									<Route path='/expenses-analysis' element={
+										<Suspense fallback={<Spinner />}>
+											<RequireAuth>
+												<ExpenseAnalysis />
 											</RequireAuth>
 										</Suspense>
 									} />
