@@ -1,5 +1,6 @@
 import { useState, Fragment } from 'react'
 import { useMutation } from '@apollo/client'
+import { useNavigate } from 'react-router-dom'
 
 import { ErrorAlert } from '../../ErrorAlert'
 import { SubmitButton } from '../../SubmitButton'
@@ -15,6 +16,7 @@ export const RegisterMonthlyBalanceForm = () => {
 	const availableYears = [d.getFullYear() - 6, d.getFullYear() - 5, d.getFullYear() - 4, d.getFullYear() - 3, d.getFullYear() - 2, d.getFullYear() - 1, d.getFullYear(), d.getFullYear() + 1]
 	const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
+	const navigate = useNavigate()
 	const [isDisabled, setIsDisabled] = useState(false)
 	const [error, setError] = useState(null)
 
@@ -35,7 +37,7 @@ export const RegisterMonthlyBalanceForm = () => {
 		const variables = { balance: parseFloat(balance.value), date: dateToRegister }
 
 		registerMonthlyBalance({ variables }).then(() => {
-			window.location.href = '/view-monthly-balance'
+			navigate('/view-monthly-balance')
 		}).catch(e => {
 			setError(e.message)
 			setIsDisabled(false)
