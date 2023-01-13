@@ -100,7 +100,7 @@ describe('getFirstParamFromSplat', () => {
 		expect(result).toEqual('5ea7113296474318495ba3e5')
 	})
 
-	test('should return all chars before the first slash even if there are not any slash', () => {
+	test('should return all chars if there are not any slash', () => {
 		const result = getFirstParamFromSplat('47433e518495ea71132965ba')
 		expect(result).toEqual('47433e518495ea71132965ba')
 	})
