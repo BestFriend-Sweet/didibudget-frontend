@@ -74,7 +74,7 @@ const trimDecimalPoints = (number) => {
 }
 
 /**
- * Split a string and get the first part befor slash character
+ * This function splits a string and returns all the characters it finds before a slash
  * @example
  *   getFirstParamFromSplat('5ea7113296474318495ba3e5/discarted/text') //'5ea7113296474318495ba3e5'
  *   getFirstParamFromSplat('') // null
