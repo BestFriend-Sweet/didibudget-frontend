@@ -31,9 +31,9 @@ export const App = () => {
 		<StrictMode>
 			<div className="container-fluid bg-dark">
 				<div className="container">
-					<Suspense fallback={<Spinner />}>
-						<NavBar />
-							<main className="pb-4">
+					<NavBar />
+						<main className="pb-4">
+							<Suspense fallback={<Spinner />}>
 								<Routes>
 									<Route path='/' element={<Home />} />
 									<Route path="*" element={<Page404 />} />
@@ -56,60 +56,44 @@ export const App = () => {
 										// Restricted routes for authenticated users
 									}
 									<Route path='/register-monthly-balance' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<InsertMonthlyBalance />
-											</RequireAuth>
-										</Suspense>
+										<RequireAuth>
+											<InsertMonthlyBalance />
+										</RequireAuth>
 									} />
 									<Route path='/view-monthly-balance' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<ViewMonthlyBalance />
-											</RequireAuth>
-										</Suspense>
+										<RequireAuth>
+											<ViewMonthlyBalance />
+										</RequireAuth>
 									} />
 									<Route path='/monthly-balance-administration' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<MonthlyBalanceAdministration />
-											</RequireAuth>
-										</Suspense>
+										<RequireAuth>
+											<MonthlyBalanceAdministration />
+										</RequireAuth>
 									} />
 									<Route path='/list-expense-categories' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<ExpenseCategorySelector />
-											</RequireAuth>
-										</Suspense>
+										<RequireAuth>
+											<ExpenseCategorySelector />
+										</RequireAuth>
 									} />
 									<Route path='/register-expense/:categoryID/*' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<InsertExpense />
-											</RequireAuth>
-										</Suspense>
+										<RequireAuth>
+											<InsertExpense />
+										</RequireAuth>
 									} />
 									<Route path='/view-expenses' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<ViewExpenses />
-											</RequireAuth>
-										</Suspense>
+										<RequireAuth>
+											<ViewExpenses />
+										</RequireAuth>
 									} />
 									<Route path='/expenses-administration' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<ExpenseAdministration />
-											</RequireAuth>
-										</Suspense>
+										<RequireAuth>
+											<ExpenseAdministration />
+										</RequireAuth>
 									} />
 									<Route path='/expenses-analysis' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<ExpenseAnalysis />
-											</RequireAuth>
-										</Suspense>
+										<RequireAuth>
+											<ExpenseAnalysis />
+										</RequireAuth>
 									} />
 									<Route path='/logout' element={
 										<RequireAuth>
@@ -121,20 +105,17 @@ export const App = () => {
 										// Restricted routes for authenticated administrator users
 									}
 									<Route path='/user-administration' element={
-										<Suspense fallback={<Spinner />}>
-											<RequireAuth>
-												<RequireAdminRole>
-													<UserAdministration />
-												</RequireAdminRole>
-											</RequireAuth>
-										</Suspense>
+										<RequireAuth>
+											<RequireAdminRole>
+												<UserAdministration />
+											</RequireAdminRole>
+										</RequireAuth>
 									} />
-
 								</Routes>
-							</main>
-						<div className="row pb-5"></div>
-						<Footer />
-					</Suspense>
+							</Suspense>
+						</main>
+					<div className="row pb-5"></div>
+					<Footer />
 				</div>
 			</div>
 		</StrictMode>
