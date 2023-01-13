@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useMutation } from '@apollo/client'
+import { useNavigate } from 'react-router-dom'
 
 import { ErrorAlert } from '../../ErrorAlert'
 import { SubmitButton } from '../../SubmitButton'
@@ -15,6 +16,7 @@ import { getNameOfCategoryOrSubcategory } from '../utils'
 import { REGISTER_EXPENSE } from '../../../gql/mutations/expenses'
 
 export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID, categoryData }) => {
+	const navigate = useNavigate()
 	const [isDisabled, setIsDisabled] = useState(false)
 	const [error, setError] = useState(null)
 	const [toggleRegisterOneMoreExpense, setToggleRegisterOneMoreExpense] = useState(false)
@@ -41,11 +43,11 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 
 		registerExpense({ variables }).then(() => {
 			if (toggleRegisterOneMoreExpense) {
-				window.location.href = '/list-expense-categories'
+				navigate('/list-expense-categories')
 				return
 			}
 
-			window.location.href = '/expenses-administration'
+			navigate('/expenses-administration')
 		}).catch(e => {
 			setError(e.message)
 			setIsDisabled(false)

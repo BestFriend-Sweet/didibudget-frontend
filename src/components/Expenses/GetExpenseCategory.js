@@ -7,9 +7,9 @@ import { RegisterExpenseForm } from './RegisterExpenseForm'
 
 import { GET_EXPENSE_CATEGORY_BY_ID } from '../../gql/queries/expenseCategories'
 
-export const GetExpenseCategory = ({props}) => {
-	const subcategoryID = props['*'] || null
-	const categoryID = props.categoryID
+export const GetExpenseCategory = ({ categoryID, subcategoryID }) => {
+
+	console.log('GetExpenseCategory component', categoryID, subcategoryID)
 
 	const { loading, error, data } = useQuery(GET_EXPENSE_CATEGORY_BY_ID, { variables: { category: categoryID }, fetchPolicy: 'no-cache' })
 
@@ -19,9 +19,7 @@ export const GetExpenseCategory = ({props}) => {
 	return <RegisterExpenseForm selectedCategoryID={categoryID} selectedSubcategoryID={subcategoryID} categoryData={data.getExpenseCategoryById} />
 }
 
-RegisterExpenseForm.propTypes = {
-	props: PropTypes.shape({
-		'*': PropTypes.string.isRequired,
-		categoryID: PropTypes.string.isRequired,
-	})
+GetExpenseCategory.propTypes = {
+	categoryID: PropTypes.string.isRequired,
+	subcategoryID: PropTypes.string,
 }

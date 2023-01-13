@@ -1,13 +1,18 @@
 import { Fragment } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { PageTitle } from '../../components/PageTitle'
 import { GetExpenseCategory } from '../../components/Expenses/GetExpenseCategory'
+import { getFirstParamFromSplat } from '../../utils/utils'
 
-const InsertExpense = (props) => {
+const InsertExpense = () => {
+	const { categoryID, '*': splat } = useParams()
+	const subcategoryID = getFirstParamFromSplat(splat)
+
 	return (
 		<Fragment>
 			<PageTitle text='Register expense' />
-			<GetExpenseCategory props={props}/>
+			<GetExpenseCategory categoryID={categoryID} subcategoryID={subcategoryID}/>
 		</Fragment>
 	)
 }
