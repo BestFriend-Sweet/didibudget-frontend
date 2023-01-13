@@ -20,7 +20,7 @@
     "react-widgets": "4.6.1",
     "react-widgets-moment": "4.0.30",
     "reactstrap": "8.10.1",
-    "recharts": "2.2.0"
+    "recharts": "2.3.2"
   },
   "scripts": {
     "lint": "eslint --ext .js ./src",
@@ -73,6 +73,6 @@
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "12.1.5",
     "eslint-plugin-no-lenght": "1.0.2-0",
-    "husky": "7.0.4"
+    "husky": "8.0.3"
   }
 }
