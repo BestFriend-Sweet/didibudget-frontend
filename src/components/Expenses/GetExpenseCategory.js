@@ -9,8 +9,6 @@ import { GET_EXPENSE_CATEGORY_BY_ID } from '../../gql/queries/expenseCategories'
 
 export const GetExpenseCategory = ({ categoryID, subcategoryID }) => {
 
-	console.log('GetExpenseCategory component', categoryID, subcategoryID)
-
 	const { loading, error, data } = useQuery(GET_EXPENSE_CATEGORY_BY_ID, { variables: { category: categoryID }, fetchPolicy: 'no-cache' })
 
 	if (loading) return <Spinner />
