@@ -193,10 +193,10 @@ const getDetailedExpendesPerMonth = (rawData = []) => {
 		return []
 	}
 
-	const data = rawData.map(expenses => {
+	const data = rawData.map(expense => {
 		return {
-			...expenses,
-			date: parseUnixTimestamp(expenses.date).substring(0, 10)
+			...expense,
+			date: parseUnixTimestamp(expense.date).substring(0, 10)
 		}
 	})
 
