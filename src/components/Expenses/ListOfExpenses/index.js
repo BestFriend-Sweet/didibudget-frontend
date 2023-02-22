@@ -15,9 +15,11 @@ export const ListOfExpenses = ( { expenses, paginationData, categories, refetch,
 	const [ deleteExpense ] = useMutation(DELETE_EXPENSE)
 
 	const onDeleteExpense = () => {
-		const isLastResultOnPage = expenses.length === 1
-		const isNotLastPage = paginationData.totalPages > 1
-		const isNecessaryRequestThePreviousPage = isLastResultOnPage && isNotLastPage
+		const isUniqueResultOnCurrentPage = expenses.length === 1
+		const isNotFirstPage = paginationData.currentPage !== 1
+		const isLastPage = paginationData.currentPage === paginationData.totalPages
+
+		const isNecessaryRequestThePreviousPage = isUniqueResultOnCurrentPage && isNotFirstPage && isLastPage
 
 		if (!isNecessaryRequestThePreviousPage) {
 			refetch()
