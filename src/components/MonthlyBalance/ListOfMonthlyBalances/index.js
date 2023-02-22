@@ -6,15 +6,15 @@ import { parseUnixTimestamp } from '../../../utils/utils'
 import { ErrorAlert } from '../../ErrorAlert'
 import { ButtonDelete } from '../../ButtonDelete'
 
-import { DELETE_MONTHLY_BALANCE } from '../../../gql/mutations/monthlyBalance'
+import { DELETE_MONTHLY_BALANCE } from '../../../gql/mutations/monthlyBalances'
 
-export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
+export const ListOfMonthlyBalances = ( { monthlyBalances, refetch } ) => {
 
 	const [ deleteMonthlyBalance ] = useMutation(DELETE_MONTHLY_BALANCE)
 
-	const monthlyBalanceReversed = monthlyBalance.slice(0).reverse()
+	const monthlyBalancesReversed = monthlyBalances.slice(0).reverse()
 
-	if (monthlyBalanceReversed.length) {
+	if (monthlyBalancesReversed.length) {
 
 		return (
 			<section className="table-responsive">
@@ -28,7 +28,7 @@ export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 					</thead>
 					<tbody>
 						{
-							monthlyBalanceReversed.map(monthlyBalance => {
+							monthlyBalancesReversed.map(monthlyBalance => {
 								return (
 									<tr key={monthlyBalance.uuid}>
 										<td>{parseUnixTimestamp(monthlyBalance.date).substring(0, 10)}</td>
@@ -51,8 +51,8 @@ export const ListOfMonthlyBalance = ( { monthlyBalance, refetch } ) => {
 }
 
 
-ListOfMonthlyBalance.propTypes = {
-	monthlyBalance: PropTypes.arrayOf(
+ListOfMonthlyBalances.propTypes = {
+	monthlyBalances: PropTypes.arrayOf(
 		PropTypes.shape({
 			date: PropTypes.string.isRequired,
 			uuid: PropTypes.string.isRequired,

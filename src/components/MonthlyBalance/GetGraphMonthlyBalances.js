@@ -6,7 +6,7 @@ import { GraphMonthlyBalance } from './GraphMonthlyBalance'
 
 import { LIST_ALL_MONTHLY_BALANCES } from '../../gql/queries/monthlyBalances'
 
-export const GetGraphMonthlyBalance = () => {
+export const GetGraphMonthlyBalances = () => {
 	const { loading, error, data } = useQuery(LIST_ALL_MONTHLY_BALANCES, { fetchPolicy: 'no-cache' })
 
 	if (loading) return <Spinner />
