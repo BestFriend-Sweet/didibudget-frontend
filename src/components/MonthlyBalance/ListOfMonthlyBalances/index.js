@@ -5,17 +5,30 @@ import { parseUnixTimestamp } from '../../../utils/utils'
 
 import { ErrorAlert } from '../../ErrorAlert'
 import { ButtonDelete } from '../../ButtonDelete'
+import { PaginateNavbar } from '../../PaginateNavbar'
 
 import { DELETE_MONTHLY_BALANCE } from '../../../gql/mutations/monthlyBalances'
 
-export const ListOfMonthlyBalances = ( { monthlyBalances, refetch } ) => {
+export const ListOfMonthlyBalances = ( { monthlyBalances, paginationData, refetch, onChangePage } ) => {
 
 	const [ deleteMonthlyBalance ] = useMutation(DELETE_MONTHLY_BALANCE)
 
-	const monthlyBalancesReversed = monthlyBalances.slice(0).reverse()
+	const onDeleteMonthlyBalance = () => {
+		const isUniqueResultOnCurrentPage = monthlyBalances.length === 1
+		const isNotFirstPage = paginationData.currentPage !== 1
+		const isLastPage = paginationData.currentPage === paginationData.totalPages
 
-	if (monthlyBalancesReversed.length) {
+		const isNecessaryRequestThePreviousPage = isUniqueResultOnCurrentPage && isNotFirstPage && isLastPage
 
+		if (!isNecessaryRequestThePreviousPage) {
+			refetch()
+		} else {
+			const previousPage = paginationData.currentPage - 1
+			onChangePage(previousPage)
+		}
+	}
+
+	if (monthlyBalances.length) {
 		return (
 			<section className="table-responsive">
 				<table className="table table-dark table-hover">
@@ -28,13 +41,13 @@ export const ListOfMonthlyBalances = ( { monthlyBalances, refetch } ) => {
 					</thead>
 					<tbody>
 						{
-							monthlyBalancesReversed.map(monthlyBalance => {
+							monthlyBalances.map(monthlyBalance => {
 								return (
 									<tr key={monthlyBalance.uuid}>
 										<td>{parseUnixTimestamp(monthlyBalance.date).substring(0, 10)}</td>
 										<td>{monthlyBalance.balance} {monthlyBalance.currencyISO}</td>
 										<td>
-											<ButtonDelete uuid={monthlyBalance.uuid} deleteMutation={deleteMonthlyBalance}onDelete={refetch} />
+											<ButtonDelete uuid={monthlyBalance.uuid} deleteMutation={deleteMonthlyBalance} onDelete={onDeleteMonthlyBalance} />
 										</td>
 									</tr>
 								)
@@ -42,6 +55,8 @@ export const ListOfMonthlyBalances = ( { monthlyBalances, refetch } ) => {
 						}
 					</tbody>
 				</table>
+
+				<PaginateNavbar currentPage={paginationData.currentPage} totalPages={paginationData.totalPages} onChangePage={onChangePage} />
 			</section>
 		)
 	} else {
@@ -60,5 +75,10 @@ ListOfMonthlyBalances.propTypes = {
 			currencyISO: PropTypes.string.isRequired
 		})
 	),
-	refetch: PropTypes.func.isRequired
+	paginationData: PropTypes.shape({
+		currentPage: PropTypes.number.isRequired,
+		totalPages: PropTypes.number.isRequired,
+	}),
+	refetch: PropTypes.func.isRequired,
+	onChangePage: PropTypes.func.isRequired
 }
