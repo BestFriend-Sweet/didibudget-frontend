@@ -12,5 +12,5 @@ export const GetListOfMonthlyBalance = () => {
 	if (loading) return <Spinner />
 	if (error) return <ErrorAlert errorMessage={error.message} />
 
-	return <ListOfMonthlyBalance monthlyBalance={data.getMonthlyBalance} refetch={refetch} />
+	return <ListOfMonthlyBalance monthlyBalance={data.getMonthlyBalances} refetch={refetch} />
 }

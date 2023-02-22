@@ -12,5 +12,5 @@ export const GetGraphMonthlyBalance = () => {
 	if (loading) return <Spinner />
 	if (error) return <ErrorAlert errorMessage={error.message} />
 
-	return <GraphMonthlyBalance data={data.getMonthlyBalance} />
+	return <GraphMonthlyBalance data={data.getMonthlyBalances} />
 }
