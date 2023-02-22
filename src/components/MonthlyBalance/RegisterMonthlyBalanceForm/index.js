@@ -9,7 +9,7 @@ import { SubmitButtonHelper } from '../../SubmitButtonHelper'
 import { useInputValue } from '../../../hooks/useInputValue'
 import { validateRegisterMonthlyBalanceForm } from '../../../utils/validations'
 
-import { REGISTER_MONTHLY_BALANCE } from '../../../gql/mutations/monthlyBalance'
+import { REGISTER_MONTHLY_BALANCE } from '../../../gql/mutations/monthlyBalances'
 
 export const RegisterMonthlyBalanceForm = () => {
 	const d = new Date()

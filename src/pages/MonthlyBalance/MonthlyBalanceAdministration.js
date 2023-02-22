@@ -2,13 +2,13 @@ import { Fragment } from 'react'
 
 import { PageTitle } from '../../components/PageTitle'
 
-import { GetListOfMonthlyBalance } from '../../components/MonthlyBalance/GetListOfMonthlyBalance'
+import { GetListOfMonthlyBalancesWithPagination } from '../../components/MonthlyBalance/GetListOfMonthlyBalancesWithPagination'
 
 const MonthlyBalanceAdministration = () => {
 	return (
 		<Fragment>
 			<PageTitle text='Monthly balance list' />
-			<GetListOfMonthlyBalance />
+			<GetListOfMonthlyBalancesWithPagination />
 		</Fragment>
 	)
 }
