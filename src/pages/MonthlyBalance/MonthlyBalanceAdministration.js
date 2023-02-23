@@ -7,7 +7,7 @@ import { GetListOfMonthlyBalancesWithPagination } from '../../components/Monthly
 const MonthlyBalanceAdministration = () => {
 	return (
 		<Fragment>
-			<PageTitle text='Monthly balance list' />
+			<PageTitle text='Monthly balances list' />
 			<GetListOfMonthlyBalancesWithPagination />
 		</Fragment>
 	)
