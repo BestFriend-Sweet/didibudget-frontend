@@ -23,10 +23,10 @@ export const MonthlyBalanceDropdown = (props) => {
 					<FaPiggyBank size={props.sizeOfSecondaryIcons} title='Register monthly balance' /><span className="ml-3">Register Monthly Balance</span>
 				</Link>
 				<Link className="dropdown-item py-3" to='/view-monthly-balance'>
-					<GoGraph size={props.sizeOfSecondaryIcons} title='View monthly balance'/><span className="ml-3">View Monthly Balance</span>
+					<GoGraph size={props.sizeOfSecondaryIcons} title='View monthly balances'/><span className="ml-3">View Monthly Balances</span>
 				</Link>
 				<Link className="dropdown-item py-3" to='/monthly-balance-administration'>
-					<FaListUl size={props.sizeOfSecondaryIcons} title='Monthly balance administration'/><span className="ml-3">Monthly Balance List</span>
+					<FaListUl size={props.sizeOfSecondaryIcons} title='Monthly balances administration'/><span className="ml-3">Monthly Balances List</span>
 				</Link>
 			</div>
 		</div>
