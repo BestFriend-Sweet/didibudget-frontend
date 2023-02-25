@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { MdHome, MdPeopleOutline } from 'react-icons/md'
-import { IoMdLogIn, IoMdLogOut } from 'react-icons/io'
+import { BsHouse, BsPeople, BsBoxArrowInRight, BsBoxArrowRight } from 'react-icons/bs'
 
 import { AuthContext } from '../../AuthContext'
 
@@ -19,7 +18,7 @@ export const NavBar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark justify-content-between d-flex mb-5 border-bottom border-info">
 			<Link className="navbar-item text-light font-weight-bold pt-2" to='/'>
-				<MdHome size={SIZE_OF_PRIMARY_ICONS} title='Home' />
+				<BsHouse size={SIZE_OF_PRIMARY_ICONS} title='Home' />
 			</Link>
 
 			{
@@ -32,12 +31,12 @@ export const NavBar = () => {
 
 			{ 
 				isAuth && userData.isAdmin && <Link className="navbar-item text-light font-weight-bold pt-2" to='/user-administration'>
-					<MdPeopleOutline size={SIZE_OF_PRIMARY_ICONS} title='User Administration'/>
+					<BsPeople size={SIZE_OF_PRIMARY_ICONS} title='User Administration'/>
 				</Link>
 			}
 			<Link className="navbar-item text-light font-weight-bold pt-2" to='/logout'>
-				{ !isAuth && <IoMdLogIn size={SIZE_OF_PRIMARY_ICONS} title='Login' /> }
-				{ isAuth && <IoMdLogOut size={SIZE_OF_PRIMARY_ICONS} title='Logout' /> }
+				{ !isAuth && <BsBoxArrowInRight size={SIZE_OF_PRIMARY_ICONS} title='Login' /> }
+				{ isAuth && <BsBoxArrowRight size={SIZE_OF_PRIMARY_ICONS} title='Logout' /> }
 			</Link>
 		</nav>
 	)
