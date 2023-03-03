@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import { ResponsiveContainer, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Bar } from 'recharts'
 
 import { parseUnixTimestamp } from '../../../utils/utils'
-import { getSumPerMonth, getAveragePerMonth, averageOfLast, getLastTwelveValuesFromArrayIfTheyExist } from '../utils'
+import { getSumPerMonth, getLastTwelveValuesFromArrayIfTheyExist } from '../utils'
 
 import { ErrorAlert } from '../../ErrorAlert'
 import { PageSubTitle } from '../../PageSubTitle'
+import { AveragePerMonth } from '../AveragePerMonth'
 
 
-export const GraphExpensesData = ({data}) => {	
+export const GraphExpensesData = ({ data }) => {	
 
 	const dataParsed = data.map((expense, index) => {
 		return {
@@ -20,11 +21,6 @@ export const GraphExpensesData = ({data}) => {
 
 	const dataGroupedPerMonth = getSumPerMonth(dataParsed)
 	const dataGroupedPerMonthLastYear = getLastTwelveValuesFromArrayIfTheyExist(dataGroupedPerMonth)
-
-	const averagePerMonthExceptSecondLast = getAveragePerMonth(dataParsed)
-	const lastThreeMonths = averageOfLast(averagePerMonthExceptSecondLast, 3)
-	const lastSixMonths = averageOfLast(averagePerMonthExceptSecondLast, 6)
-	const lastTwelveMonths = averageOfLast(averagePerMonthExceptSecondLast, 12)
 
 	if (dataGroupedPerMonth.length) {
 		return (
@@ -66,24 +62,7 @@ export const GraphExpensesData = ({data}) => {
 					</Fragment>
 				}
 
-				{
-					(!!lastSixMonths || !!lastTwelveMonths) && <PageSubTitle text="Average expenses:"/>
-				}
-				{
-					!!lastThreeMonths && <p className="font-weight-light text-light">
-						The average expense for the <strong>last 3 months</strong> (excluding the current month) has been <span className="text-nowrap">{lastThreeMonths} €.</span>
-					</p>
-				}
-				{
-					!!lastSixMonths && <p className="font-weight-light text-light">
-						The average expense for the <strong>last 6 months</strong> (excluding the current month) has been <span className="text-nowrap">{lastSixMonths} €.</span>
-					</p>
-				}
-				{
-					!!lastTwelveMonths && <p className="font-weight-light text-light">
-						The average expense for the <strong>last 12 months</strong> (excluding the current month) has been <span className="text-nowrap">{lastTwelveMonths} €.</span>
-					</p>
-				}
+				<AveragePerMonth data={dataParsed} />
 			</Fragment>
 		)
 	} else {
