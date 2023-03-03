@@ -22,6 +22,7 @@ export const GraphExpensesData = ({data}) => {
 	const dataGroupedPerMonthLastYear = getLastTwelveValuesFromArrayIfTheyExist(dataGroupedPerMonth)
 
 	const averagePerMonthExceptSecondLast = getAveragePerMonth(dataParsed)
+	const lastThreeMonths = averageOfLast(averagePerMonthExceptSecondLast, 3)
 	const lastSixMonths = averageOfLast(averagePerMonthExceptSecondLast, 6)
 	const lastTwelveMonths = averageOfLast(averagePerMonthExceptSecondLast, 12)
 
@@ -66,14 +67,22 @@ export const GraphExpensesData = ({data}) => {
 				}
 
 				{
-					!!lastSixMonths && <PageSubTitle>
-						The average of the expenses of the <strong>last six months</strong> is <span className="text-nowrap">{lastSixMonths} €.</span>
-					</PageSubTitle>
+					(!!lastSixMonths || !!lastTwelveMonths) && <PageSubTitle text="Average expenses:"/>
 				}
 				{
-					!!lastTwelveMonths && <PageSubTitle>
-						The average of the expenses of the <strong>last twelve months</strong> is <span className="text-nowrap">{lastTwelveMonths} €.</span>
-					</PageSubTitle>
+					!!lastThreeMonths && <p className="font-weight-light text-light">
+						The average expense for the <strong>last 3 months</strong> (excluding the current month) has been <span className="text-nowrap">{lastThreeMonths} €.</span>
+					</p>
+				}
+				{
+					!!lastSixMonths && <p className="font-weight-light text-light">
+						The average expense for the <strong>last 6 months</strong> (excluding the current month) has been <span className="text-nowrap">{lastSixMonths} €.</span>
+					</p>
+				}
+				{
+					!!lastTwelveMonths && <p className="font-weight-light text-light">
+						The average expense for the <strong>last 12 months</strong> (excluding the current month) has been <span className="text-nowrap">{lastTwelveMonths} €.</span>
+					</p>
 				}
 			</Fragment>
 		)
