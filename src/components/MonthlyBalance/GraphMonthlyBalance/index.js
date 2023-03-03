@@ -53,7 +53,7 @@ export const GraphMonthlyBalance = ({data}) => {
 					</ResponsiveContainer>
 				</div>
 				{
-					lastYearDataParsed.length &&
+					lastYearDataParsed.length > 0 &&
 					<Fragment>
 						<PageSubTitle text="The data of the last 12 records is displayed:"/>
 						<div style={{ width: '100%', height: 460 }}>

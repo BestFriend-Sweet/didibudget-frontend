@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import { ResponsiveContainer, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Bar } from 'recharts'
 
 import { parseUnixTimestamp } from '../../../utils/utils'
-import { getSumPerMonth, getAveragePerMonth, averageOfLast, getLastTwelveValuesFromArrayIfTheyExist } from '../utils'
+import { getSumPerMonth, getLastTwelveValuesFromArrayIfTheyExist } from '../utils'
 
 import { ErrorAlert } from '../../ErrorAlert'
 import { PageSubTitle } from '../../PageSubTitle'
+import { AveragePerMonth } from '../AveragePerMonth'
 
 
-export const GraphExpensesData = ({data}) => {	
+export const GraphExpensesData = ({ data }) => {	
 
 	const dataParsed = data.map((expense, index) => {
 		return {
@@ -20,10 +21,6 @@ export const GraphExpensesData = ({data}) => {
 
 	const dataGroupedPerMonth = getSumPerMonth(dataParsed)
 	const dataGroupedPerMonthLastYear = getLastTwelveValuesFromArrayIfTheyExist(dataGroupedPerMonth)
-
-	const averagePerMonthExceptSecondLast = getAveragePerMonth(dataParsed)
-	const lastSixMonths = averageOfLast(averagePerMonthExceptSecondLast, 6)
-	const lastTwelveMonths = averageOfLast(averagePerMonthExceptSecondLast, 12)
 
 	if (dataGroupedPerMonth.length) {
 		return (
@@ -45,7 +42,7 @@ export const GraphExpensesData = ({data}) => {
 				</div>
 
 				{
-					dataGroupedPerMonthLastYear.length &&
+					dataGroupedPerMonthLastYear.length  > 0 &&
 					<Fragment>
 						<PageSubTitle text="Total expenses for the last 12 months:"/>
 						<div style={{ width: '100%', height: 460 }}>
@@ -65,16 +62,7 @@ export const GraphExpensesData = ({data}) => {
 					</Fragment>
 				}
 
-				{
-					lastSixMonths && <PageSubTitle>
-						The average of the expenses of the <strong>last six months</strong> is <span className="text-nowrap">{lastSixMonths} €.</span>
-					</PageSubTitle>
-				}
-				{
-					lastTwelveMonths && <PageSubTitle>
-						The average of the expenses of the <strong>last twelve months</strong> is <span className="text-nowrap">{lastTwelveMonths} €.</span>
-					</PageSubTitle>
-				}
+				<AveragePerMonth data={dataParsed} />
 			</Fragment>
 		)
 	} else {
