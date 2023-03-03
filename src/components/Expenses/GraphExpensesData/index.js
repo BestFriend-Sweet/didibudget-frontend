@@ -45,7 +45,7 @@ export const GraphExpensesData = ({data}) => {
 				</div>
 
 				{
-					dataGroupedPerMonthLastYear.length &&
+					dataGroupedPerMonthLastYear.length  > 0 &&
 					<Fragment>
 						<PageSubTitle text="Total expenses for the last 12 months:"/>
 						<div style={{ width: '100%', height: 460 }}>
