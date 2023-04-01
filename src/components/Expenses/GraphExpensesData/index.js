@@ -12,7 +12,7 @@ import { AveragePerMonth } from '../AveragePerMonth'
 
 export const GraphExpensesData = ({ data }) => {	
 
-	const dataParsed = data.map((expense, index) => {
+	const dataParsed = data.map((expense) => {
 		return {
 			...expense,
 			date: parseUnixTimestamp(expense.date).substring(0, 10)
