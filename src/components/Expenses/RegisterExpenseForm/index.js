@@ -85,7 +85,7 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 							inputMode="decimal"
 							className="form-control"
 							id="inputQuantityRegisterExpenseForm"
-							placeholder='€1234.99'
+							placeholder='1234.99'
 							type='number'
 							step='0.01'
 							{...quantity}
@@ -97,7 +97,7 @@ export const RegisterExpenseForm = ({ selectedCategoryID, selectedSubcategoryID,
 
 					<div className="form-row mt-2 ml-1">
 						<div className="col-auto">
-							<SubmitButton disabled={isDisabled || !validateRegisterExpenseForm(quantity.value, date)}>New expense</SubmitButton>
+							<SubmitButton disabled={isDisabled || !validateRegisterExpenseForm(quantity.value, date)}>Save expense</SubmitButton>
 						</div>
 						<div className="col pl-4 d-flex flex-row align-items-end">
 							<ToggleButton

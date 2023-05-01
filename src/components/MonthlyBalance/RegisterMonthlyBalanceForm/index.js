@@ -13,7 +13,7 @@ import { REGISTER_MONTHLY_BALANCE } from '../../../gql/mutations/monthlyBalances
 
 export const RegisterMonthlyBalanceForm = () => {
 	const d = new Date()
-	const availableYears = [d.getFullYear() - 6, d.getFullYear() - 5, d.getFullYear() - 4, d.getFullYear() - 3, d.getFullYear() - 2, d.getFullYear() - 1, d.getFullYear(), d.getFullYear() + 1]
+	const availableYears = [d.getFullYear() - 4, d.getFullYear() - 3, d.getFullYear() - 2, d.getFullYear() - 1, d.getFullYear()]
 	const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 	const navigate = useNavigate()
@@ -55,14 +55,16 @@ export const RegisterMonthlyBalanceForm = () => {
 							inputMode="decimal"
 							className="form-control"
 							id="inputbalanceRegisterMonthlyBalanceForm"
-							placeholder='€1234.99'
+							placeholder='1234.99'
 							type='number'
 							step='0.01'
 							{...balance}
 							required
 							autoFocus
 						/>
-						<small id="balanceHelp" className="form-text text-muted">Use decimal point as decimal separator</small>
+						<small id="balanceHelp" className="form-text text-muted">
+							Enter the balance on the 1st of each month before the first spend was made. Use decimal point as decimal separator
+						</small>
 					</div>
 
 					<div className="form-row">
@@ -95,7 +97,7 @@ export const RegisterMonthlyBalanceForm = () => {
 					</div>
 
 					<div className="mt-2 ml-1">
-						<SubmitButton disabled={isDisabled || !validateRegisterMonthlyBalanceForm(balance.value, year.value, month.value)}>New monthly balance</SubmitButton>
+						<SubmitButton disabled={isDisabled || !validateRegisterMonthlyBalanceForm(balance.value, year.value, month.value)}>Save monthly balance</SubmitButton>
 						<SubmitButtonHelper mustShowHelper={!validateRegisterMonthlyBalanceForm(balance.value, year.value, month.value)}></SubmitButtonHelper>
 					</div>
 				</form>
